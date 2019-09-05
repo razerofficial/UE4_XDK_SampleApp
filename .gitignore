@@ -1,0 +1,17 @@
+UE4ChromaSDKRT/UE4ChromaSDKRT.sln
+UE4ChromaSDKRT/.vs/
+UE4ChromaSDKRT/Intermediate/
+UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Binaries/
+UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Intermediate/
+UE4ChromaSDKRT/Saved/Backup/
+UE4ChromaSDKRT/Saved/Autosaves/
+UE4ChromaSDKRT/Saved/Config/CrashReportClient/
+UE4ChromaSDKRT/Saved/Cooked/
+UE4ChromaSDKRT/Saved/StagedBuilds/
+UE4ChromaSDKRT/Saved/XboxOne/
+UE4ChromaSDKRT/Saved/Temp/
+UE4ChromaSDKRT/Saved/Logs/
+UE4ChromaSDKRT/Binaries/
+UE4ChromaSDKRT/Build/
+UE4ChromaSDKRT/DerivedDataCache/
+UE4ChromaSDKRT/Saved/
