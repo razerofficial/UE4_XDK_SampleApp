@@ -37,6 +37,7 @@
 
 ## Tutorials
 
+
 ### Videos
 
 
@@ -132,6 +133,8 @@ UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Source/ChromaSDKPlugin/Public/RzErrors.h
 ## API
 
 `UE4ChromaSDKRT` is a Blueprint API library with more methods than the older [UE4ChromaSDK](https://github.com/RazerOfficial/UE4ChromaSDK#api) Blueprint library with some exceptions to be compatible with earlier versions of UE4.
+
+* Take a look at the code from [SampleAppChromaBP.cpp](https://github.com/razerofficial/UE4_XDK_SampleApp/blob/master/UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleAppChromaBP.cpp). These sample effects show how the blueprint library was used to create the `Chroma` effects that correspond to the `Guide`.
 
 * Enum syntax - Enums are namespaced and types use the `EChromaSDKKeyboardKey::Type` syntax to avoid collisions.
 
