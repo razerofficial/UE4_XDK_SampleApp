@@ -1627,6 +1627,31 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UsePreloadingName", Keywords = "Set preloading animation flag"), Category = "ChromaSDK")
 	static void UsePreloadingName(const FString& animationName, bool flag);
 
+
+	/*
+		Get the current frame. Reference animation by id.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrame", Keywords = "Get the current frame"), Category = "ChromaSDK")
+	static int32 GetCurrentFrame(int32 animationId);
+	/*
+		Get the current frame. Reference animation by name.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrameName", Keywords = "Get the current frame"), Category = "ChromaSDK")
+	static int32 GetCurrentFrameName(const FString& animationName);
+
+
+	/*
+		Set the current frame. Reference animation by id.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetCurrentFrame", Keywords = "Set the current frame"), Category = "ChromaSDK")
+	static void SetCurrentFrame(int32 animationId, int32 frameId);
+	/*
+		Set the current frame. Reference animation by name.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetCurrentFrameName", Keywords = "Set the current frame"), Category = "ChromaSDK")
+	static void SetCurrentFrameName(const FString& animationName, int32 frameId);
+
+
 #pragma endregion
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE

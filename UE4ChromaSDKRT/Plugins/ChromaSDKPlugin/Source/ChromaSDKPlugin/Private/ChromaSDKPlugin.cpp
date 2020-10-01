@@ -6966,6 +6966,55 @@ void IChromaSDKPlugin::UsePreloadingName(const char* path, const bool flag)
 }
 
 
+int IChromaSDKPlugin::GetCurrentFrame(const int animationId)
+{
+	AnimationBase* animation = GetAnimationInstance(animationId);
+	if (nullptr == animation)
+	{
+		//LogError("GetCurrentFrame: Animation is null! id=%d\r\n", animationId);
+		return 0;
+	}
+
+	return animation->GetCurrentFrame();
+}
+
+int IChromaSDKPlugin::GetCurrentFrameName(const char* path)
+{
+	AnimationBase* animation = GetAnimationInstanceName(path);
+	if (nullptr == animation)
+	{
+		//LogError("GetCurrentFrameName: Animation is null! %s\r\n", path);
+		return 0;
+	}
+
+	return animation->GetCurrentFrame();
+}
+
+void IChromaSDKPlugin::SetCurrentFrame(const int animationId, const int frameId)
+{
+	AnimationBase* animation = GetAnimationInstance(animationId);
+	if (nullptr == animation)
+	{
+		//LogError("SetCurrentFrame: Animation is null! id=%d\r\n", animationId);
+		return;
+	}
+
+	animation->SetCurrentFrame(frameId);
+}
+
+void IChromaSDKPlugin::SetCurrentFrameName(const char* path, const int frameId)
+{
+	AnimationBase* animation = GetAnimationInstanceName(path);
+	if (nullptr == animation)
+	{
+		//LogError("SetCurrentFrameName: Animation is null! %s\r\n", path);
+		return;
+	}
+
+	animation->SetCurrentFrame(frameId);
+}
+
+
 // VALIDATE DLL METHODS
 
 bool IChromaSDKPlugin::ValidateGetProcAddress(bool condition, FString methodName)

@@ -4803,6 +4803,63 @@ void UChromaSDKPluginBPLibrary::UsePreloadingName(const FString& animationName, 
 #endif
 }
 
+
+int32 UChromaSDKPluginBPLibrary::GetCurrentFrame(int32 animationId)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	return IChromaSDKPlugin::GetChromaSDKPlugin()->GetCurrentFrame(animationId);
+#else
+	return 0;
+#endif
+}
+
+int32 UChromaSDKPluginBPLibrary::GetCurrentFrameName(const FString& animationName)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+//	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
+	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
+	if (animationName.EndsWith(".chroma"))
+	{
+		path += animationName;
+	}
+	else
+	{
+		path += animationName + ".chroma";
+	}
+
+	return IChromaSDKPlugin::GetChromaSDKPlugin()->GetCurrentFrameName(TCHAR_TO_ANSI(*path));
+#else
+	return 0;
+#endif
+}
+
+
+void UChromaSDKPluginBPLibrary::SetCurrentFrame(int32 animationId, int32 frameId)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	IChromaSDKPlugin::GetChromaSDKPlugin()->SetCurrentFrame(animationId, frameId);
+#endif
+}
+
+void UChromaSDKPluginBPLibrary::SetCurrentFrameName(const FString& animationName, int32 frameId)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+//	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
+	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
+	if (animationName.EndsWith(".chroma"))
+	{
+		path += animationName;
+	}
+	else
+	{
+		path += animationName + ".chroma";
+	}
+
+	IChromaSDKPlugin::GetChromaSDKPlugin()->SetCurrentFrameName(TCHAR_TO_ANSI(*path), frameId);
+#endif
+}
+
+
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 #include "Windows/HideWindowsPlatformTypes.h"

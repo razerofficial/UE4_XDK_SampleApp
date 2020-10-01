@@ -491,6 +491,12 @@ public:
 	*/
 	void UsePreloadingName(const char* path, const bool flag);
 
+	int GetCurrentFrame(const int animationId);
+	int GetCurrentFrameName(const char* path);
+
+	void SetCurrentFrame(const int animationId, const int frameId);
+	void SetCurrentFrameName(const char* path, const int frameId);
+
 protected:
 
 	bool ValidateGetProcAddress(bool condition, FString methodName);
