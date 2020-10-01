@@ -345,7 +345,7 @@ int Animation1D::Save(const char* path)
 				for (int i = 0; i < frame.Colors.Num(); ++i)
 				{
 					//color
-					int color = IChromaSDKPlugin::ToBGR(frame.Colors[i]);
+					color = IChromaSDKPlugin::ToBGR(frame.Colors[i]);
 					expectedSize = sizeof(int);
 					fwrite(&color, expectedSize, 1, stream);
 				}
