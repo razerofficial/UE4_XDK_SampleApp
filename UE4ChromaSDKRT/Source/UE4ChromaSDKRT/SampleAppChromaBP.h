@@ -39,6 +39,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect1Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect1Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect1Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect1Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect2", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect2();
 
@@ -53,6 +56,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect2Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect2Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect2Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect2Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect3", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect3();
@@ -69,6 +75,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect3Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect3Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect3Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect3Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect4", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect4();
 
@@ -83,6 +92,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect4Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect4Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect4Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect4Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect5", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect5();
@@ -99,6 +111,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect5Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect5Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect5Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect5Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect6", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect6();
 
@@ -113,6 +128,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect6Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect6Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect6Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect6Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect7", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect7();
@@ -129,6 +147,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect7Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect7Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect7Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect7Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect8", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect8();
 
@@ -143,6 +164,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect8Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect8Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect8Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect8Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect9", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect9();
@@ -159,6 +183,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect9Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect9Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect9Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect9Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect10", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect10();
 
@@ -173,6 +200,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect10Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect10Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect10Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect10Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect11", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect11();
@@ -189,6 +219,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect11Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect11Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect11Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect11Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect12", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect12();
 
@@ -203,6 +236,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect12Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect12Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect12Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect12Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect13", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect13();
@@ -219,6 +255,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect13Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect13Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect13Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect13Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect14", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect14();
 
@@ -233,6 +272,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect14Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect14Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect14Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect14Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect15", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect15();
@@ -249,6 +291,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect15Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect15Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect15Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect15Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect16", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect16();
 
@@ -263,6 +308,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect16Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect16Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect16Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect16Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect17", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect17();
@@ -279,6 +327,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect17Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect17Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect17Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect17Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect18", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect18();
 
@@ -293,6 +344,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect18Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect18Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect18Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect18Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect19", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect19();
@@ -309,6 +363,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect19Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect19Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect19Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect19Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect20", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect20();
 
@@ -323,6 +380,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect20Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect20Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect20Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect20Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect21", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect21();
@@ -339,6 +399,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect21Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect21Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect21Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect21Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect22", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect22();
 
@@ -353,6 +416,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect22Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect22Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect22Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect22Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect23", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect23();
@@ -369,6 +435,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect23Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect23Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect23Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect23Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect24", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect24();
 
@@ -383,6 +452,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect24Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect24Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect24Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect24Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect25", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect25();
@@ -399,6 +471,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect25Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect25Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect25Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect25Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect26", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect26();
 
@@ -413,6 +488,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect26Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect26Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect26Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect26Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect27", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect27();
@@ -429,6 +507,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect27Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect27Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect27Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect27Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect28", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect28();
 
@@ -443,6 +524,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect28Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect28Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect28Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect28Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect29", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect29();
@@ -459,6 +543,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect29Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect29Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect29Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect29Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect30", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect30();
 
@@ -473,6 +560,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect30Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect30Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect30Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect30Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect31", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect31();
@@ -489,6 +579,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect31Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect31Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect31Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect31Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect32", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect32();
 
@@ -503,6 +596,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect32Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect32Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect32Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect32Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect33", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect33();
@@ -519,6 +615,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect33Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect33Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect33Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect33Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect34", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect34();
 
@@ -533,6 +632,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect34Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect34Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect34Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect34Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect35", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect35();
@@ -549,6 +651,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect35Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect35Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect35Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect35Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect36", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect36();
 
@@ -563,6 +668,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect36Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect36Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect36Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect36Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect37", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect37();
@@ -579,6 +687,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect37Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect37Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect37Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect37Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect38", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect38();
 
@@ -593,6 +704,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect38Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect38Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect38Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect38Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect39", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect39();
@@ -609,6 +723,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect39Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect39Mouse();
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect39Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect39Keypad();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect40", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect40();
 
@@ -623,6 +740,9 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect40Mouse", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect40Mouse();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect40Keypad", Keywords = "Example"), Category = "Sample")
+	static void SampleAppShowEffect40Keypad();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppShowEffect41", Keywords = "Example"), Category = "Sample")
 	static void SampleAppShowEffect41();
