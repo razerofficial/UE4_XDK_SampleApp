@@ -1412,7 +1412,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static void SetKeyNonZeroColorName(const FString& animationName, const int32 frameIndex, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam);
 
 	/*
-	Set animation row/column to a static color for the given frame.
+	Set animation key by row and column to a static color for the given frame.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetKeyRowColumnColorName", Keywords = "Set the animation frame's row/column to the supplied color"), Category = "ChromaSDK")
 	static void SetKeyRowColumnColorName(const FString& animationName, const int32 frameIndex, const int32 row, const int32 column, const FLinearColor& colorParam);
@@ -1665,8 +1665,11 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UseIdleAnimation", Keywords = "Set device flag for idle animation"), Category = "ChromaSDK")
 	static void UseIdleAnimation(EChromaSDKDeviceEnum::Type device, bool flag);
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UseIdleAnimationAll", Keywords = "Set all idle animation flags"), Category = "ChromaSDK")
-	static void UseIdleAnimationAll(bool flag);
+	/*
+	Set idle animation flag for all devices.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UseIdleAnimations", Keywords = "Set all idle animation flags"), Category = "ChromaSDK")
+	static void UseIdleAnimations(bool flag);
 
 	/*
 	Set preloading animation flag, which is set to true by default. Reference 

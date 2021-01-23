@@ -4781,10 +4781,10 @@ void UChromaSDKPluginBPLibrary::UseIdleAnimation(EChromaSDKDeviceEnum::Type devi
 #endif
 }
 
-void UChromaSDKPluginBPLibrary::UseIdleAnimationAll(bool flag)
+void UChromaSDKPluginBPLibrary::UseIdleAnimations(bool flag)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-	IChromaSDKPlugin::GetChromaSDKPlugin()->UseIdleAnimationAll(flag);
+	IChromaSDKPlugin::GetChromaSDKPlugin()->UseIdleAnimations(flag);
 #endif
 }
 

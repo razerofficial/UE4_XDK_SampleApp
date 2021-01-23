@@ -6952,7 +6952,7 @@ void IChromaSDKPlugin::UseIdleAnimation(EChromaSDKDeviceEnum::Type device, const
 	}
 }
 
-void IChromaSDKPlugin::UseIdleAnimationAll(const bool flag)
+void IChromaSDKPlugin::UseIdleAnimations(const bool flag)
 {
 	UseIdleAnimation(EChromaSDKDeviceEnum::DE_ChromaLink, flag);
 	UseIdleAnimation(EChromaSDKDeviceEnum::DE_Headset, flag);

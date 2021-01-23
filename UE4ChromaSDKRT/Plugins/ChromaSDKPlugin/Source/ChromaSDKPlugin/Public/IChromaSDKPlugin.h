@@ -478,7 +478,7 @@ public:
 	// IDLE ANIMATION
 
 	void UseIdleAnimation(EChromaSDKDeviceEnum::Type device, const bool flag);
-	void UseIdleAnimationAll(const bool flag);
+	void UseIdleAnimations(const bool flag);
 	void SetIdleAnimationName(const char* path);
 
 	/*
