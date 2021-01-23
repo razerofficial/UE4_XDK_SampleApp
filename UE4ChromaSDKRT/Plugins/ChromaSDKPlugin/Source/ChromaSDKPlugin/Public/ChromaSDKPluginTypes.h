@@ -309,3 +309,27 @@ struct CHROMASDKPLUGIN_API FChromaSDKColorFrame2D
 		Duration = 1;
 	}
 };
+
+USTRUCT(BlueprintType)
+struct CHROMASDKPLUGIN_API FAppInfoType
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FString Title;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FString Description;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FString Author_Name;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FString Author_Contact;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	int32 SupportedDevice;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	int32 Category;
+};

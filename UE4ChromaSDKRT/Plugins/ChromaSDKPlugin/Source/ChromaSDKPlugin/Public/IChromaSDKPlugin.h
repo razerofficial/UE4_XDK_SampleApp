@@ -17,6 +17,7 @@
 DECLARE_LOG_CATEGORY_EXTERN(LogChromaPlugin, Log, All);
 
 typedef RZRESULT(*CHROMA_SDK_INIT)(void);
+typedef RZRESULT(*CHROMA_SDK_INIT_SDK)(ChromaSDK::APPINFOTYPE* appInfo);
 typedef RZRESULT(*CHROMA_SDK_UNINIT)(void);
 typedef RZRESULT(*CHROMA_SDK_CREATE_EFFECT)(RZDEVICEID DeviceId, ChromaSDK::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
 typedef RZRESULT(*CHROMA_SDK_CREATE_CHROMA_LINK_EFFECT)(ChromaSDK::ChromaLink::EFFECT_TYPE Effect, PRZPARAM pParam, RZEFFECTID *pEffectId);
@@ -79,6 +80,7 @@ public:
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	// SDK Methods
 	RZRESULT ChromaSDKInit();
+	RZRESULT ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo);
 	RZRESULT ChromaSDKUnInit();
 	bool IsInitialized();
 	RZRESULT ChromaSDKCreateEffect(RZDEVICEID deviceId, ChromaSDK::EFFECT_TYPE effect, PRZPARAM pParam, RZEFFECTID* pEffectId);
@@ -511,6 +513,7 @@ protected:
 	static bool _sInvalidSignature;
 
 	CHROMA_SDK_INIT _mMethodInit;
+	CHROMA_SDK_INIT_SDK _mMethodInitSDK;
 	CHROMA_SDK_UNINIT _mMethodUnInit;
 	CHROMA_SDK_CREATE_EFFECT _mMethodCreateEffect;
 	CHROMA_SDK_CREATE_CHROMA_LINK_EFFECT _mMethodCreateChromaLinkEffect;

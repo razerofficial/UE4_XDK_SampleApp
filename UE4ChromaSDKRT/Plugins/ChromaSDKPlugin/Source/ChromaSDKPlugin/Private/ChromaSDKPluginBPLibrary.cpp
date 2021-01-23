@@ -639,6 +639,54 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 #endif
 }
 
+int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FAppInfoType& appInfo)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	if (!IChromaSDKPlugin::GetChromaSDKPlugin()->IsInitialized())
+	{
+		ChromaSDK::APPINFOTYPE coreAppInfo = {};
+
+		string strTitle = TCHAR_TO_ANSI(*appInfo.Title);
+		wstring title = wstring(strTitle.begin(), strTitle.end());
+		_tcscpy_s(coreAppInfo.Title, 256, title.c_str());
+
+		string strDesc = TCHAR_TO_ANSI(*appInfo.Description);
+		wstring desc = wstring(strDesc.begin(), strDesc.end());
+		_tcscpy_s(coreAppInfo.Description, 1024, desc.c_str());
+
+		string strName = TCHAR_TO_ANSI(*appInfo.Author_Name);
+		wstring name = wstring(strName.begin(), strName.end());
+		_tcscpy_s(coreAppInfo.Author.Name, 256, name.c_str());
+
+		string strContact = TCHAR_TO_ANSI(*appInfo.Author_Contact);
+		wstring contact = wstring(strContact.begin(), strContact.end());
+		_tcscpy_s(coreAppInfo.Author.Contact, 256, contact.c_str());
+
+		//appInfo.SupportedDevice = 
+		//    0x01 | // Keyboards
+		//    0x02 | // Mice
+		//    0x04 | // Headset
+		//    0x08 | // Mousepads
+		//    0x10 | // Keypads
+		//    0x20   // ChromaLink devices
+		//    ;
+		coreAppInfo.SupportedDevice = appInfo.SupportedDevice;
+		coreAppInfo.Category = appInfo.Category;
+
+		// Init the SDK
+		long result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKInitSDK(&coreAppInfo);
+
+		return result;
+	}
+	else
+	{
+		return -1;
+	}
+#else
+	return -1;
+#endif
+}
+
 int32 UChromaSDKPluginBPLibrary::ChromaSDKUnInit()
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE

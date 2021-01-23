@@ -121,6 +121,7 @@ void FChromaSDKPlugin::StartupModule()
 	_mPlayMap2D.clear();
 
 	_mMethodInit = nullptr;
+	_mMethodInitSDK = nullptr;
 	_mMethodUnInit = nullptr;
 	_mMethodCreateEffect = nullptr;
 	_mMethodCreateChromaLinkEffect = nullptr;
@@ -175,6 +176,11 @@ void FChromaSDKPlugin::StartupModule()
 #pragma warning(disable: 4191)
 	_mMethodInit = (CHROMA_SDK_INIT)GetProcAddress(_mLibraryChroma, "Init");
 	if (ValidateGetProcAddress(_mMethodInit == nullptr, FString("Init")))
+	{
+		return;
+	}
+	_mMethodInitSDK = (CHROMA_SDK_INIT_SDK)GetProcAddress(_mLibraryChroma, "InitSDK");
+	if (ValidateGetProcAddress(_mMethodInitSDK == nullptr, FString("InitSDK")))
 	{
 		return;
 	}
@@ -321,6 +327,52 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 	}
 
 	RZRESULT result = _mMethodInit();
+	if (result == RZRESULT_SUCCESS)
+	{
+		_mInitialized = true;
+	}
+	else
+	{
+		UE_LOG(LogChromaPlugin, Error, TEXT("ChromaSDKPlugin [Init] result=%d"), result);
+	}
+	return result;
+}
+
+RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
+{
+	if (_sLibraryMissing)
+	{
+		return RZRESULT_DLL_NOT_FOUND;
+	}
+
+	if (_sInvalidSignature)
+	{
+		return RZRESULT_DLL_INVALID_SIGNATURE;
+	}
+
+	if (_mInitialized)
+	{
+		//UE_LOG(LogChromaPlugin, Error, TEXT("ChromaSDKPlugin is already initialized!"));
+		return RZRESULT_INVALID;
+	}
+
+	if (ChromaThread::Instance() == nullptr)
+	{
+		ChromaThread::Init();
+	}
+	ChromaThread::Instance()->Start();
+
+	if (_mMethodInit == nullptr)
+	{
+		return RZRESULT_INVALID;
+	}
+
+	if (appInfo == nullptr)
+	{
+		return RZRESULT_INVALID;
+	}
+
+	RZRESULT result = _mMethodInitSDK(appInfo);
 	if (result == RZRESULT_SUCCESS)
 	{
 		_mInitialized = true;

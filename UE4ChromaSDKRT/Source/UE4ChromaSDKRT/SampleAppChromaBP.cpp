@@ -63,7 +63,24 @@ void USampleAppChromaBP::SampleAppSampleStart()
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
-		int32 result = UChromaSDKPluginBPLibrary::ChromaSDKInit();
+		FAppInfoType appInfo;
+		appInfo.Title = "UE4 Sample Application";
+		appInfo.Description = "A sample application using Razer Chroma SDK";
+		appInfo.Author_Name = "Razer";
+		appInfo.Author_Contact = "https://github.com/razerofficial/UE4_XDK_SampleApp";
+
+		//appInfo.SupportedDevice = 
+		//    0x01 | // Keyboards
+		//    0x02 | // Mice
+		//    0x04 | // Headset
+		//    0x08 | // Mousepads
+		//    0x10 | // Keypads
+		//    0x20   // ChromaLink devices
+		//    ;
+		appInfo.SupportedDevice = (0x01 | 0x02 | 0x04 | 0x08 | 0x10 | 0x20);
+		appInfo.Category = 1;
+
+		int32 result = UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(appInfo);
 		switch (result)
 		{
 		case RZRESULT_DLL_NOT_FOUND:
