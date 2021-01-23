@@ -639,7 +639,7 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 #endif
 }
 
-int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FAppInfoType& appInfo)
+int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& appInfo)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!IChromaSDKPlugin::GetChromaSDKPlugin()->IsInitialized())

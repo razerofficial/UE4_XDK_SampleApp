@@ -118,7 +118,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static int32 ChromaSDKInit();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "InitSDK", Keywords = "Initialize the ChromaSDK with AppInfo"), Category = "ChromaSDK")
-	static int32 ChromaSDKInitSDK(const FAppInfoType& appInfo);
+	static int32 ChromaSDKInitSDK(const FChromaSDKAppInfoType& appInfo);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetEffect", Keywords = "Set Effect with Effect Id"), Category = "ChromaSDK")
 	static int32 ChromaSDKSetEffect(const FChromaSDKGuid& effectId);

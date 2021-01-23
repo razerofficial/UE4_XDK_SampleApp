@@ -311,7 +311,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKColorFrame2D
 };
 
 USTRUCT(BlueprintType)
-struct CHROMASDKPLUGIN_API FAppInfoType
+struct CHROMASDKPLUGIN_API FChromaSDKAppInfoType
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -332,4 +332,97 @@ struct CHROMASDKPLUGIN_API FAppInfoType
 
 	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	int32 Category;
+};
+
+
+USTRUCT(BlueprintType)
+struct CHROMASDKPLUGIN_API FChromaSDKDeviceFrameIndex
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	TArray<int32> FrameIndex;
+
+	//Constructor
+	FChromaSDKDeviceFrameIndex()
+	{
+		for (int i = 0; i < (int)EChromaSDKDeviceEnum::DE_MAX; ++i)
+		{
+			FrameIndex.Add(0);
+		}
+
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_ChromaLink] = 0;
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Headset] = 0;
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Keyboard] = 0;
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Keypad] = 0;
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Mouse] = 0;
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Mousepad] = 0;
+	}
+};
+
+UENUM(BlueprintType)
+namespace EChromaSDKSceneBlend
+{
+	enum Type
+	{
+		SB_None			UMETA(DisplayName = "None"),
+		SB_Invert		UMETA(DisplayName = "Invert"),
+		SB_Threshold	UMETA(DisplayName = "Threshold"),
+		SB_Lerp			UMETA(DisplayName = "Lerp"),
+	};
+}
+
+UENUM(BlueprintType)
+namespace EChromaSDKSceneMode
+{
+	enum Type
+	{
+		SM_Replace		UMETA(DisplayName = "Replace"),
+		SM_Max			UMETA(DisplayName = "Max"),
+		SM_Min			UMETA(DisplayName = "Min"),
+		SM_Average		UMETA(DisplayName = "Average"),
+		SM_Multiply		UMETA(DisplayName = "Multiply"),
+		SM_Add			UMETA(DisplayName = "Add"),
+		SM_Subtract		UMETA(DisplayName = "Subtract"),
+	};
+}
+
+
+USTRUCT(BlueprintType)
+struct CHROMASDKPLUGIN_API FChromaSDKSceneEffect
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FString Animation;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	bool State;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FLinearColor PrimaryColor;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FLinearColor SecondaryColor;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	int32 Speed;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	TEnumAsByte<EChromaSDKSceneBlend::Type> Blend;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	TEnumAsByte<EChromaSDKSceneMode::Type> Mode;
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	FChromaSDKDeviceFrameIndex FrameIndex;
+};
+
+USTRUCT(BlueprintType)
+struct CHROMASDKPLUGIN_API FChromaSDKScene
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	TArray<FChromaSDKSceneEffect> Effects;
 };

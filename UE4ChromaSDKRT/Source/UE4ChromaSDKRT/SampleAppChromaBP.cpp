@@ -63,7 +63,7 @@ void USampleAppChromaBP::SampleAppSampleStart()
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
-		FAppInfoType appInfo;
+		FChromaSDKAppInfoType appInfo;
 		appInfo.Title = "UE4 Chroma Sample Application";
 		appInfo.Description = "A sample application using Razer Chroma SDK";
 		appInfo.Author_Name = "Razer";
