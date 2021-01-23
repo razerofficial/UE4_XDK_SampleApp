@@ -64,7 +64,7 @@ void USampleAppChromaBP::SampleAppSampleStart()
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		FAppInfoType appInfo;
-		appInfo.Title = "UE4 Sample Application";
+		appInfo.Title = "UE4 Chroma Sample Application";
 		appInfo.Description = "A sample application using Razer Chroma SDK";
 		appInfo.Author_Name = "Razer";
 		appInfo.Author_Contact = "https://github.com/razerofficial/UE4_XDK_SampleApp";
