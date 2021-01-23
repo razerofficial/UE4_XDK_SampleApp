@@ -347,5 +347,68 @@ void USampleAppButton::HandleClick()
 		USampleAppChromaBP::SampleAppShowEffect40Mousepad();
 		USampleAppChromaBP::SampleAppShowEffect40Mouse();
 	}
+	else if (Name.Compare("Button_Effect41") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect41();
+		USampleAppChromaBP::SampleAppShowEffect41ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect41Headset();
+		USampleAppChromaBP::SampleAppShowEffect41Keypad();
+		USampleAppChromaBP::SampleAppShowEffect41Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect41Mouse();
+	}
+	else if (Name.Compare("Button_Effect42") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect42();
+		USampleAppChromaBP::SampleAppShowEffect42ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect42Headset();
+		USampleAppChromaBP::SampleAppShowEffect42Keypad();
+		USampleAppChromaBP::SampleAppShowEffect42Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect42Mouse();
+	}
+	else if (Name.Compare("Button_Effect43") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect43();
+		USampleAppChromaBP::SampleAppShowEffect43ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect43Headset();
+		USampleAppChromaBP::SampleAppShowEffect43Keypad();
+		USampleAppChromaBP::SampleAppShowEffect43Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect43Mouse();
+	}
+	else if (Name.Compare("Button_Effect44") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect44();
+		USampleAppChromaBP::SampleAppShowEffect44ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect44Headset();
+		USampleAppChromaBP::SampleAppShowEffect44Keypad();
+		USampleAppChromaBP::SampleAppShowEffect44Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect44Mouse();
+	}
+	else if (Name.Compare("Button_Effect45") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect45();
+		USampleAppChromaBP::SampleAppShowEffect45ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect45Headset();
+		USampleAppChromaBP::SampleAppShowEffect45Keypad();
+		USampleAppChromaBP::SampleAppShowEffect45Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect45Mouse();
+	}
+	else if (Name.Compare("Button_Effect46") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect46();
+		USampleAppChromaBP::SampleAppShowEffect46ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect46Headset();
+		USampleAppChromaBP::SampleAppShowEffect46Keypad();
+		USampleAppChromaBP::SampleAppShowEffect46Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect46Mouse();
+	}
+	else if (Name.Compare("Button_Effect47") == 0)
+	{
+		USampleAppChromaBP::SampleAppShowEffect47();
+		USampleAppChromaBP::SampleAppShowEffect47ChromaLink();
+		USampleAppChromaBP::SampleAppShowEffect47Headset();
+		USampleAppChromaBP::SampleAppShowEffect47Keypad();
+		USampleAppChromaBP::SampleAppShowEffect47Mousepad();
+		USampleAppChromaBP::SampleAppShowEffect47Mouse();
+	}
 #endif
 }

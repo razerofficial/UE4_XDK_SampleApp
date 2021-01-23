@@ -136,7 +136,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static void ClearAnimationType(EChromaSDKDeviceEnum::Type device);
 
 	/*
-	`PluginCloseAll` closes all open animations so they can be reloaded from
+	`PluginCloseAll` closes all open animations so they can be reloaded from 
 	disk. The set of animations will be stopped if playing.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CloseAll", Keywords = "Close all animations"), Category = "ChromaSDK")
@@ -198,15 +198,33 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyKeyColorName", Keywords = "Copy color from a source animation to a target animation for a key"), Category = "ChromaSDK")
 	static void CopyKeyColorName(const FString& sourceAnimationName, const FString& targetAnimationName, const int32 frameIndex, EChromaSDKKeyboardKey::Type key);
 
+	/*
+	Copy animation color for a set of keys from the source animation to the 
+	target animation for the given frame. Reference the source and target by 
+	id.
+	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyKeysColor", Keywords = "Copy color from a source animation to a target animation for a set of keys"), Category = "ChromaSDK")
 	static void CopyKeysColor(int32 sourceAnimationId, int32 targetAnimationId, int32 frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys);
 
+	/*
+	Copy animation color for a set of keys from the source animation to the 
+	target animation for all frames. Reference the source and target by id.
+	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyKeysColorAllFrames", Keywords = "Copy color from a source animation to a target animation for a set of keys for all frames"), Category = "ChromaSDK")
 	static void CopyKeysColorAllFrames(int32 sourceAnimationId, int32 targetAnimationId, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys);
 
+	/*
+	Copy animation color for a set of keys from the source animation to the 
+	target animation for all frames. Reference the source and target by name.
+	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyKeysColorAllFramesName", Keywords = "Copy color from a source animation to a target animation for a set of keys for all frames"), Category = "ChromaSDK")
 	static void CopyKeysColorAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys);
 
+	/*
+	Copy animation color for a set of keys from the source animation to the 
+	target animation for the given frame. Reference the source and target by 
+	name.
+	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyKeysColorName", Keywords = "Copy color from a source animation to a target animation for a set of keys"), Category = "ChromaSDK")
 	static void CopyKeysColorName(const FString& sourceAnimationName, const FString& targetAnimationName, const int32 frameIndex, const TArray<TEnumAsByte<EChromaSDKKeyboardKey::Type>>& keys);
 
@@ -314,27 +332,11 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 
 	/*
 	Copy nonzero colors from the source animation to the target animation where 
-	the target color is zero for all frames. Source and target are referenced
-	by id.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyZeroTargetAllKeysAllFrames", Keywords = "Copy nonzero color from a source animation to a target animation for all frames"), Category = "ChromaSDK")
-	static void CopyZeroTargetAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId);
-
-	/*
-	Copy nonzero colors from the source animation to the target animation where 
 	the target color is nonzero for all frames. Source and target are referenced 
 	by name.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyNonZeroTargetAllKeysAllFramesName", Keywords = "Copy nonzero color from a source animation to a target animation for all frames"), Category = "ChromaSDK")
 	static void CopyNonZeroTargetAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName);
-
-	/*
-	Copy nonzero colors from the source animation to the target animation where
-	the target color is zero for all frames. Source and target are referenced
-	by name.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyZeroTargetAllKeysAllFramesName", Keywords = "Copy zero color from a source animation to a target animation for all frames"), Category = "ChromaSDK")
-		static void CopyZeroTargetAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName);
 
 	/*
 	Copy nonzero colors from the source animation to the target animation where 
@@ -360,6 +362,20 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyNonZeroAllKeysName", Keywords = "Copy nonzero color from a source animation to a target animation for a frame"), Category = "ChromaSDK")
 	static void CopyNonZeroTargetAllKeysName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 frameId);
+
+	/*
+	Copy nonzero color from source animation to target animation where target 
+	is zero for all frames. Source and target are referenced by id.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyZeroTargetAllKeysAllFrames", Keywords = "Copy nonzero color from a source animation to a target animation for all frames"), Category = "ChromaSDK")
+	static void CopyZeroTargetAllKeysAllFrames(int32 sourceAnimationId, int32 targetAnimationId);
+
+	/*
+	Copy nonzero color from source animation to target animation where target 
+	is zero for all frames. Source and target are referenced by name.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CopyZeroTargetAllKeysAllFramesName", Keywords = "Copy zero color from a source animation to a target animation for all frames"), Category = "ChromaSDK")
+	static void CopyZeroTargetAllKeysAllFramesName(const FString& sourceAnimationName, const FString& targetAnimationName);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "CreateColors1D", Keywords = "Create a blank one-dimensional color array"), Category = "ChromaSDK")
 	static TArray<FLinearColor> CreateColors1D(EChromaSDKDevice1DEnum::Type device);
@@ -792,6 +808,18 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static FString GetAnimationName(const int32 animationId);
 
 	/*
+	Get the current frame of the animation referenced by id.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrame", Keywords = "Get the current frame"), Category = "ChromaSDK")
+	static int32 GetCurrentFrame(int32 animationId);
+
+	/*
+	Get the current frame of the animation referenced by name.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrameName", Keywords = "Get the current frame"), Category = "ChromaSDK")
+	static int32 GetCurrentFrameName(const FString& animationName);
+
+	/*
 	Returns the frame count of a `Chroma` animation upon success. Returns -1 
 	upon failure.
 	*/
@@ -1221,6 +1249,16 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static void OffsetNonZeroColorsName(const FString& animationName, int32 frameId, int32 red, int32 green, int32 blue);
 
 	/*
+	Opens a `Chroma` animation data from memory so that it can be played. `Data` 
+	is a pointer to byte array of the loaded animation in memory. `Name` will 
+	be assigned to the animation when loaded. Returns an animation id >= 0 
+	upon success. Returns -1 if there was a failure. The animation id is used 
+	in most of the API methods.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "OpenAnimationFromMemory", Keywords = "Open animation from memory"), Category = "ChromaSDK")
+	static void OpenAnimationFromMemory(const TArray<uint8>& data, const FString& animationName);
+
+	/*
 	Override the duration of all frames with the `duration` value. Animation 
 	is referenced by name.
 	*/
@@ -1306,6 +1344,18 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static void SetChromaCustomFlagName(const FString& animationName, bool flag);
 
 	/*
+	Set the current frame of the animation referenced by id.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetCurrentFrame", Keywords = "Set the current frame"), Category = "ChromaSDK")
+	static void SetCurrentFrame(int32 animationId, int32 frameId);
+
+	/*
+	Set the current frame of the animation referenced by name.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetCurrentFrameName", Keywords = "Set the current frame"), Category = "ChromaSDK")
+	static void SetCurrentFrameName(const FString& animationName, int32 frameId);
+
+	/*
 	When the idle animation is used, the named animation will play when no other 
 	animations are playing. Reference the animation by name.
 	*/
@@ -1360,6 +1410,12 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetKeyNonZeroColorName", Keywords = "Set the animation frame's key to the supplied color if the key is not already black"), Category = "ChromaSDK")
 	static void SetKeyNonZeroColorName(const FString& animationName, const int32 frameIndex, EChromaSDKKeyboardKey::Type key, const FLinearColor& colorParam);
+
+	/*
+	Set animation row/column to a static color for the given frame.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetKeyRowColumnColorName", Keywords = "Set the animation frame's row/column to the supplied color"), Category = "ChromaSDK")
+	static void SetKeyRowColumnColorName(const FString& animationName, const int32 frameIndex, const int32 row, const int32 column, const FLinearColor& colorParam);
 
 	/*
 	Set an array of animation keys to a static color for the given frame. Animation 
@@ -1609,50 +1665,26 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UseIdleAnimation", Keywords = "Set device flag for idle animation"), Category = "ChromaSDK")
 	static void UseIdleAnimation(EChromaSDKDeviceEnum::Type device, bool flag);
 
-	/*
-	Set all idle animation flags
-	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UseIdleAnimationAll", Keywords = "Set all idle animation flags"), Category = "ChromaSDK")
 	static void UseIdleAnimationAll(bool flag);
+
 	/*
-		Set preloading animation flag, which is set to true by default. Reference
-		animation by id.
+	Set preloading animation flag, which is set to true by default. Reference 
+	animation by id.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UsePreloading", Keywords = "Set preloading animation flag"), Category = "ChromaSDK")
 	static void UsePreloading(int32 animationId, bool flag);
+
 	/*
-		Set preloading animation flag, which is set to true by default. Reference
-		animation by name.
+	Set preloading animation flag, which is set to true by default. Reference 
+	animation by name.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UsePreloadingName", Keywords = "Set preloading animation flag"), Category = "ChromaSDK")
 	static void UsePreloadingName(const FString& animationName, bool flag);
 
 
-	/*
-		Get the current frame. Reference animation by id.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrame", Keywords = "Get the current frame"), Category = "ChromaSDK")
-	static int32 GetCurrentFrame(int32 animationId);
-	/*
-		Get the current frame. Reference animation by name.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrameName", Keywords = "Get the current frame"), Category = "ChromaSDK")
-	static int32 GetCurrentFrameName(const FString& animationName);
-
-
-	/*
-		Set the current frame. Reference animation by id.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetCurrentFrame", Keywords = "Set the current frame"), Category = "ChromaSDK")
-	static void SetCurrentFrame(int32 animationId, int32 frameId);
-	/*
-		Set the current frame. Reference animation by name.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetCurrentFrameName", Keywords = "Set the current frame"), Category = "ChromaSDK")
-	static void SetCurrentFrameName(const FString& animationName, int32 frameId);
-
-
 #pragma endregion
+
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 private:

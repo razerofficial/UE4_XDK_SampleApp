@@ -9,6 +9,10 @@
 #include "Misc/Paths.h"
 #include "Windows/AllowWindowsPlatformTypes.h" 
 
+
+typedef unsigned char byte;
+
+
 using namespace ChromaSDK;
 using namespace std;
 
@@ -1476,6 +1480,30 @@ void UChromaSDKPluginBPLibrary::SetKeyColorName(const FString& animationName, co
 	}
 
 	int rzkey = _sKeyboardEnumMap[key];
+	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
+	{
+		IChromaSDKPlugin::GetChromaSDKPlugin()->SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, IChromaSDKPlugin::ToBGR(colorParam));
+	}
+#endif
+}
+
+
+void UChromaSDKPluginBPLibrary::SetKeyRowColumnColorName(const FString& animationName, const int32 frameIndex, const int32 row, const int32 column, const FLinearColor& colorParam)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+
+//	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
+	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
+	if (animationName.EndsWith(".chroma"))
+	{
+		path += animationName;
+	}
+	else
+	{
+		path += animationName + ".chroma";
+	}
+
+	int rzkey = (row << 8) | column;
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
 		IChromaSDKPlugin::GetChromaSDKPlugin()->SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, IChromaSDKPlugin::ToBGR(colorParam));
@@ -4858,6 +4886,37 @@ void UChromaSDKPluginBPLibrary::SetCurrentFrameName(const FString& animationName
 	IChromaSDKPlugin::GetChromaSDKPlugin()->SetCurrentFrameName(TCHAR_TO_ANSI(*path), frameId);
 #endif
 }
+
+void UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(const TArray<uint8>& data, const FString& animationName)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+//	FString path = FPaths::GameContentDir(); //___HACK_UE4_VERSION_4_17_OR_LESS
+	FString path = FPaths::ProjectContentDir(); //___HACK_UE4_VERSION_4_18_OR_GREATER
+	if (animationName.EndsWith(".chroma"))
+	{
+		path += animationName;
+	}
+	else
+	{
+		path += animationName + ".chroma";
+	}
+
+	if (data.Num() > 0)
+	{
+		byte* buffer = new byte[data.Num()];
+		const int size = data.Num();
+		for (int i = 0; i < size; ++i)
+		{
+			buffer[i] = data[i];
+		}
+
+		IChromaSDKPlugin::GetChromaSDKPlugin()->OpenAnimationFromMemory(buffer, TCHAR_TO_ANSI(*path));		
+
+		delete[] buffer;
+	}
+#endif
+}
+
 
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE

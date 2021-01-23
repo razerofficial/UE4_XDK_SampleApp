@@ -473,6 +473,7 @@ public:
 
 	int OpenAnimation(const char* path);
 	ChromaSDK::AnimationBase* OpenAnimationFromMemory(const unsigned char* data);
+	int OpenAnimationFromMemory(const unsigned char* data, const char* name);
 
 	// IDLE ANIMATION
 
