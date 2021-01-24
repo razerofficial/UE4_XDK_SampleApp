@@ -393,29 +393,35 @@ struct CHROMASDKPLUGIN_API FChromaSDKSceneEffect
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FString Animation;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	bool State;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FLinearColor PrimaryColor;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FLinearColor SecondaryColor;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	int32 Speed;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	TEnumAsByte<EChromaSDKSceneBlend::Type> Blend;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	TEnumAsByte<EChromaSDKSceneMode::Type> Mode;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FChromaSDKDeviceFrameIndex FrameIndex;
+
+	//constructor
+	FChromaSDKSceneEffect()
+	{
+		Speed = 1;
+	}
 };
 
 USTRUCT(BlueprintType)
@@ -423,6 +429,6 @@ struct CHROMASDKPLUGIN_API FChromaSDKScene
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	TArray<FChromaSDKSceneEffect> Effects;
 };
