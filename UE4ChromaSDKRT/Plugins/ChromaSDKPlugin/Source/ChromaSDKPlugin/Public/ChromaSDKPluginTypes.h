@@ -228,19 +228,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKGuid
 #endif
 
 	//Constructor
-	FChromaSDKGuid()
-	{
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-		Data = RZEFFECTID();
-		Data.Data1 = 0;
-		Data.Data2 = 0;
-		Data.Data3 = 0;
-		for (int i = 0; i < 8; ++i)
-		{
-			Data.Data4[i] = 0;
-		}
-#endif
-	}
+	FChromaSDKGuid();
 };
 
 USTRUCT(BlueprintType)
@@ -255,11 +243,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKEffectResult
 	FChromaSDKGuid EffectId;
 
 	//Constructor
-	FChromaSDKEffectResult()
-	{
-		Result = 0;
-		EffectId = FChromaSDKGuid();
-	}
+	FChromaSDKEffectResult();
 };
 
 USTRUCT(BlueprintType)
@@ -271,9 +255,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKColors
 	TArray<FLinearColor> Colors;
 
 	//Constructor
-	FChromaSDKColors()
-	{
-	}
+	FChromaSDKColors();
 };
 
 USTRUCT(BlueprintType)
@@ -287,10 +269,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKColorFrame1D
 	float Duration;
 
 	//Constructor
-	FChromaSDKColorFrame1D()
-	{
-		Duration = 1;
-	}
+	FChromaSDKColorFrame1D();
 };
 
 USTRUCT(BlueprintType)
@@ -304,10 +283,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKColorFrame2D
 	float Duration;
 
 	//Constructor
-	FChromaSDKColorFrame2D()
-	{
-		Duration = 1;
-	}
+	FChromaSDKColorFrame2D();
 };
 
 USTRUCT(BlueprintType)
@@ -418,10 +394,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKSceneEffect
 	FChromaSDKDeviceFrameIndex FrameIndex;
 
 	//constructor
-	FChromaSDKSceneEffect()
-	{
-		Speed = 1;
-	}
+	FChromaSDKSceneEffect();
 };
 
 USTRUCT(BlueprintType)
