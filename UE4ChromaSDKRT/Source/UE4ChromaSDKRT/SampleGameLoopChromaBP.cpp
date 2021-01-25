@@ -602,14 +602,19 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleEnd()
 void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSDKScene& scene, bool toggleHotkeys, bool toggleAmmo)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+
+	const int MAX_FPS = 30;
+	const float MAX_FPS_INV = 1 / (float)MAX_FPS;
+
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		_sTime += deltaSeconds;
-		if (_sTime < 0.033f)
+		if (_sTime < MAX_FPS_INV)
 		{
 			return;
 		}
 		_sTime = 0;
+		_sTimeMS += 1000 / MAX_FPS;
 
 		// make sure arrays have initialized
 		if (_sColorsChromaLink == NULL ||
@@ -757,8 +762,6 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 
 		UChromaSDKPluginBPLibrary::SetEffectCustom2D_BGR(EChromaSDKDevice2DEnum::DE_Keypad, _sColorsKeypad);
 		UChromaSDKPluginBPLibrary::SetEffectCustom2D_BGR(EChromaSDKDevice2DEnum::DE_Mouse, _sColorsMouse);
-
-		_sTimeMS += 33;
 	}
 #endif
 }
