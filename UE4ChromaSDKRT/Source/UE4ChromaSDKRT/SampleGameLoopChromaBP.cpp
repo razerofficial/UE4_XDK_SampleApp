@@ -665,7 +665,6 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 				float t = _sTimeMS * 0.002f;
 				float hp = fabsf(cos(PI / 2.0f + t));
 				for (int i = 0; i < keysLength; ++i) {
-					float ratio = (i + 1) / (float)keysLength;
 					int color;
 					if (((i + 1) / ((float)keysLength + 1)) < hp) {
 						color = UChromaSDKPluginBPLibrary::GetBGRInt(0, 255, 0);
@@ -691,7 +690,6 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 				float t = _sTimeMS * 0.001f;
 				float hp = fabsf(cos(PI / 2.0f + t));
 				for (int i = 0; i < keysLength; ++i) {
-					float ratio = (i + 1) / (float)keysLength;
 					int color;
 					if (((i + 1) / ((float)keysLength + 1)) < hp) {
 						color = UChromaSDKPluginBPLibrary::GetBGRInt(255, 255, 0);
