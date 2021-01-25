@@ -7096,6 +7096,95 @@ void IChromaSDKPlugin::SetCurrentFrameName(const char* path, const int frameId)
 	animation->SetCurrentFrame(frameId);
 }
 
+int IChromaSDKPlugin::GetFrame(int animationId, int frameIndex, float* duration, int* colors, int length)
+{
+	StopAnimation(animationId);
+
+	if (_mAnimations.find(animationId) != _mAnimations.end())
+	{
+		AnimationBase* animation = _mAnimations[animationId];
+		if (animation == nullptr)
+		{
+			//LogError("GetFrame: Animation is null! id=%d\r\n", animationId);
+			return -1;
+		}
+		switch (animation->GetDeviceType())
+		{
+		case EChromaSDKDeviceTypeEnum::DE_1D:
+		{
+			Animation1D* animation1D = (Animation1D*)(animation);
+			int maxLeds = GetMaxLeds(animation1D->GetDevice());
+			vector<FChromaSDKColorFrame1D>& frames = animation1D->GetFrames();
+			if (frameIndex < 0 || frameIndex >= int(frames.size()))
+			{
+				//LogError("GetFrame: frame index is invalid! %d of %d\r\n", frameIndex, int(frames.size()));
+				return -1;
+			}
+			FChromaSDKColorFrame1D& frame = frames[frameIndex];
+			*duration = frame.Duration;
+			const TArray<FLinearColor>& frameColors = frame.Colors;
+			for (int i = 0; i < maxLeds && i < length; ++i)
+			{
+				colors[i] = ToBGR(frameColors[i]);
+			}
+		}
+		break;
+		case EChromaSDKDeviceTypeEnum::DE_2D:
+		{
+			Animation2D* animation2D = (Animation2D*)(animation);
+			int maxRow = GetMaxRow(animation2D->GetDevice());
+			int maxColumn = GetMaxColumn(animation2D->GetDevice());
+			vector<FChromaSDKColorFrame2D>& frames = animation2D->GetFrames();
+			if (frameIndex < 0 || frameIndex >= int(frames.size()))
+			{
+				//LogError("GetFrame: frame index is invalid! %d of %d\r\n", frameIndex, int(frames.size()));
+				return -1;
+			}
+			FChromaSDKColorFrame2D& frame = frames[frameIndex];
+			*duration = frame.Duration;
+			const TArray<FChromaSDKColors>& frameColors = frame.Colors;
+			int index = 0;
+			for (int i = 0; i < maxRow && index < length; ++i)
+			{
+				const TArray<FLinearColor>& row = frameColors[i].Colors;
+				for (int j = 0; j < maxColumn && index < length; ++j)
+				{
+					colors[index] = ToBGR(row[j]);
+					++index;
+				}
+			}
+		}
+		break;
+		}
+		return animationId;
+	}
+
+	return -1;
+}
+
+int IChromaSDKPlugin::GetFrameCount(int animationId)
+{
+	AnimationBase* animation = GetAnimationInstance(animationId);
+	if (nullptr == animation)
+	{
+		//LogError("GetFrameCount: Animation is null! id=%d\r\n", animationId);
+		return 0;
+	}
+
+	return animation->GetFrameCount();
+}
+
+int IChromaSDKPlugin::GetFrameCountName(const char* path)
+{
+	AnimationBase* animation = GetAnimationInstanceName(path);
+	if (nullptr == animation)
+	{
+		//LogError("SetCurrentFrameName: Animation is null! %s\r\n", path);
+		return 0;
+	}
+
+	return animation->GetFrameCount();
+}
 
 // VALIDATE DLL METHODS
 

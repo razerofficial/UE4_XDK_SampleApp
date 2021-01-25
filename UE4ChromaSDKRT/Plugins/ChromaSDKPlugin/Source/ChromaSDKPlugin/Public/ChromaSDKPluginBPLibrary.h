@@ -811,6 +811,12 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static FString GetAnimationName(const int32 animationId);
 
 	/*
+	Get the BGR Int color given red, green, and blue.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetBGRInt", Keywords = "Convert RGB to BGR Int"), Category = "ChromaSDK")
+	static int32 GetBGRInt(int32 red, int32 green, int32 blue);
+
+	/*
 	Get the current frame of the animation referenced by id.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetCurrentFrame", Keywords = "Get the current frame"), Category = "ChromaSDK")
@@ -841,6 +847,9 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetKeyboardRazerKey", Keywords = "Convert FKey to RZKEY"), Category = "ChromaSDK")
 	static EChromaSDKKeyboardKey::Type GetKeyboardRazerKey(FKey key);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "GetKeyboardRzKey", Keywords = "Convert to RZKEY int"), Category = "ChromaSDK")
+	static int32 GetKeyboardRzKey(EChromaSDKKeyboardKey::Type key);
 
 	/*
 	Get the color of an animation key for the given frame referenced by id.
@@ -1690,6 +1699,37 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 
 
 #pragma endregion
+
+
+	/*
+		Gets the frame colors and duration (in seconds) for a `Chroma` animation.
+		The `color` is expected to be an array of the expected dimensions for the
+		`deviceType/device`. The `length` parameter is the size of the `color`
+		array. For `EChromaSDKDevice1DEnum` the array size should be `MAX LEDS`.
+		For `EChromaSDKDevice2DEnum` the array size should be `MAX ROW` * `MAX
+		COLUMN`. Returns the animation id upon success. Returns -1 upon failure.
+	*/
+	static int32 GetFrameBGR(int32 animationId, int32 frameIndex, float* duration, int32* colors, int32 length);
+
+	/*
+		Directly set 1D effect from an int32 color array
+	*/
+	static RZRESULT SetEffectCustom1D_BGR(EChromaSDKDevice1DEnum::Type device, int32* colors);
+
+	/*
+		Directly set 2D effect from an int32 color array
+	*/
+	static RZRESULT SetEffectCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
+
+	/*
+		Set the custom color mask on the int32 color array
+	*/
+	static RZRESULT SetCustomColorFlag2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
+
+	/*
+		Directly set the custom color keyboard effect from an int32 color array
+	*/
+	static RZRESULT SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
 
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE

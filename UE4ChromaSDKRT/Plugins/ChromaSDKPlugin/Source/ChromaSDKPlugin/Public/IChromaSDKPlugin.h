@@ -96,7 +96,7 @@ public:
 	static int GetMaxLeds(EChromaSDKDevice1DEnum::Type device);
 	static int GetMaxRow(EChromaSDKDevice2DEnum::Type device);
 	static int GetMaxColumn(EChromaSDKDevice2DEnum::Type device);
-	
+
 	void CloseAll();
 	int CloseAnimation(const int animationId);
 	int CloseAnimationName(const char* path);
@@ -499,6 +499,26 @@ public:
 
 	void SetCurrentFrame(const int animationId, const int frameId);
 	void SetCurrentFrameName(const char* path, const int frameId);
+
+	/*
+		Gets the frame colors and duration (in seconds) for a `Chroma` animation.
+		The `color` is expected to be an array of the expected dimensions for the
+		`deviceType/device`. The `length` parameter is the size of the `color`
+		array. For `EChromaSDKDevice1DEnum` the array size should be `MAX LEDS`.
+		For `EChromaSDKDevice2DEnum` the array size should be `MAX ROW` * `MAX
+		COLUMN`. Returns the animation id upon success. Returns -1 upon failure.
+	*/
+	int GetFrame(int animationId, int frameIndex, float* duration, int* colors, int length);
+	/*
+		Returns the frame count of a `Chroma` animation upon success. Returns -1
+		upon failure.
+	*/
+	int GetFrameCount(int animationId);
+	/*
+		Returns the frame count of a `Chroma` animation upon success. Returns -1
+		upon failure.
+	*/
+	int GetFrameCountName(const char* path);
 
 protected:
 

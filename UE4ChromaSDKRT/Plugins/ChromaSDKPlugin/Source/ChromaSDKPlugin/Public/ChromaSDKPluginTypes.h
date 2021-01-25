@@ -376,10 +376,10 @@ struct CHROMASDKPLUGIN_API FChromaSDKSceneEffect
 	bool State;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
-	FLinearColor PrimaryColor;
+	int32 PrimaryColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
-	FLinearColor SecondaryColor;
+	int32 SecondaryColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	int32 Speed;

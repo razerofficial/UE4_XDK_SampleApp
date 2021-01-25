@@ -366,6 +366,11 @@ FLinearColor UChromaSDKPluginBPLibrary::GetRGB(int32 red, int32 green, int32 blu
 	return color;
 }
 
+int32 UChromaSDKPluginBPLibrary::GetBGRInt(int32 red, int32 green, int32 blue)
+{
+	return IChromaSDKPlugin::GetRGB(red, green, blue);
+}
+
 int32 UChromaSDKPluginBPLibrary::ToBGR(const FLinearColor& colorParam)
 {
 	return IChromaSDKPlugin::ToBGR(colorParam);
@@ -4242,6 +4247,14 @@ EChromaSDKKeyboardKey::Type UChromaSDKPluginBPLibrary::GetKeyboardRazerKey(FKey 
 	return EChromaSDKKeyboardKey::KK_INVALID;
 }
 
+int32 UChromaSDKPluginBPLibrary::GetKeyboardRzKey(EChromaSDKKeyboardKey::Type key)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	return _sKeyboardEnumMap[key];
+#endif
+	return 0;
+}
+
 // COPY ANIMATION
 
 void UChromaSDKPluginBPLibrary::CopyAnimation(int32 sourceAnimationId, const FString& targetAnimationName)
@@ -4962,6 +4975,196 @@ void UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(const TArray<uint8>& dat
 
 		delete[] buffer;
 	}
+#endif
+}
+
+
+int UChromaSDKPluginBPLibrary::GetFrameBGR(int animationId, int frameIndex, float* duration, int* colors, int length)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	return IChromaSDKPlugin::GetChromaSDKPlugin()->GetFrame(animationId, frameIndex, duration, colors, length);
+#else
+	return -1;
+#endif
+}
+
+
+RZRESULT UChromaSDKPluginBPLibrary::SetEffectCustom1D_BGR(EChromaSDKDevice1DEnum::Type device, int32* colors)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	int maxLeds = GetMaxLeds(device);
+
+	RZRESULT result = 0;
+	switch (device)
+	{
+	case EChromaSDKDevice1DEnum::DE_ChromaLink:
+	{
+		ChromaLink::CUSTOM_EFFECT_TYPE pParam = {};
+		for (int i = 0; i < maxLeds; i++)
+		{
+			pParam.Color[i] = colors[i];
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateChromaLinkEffect(ChromaLink::CHROMA_CUSTOM, &pParam, nullptr);
+	}
+	break;
+	case EChromaSDKDevice1DEnum::DE_Headset:
+	{
+		Headset::CUSTOM_EFFECT_TYPE pParam = {};
+		for (int i = 0; i < maxLeds; i++)
+		{
+			pParam.Color[i] = colors[i];
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateHeadsetEffect(Headset::CHROMA_CUSTOM, &pParam, nullptr);
+	}
+	break;
+	case EChromaSDKDevice1DEnum::DE_Mousepad:
+	{
+		Mousepad::CUSTOM_EFFECT_TYPE pParam = {};
+		for (int i = 0; i < maxLeds; i++)
+		{
+			pParam.Color[i] = colors[i];
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateMousepadEffect(Mousepad::CHROMA_CUSTOM, &pParam, nullptr);
+	}
+	break;
+	default:
+		//LogError("SetEffectCustom1D_BGR Unsupported device used!\r\n");
+		return RZRESULT_FAILED;
+	}
+	return result;
+#else
+	return 0;
+#endif
+}
+
+RZRESULT UChromaSDKPluginBPLibrary::SetEffectCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	int maxRow = GetMaxRow(device);
+	int maxColumn = GetMaxColumn(device);
+
+	RZRESULT result = 0;
+	switch (device)
+	{
+	case EChromaSDKDevice2DEnum::DE_Keyboard:
+	{
+		Keyboard::CUSTOM_EFFECT_TYPE pParam = {};
+		int index = 0;
+		for (int i = 0; i < maxRow; i++)
+		{
+			for (int j = 0; j < maxColumn; j++)
+			{
+				pParam.Color[i][j] = colors[index];
+				++index;
+			}
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateKeyboardEffect(Keyboard::CHROMA_CUSTOM, &pParam, nullptr);
+	}
+	break;
+	case EChromaSDKDevice2DEnum::DE_Keypad:
+	{
+		Keypad::CUSTOM_EFFECT_TYPE pParam = {};
+		int index = 0;
+		for (int i = 0; i < maxRow; i++)
+		{
+			for (int j = 0; j < maxColumn; j++)
+			{
+				pParam.Color[i][j] = colors[index];
+				++index;
+			}
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateKeypadEffect(Keypad::CHROMA_CUSTOM, &pParam, nullptr);
+	}
+	break;
+	case EChromaSDKDevice2DEnum::DE_Mouse:
+	{
+		Mouse::CUSTOM_EFFECT_TYPE2 pParam = {};
+		int index = 0;
+		for (int i = 0; i < maxRow; i++)
+		{
+			for (int j = 0; j < maxColumn; j++)
+			{
+				pParam.Color[i][j] = colors[index];
+				++index;
+			}
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateMouseEffect(Mouse::CHROMA_CUSTOM2, &pParam, nullptr);
+	}
+	break;
+	default:
+		//LogError("SetEffectCustom2D_BGR Unsupported device used!\r\n");
+		return RZRESULT_FAILED;
+	}
+
+	return result;
+#else
+	return 0;
+#endif
+}
+
+RZRESULT UChromaSDKPluginBPLibrary::SetCustomColorFlag2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	int maxRow = GetMaxRow(device);
+	int maxColumn = GetMaxColumn(device);
+
+	const int customFlag = 0x1 << 24;
+	RZRESULT result = 0;
+	switch (device)
+	{
+		case EChromaSDKDevice2DEnum::DE_Keyboard:
+		{
+			int index = 0;
+			for (int i = 0; i < maxRow; i++)
+			{
+				for (int j = 0; j < maxColumn; j++)
+				{
+					colors[index] = colors[index] | customFlag;
+					++index;
+				}
+			}
+		}
+		break;
+	default:
+		return RZRESULT_FAILED;
+	}
+
+	return RZRESULT_SUCCESS;
+#else
+	return 0;
+#endif
+}
+
+RZRESULT UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	int maxRow = GetMaxRow(device);
+	int maxColumn = GetMaxColumn(device);
+
+	RZRESULT result = 0;
+	switch (device)
+	{
+	case EChromaSDKDevice2DEnum::DE_Keyboard:
+	{
+		Keyboard::CUSTOM_KEY_EFFECT_TYPE pParam = {};
+		int index = 0;
+		for (int i = 0; i < maxRow; i++)
+		{
+			for (int j = 0; j < maxColumn; j++)
+			{
+				pParam.Key[i][j] = colors[index];
+				++index;
+			}
+		}
+		result = IChromaSDKPlugin::GetChromaSDKPlugin()->ChromaSDKCreateKeyboardEffect(Keyboard::CHROMA_CUSTOM_KEY, &pParam, nullptr);
+	}
+	default:
+		return RZRESULT_FAILED;
+	}
+
+	return result;
+#else
+	return 0;
 #endif
 }
 
