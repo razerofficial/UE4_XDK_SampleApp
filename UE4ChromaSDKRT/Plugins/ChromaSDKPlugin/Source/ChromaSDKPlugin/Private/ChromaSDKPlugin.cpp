@@ -6968,31 +6968,23 @@ AnimationBase* IChromaSDKPlugin::OpenAnimationFromMemory(const byte* data)
 
 int IChromaSDKPlugin::OpenAnimationFromMemory(const byte* data, const char* name)
 {
-	try
-	{
-		CloseAnimationName(name);
+	CloseAnimationName(name);
 
-		//return animation id
-		AnimationBase* animation = OpenAnimationFromMemory(data);
-		if (animation == nullptr)
-		{
-			//LogError("OpenAnimationFromMemory: Animation is null! name=%s\r\n", name);
-			return -1;
-		}
-		else
-		{
-			animation->SetName(name);
-			int id = _mAnimationId;
-			_mAnimations[id] = animation;
-			++_mAnimationId;
-			_mAnimationMapID[name] = id;
-			return id;
-		}
-	}
-	catch (exception)
+	//return animation id
+	AnimationBase* animation = OpenAnimationFromMemory(data);
+	if (animation == nullptr)
 	{
-		//LogError("PluginOpenAnimationFromMemory: Exception path=%s\r\n", name);
+		//LogError("OpenAnimationFromMemory: Animation is null! name=%s\r\n", name);
 		return -1;
+	}
+	else
+	{
+		animation->SetName(name);
+		int id = _mAnimationId;
+		_mAnimations[id] = animation;
+		++_mAnimationId;
+		_mAnimationMapID[name] = id;
+		return id;
 	}
 }
 
