@@ -1697,6 +1697,18 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UsePreloadingName", Keywords = "Set preloading animation flag"), Category = "ChromaSDK")
 	static void UsePreloadingName(const FString& animationName, bool flag);
 
+	/*
+		Set the target device to the static color.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetStaticColor", Keywords = "Set the target device to the static color"), Category = "ChromaSDK")
+	static void SetStaticColor(EChromaSDKDeviceEnum::Type device, const FLinearColor& color);
+
+	/*
+		Set the all devices to the static color.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetStaticColorAll", Keywords = "Set the all devices to the static color"), Category = "ChromaSDK")
+	static void SetStaticColorAll(const FLinearColor& color);
+
 
 #pragma endregion
 

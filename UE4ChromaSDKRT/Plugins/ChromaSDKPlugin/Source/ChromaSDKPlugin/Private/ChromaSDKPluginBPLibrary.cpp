@@ -5168,6 +5168,51 @@ RZRESULT UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevi
 #endif
 }
 
+void UChromaSDKPluginBPLibrary::SetStaticColor(EChromaSDKDeviceEnum::Type device, const FLinearColor& color)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	FChromaSDKEffectResult result;
+	switch (device)
+	{
+	case EChromaSDKDeviceEnum::DE_ChromaLink:
+		IChromaSDKPlugin::GetChromaSDKPlugin()->StopAnimationType((int)EChromaSDKDeviceTypeEnum::DE_1D, (int)EChromaSDKDevice1DEnum::DE_ChromaLink);
+		break;
+	case EChromaSDKDeviceEnum::DE_Headset:
+		IChromaSDKPlugin::GetChromaSDKPlugin()->StopAnimationType((int)EChromaSDKDeviceTypeEnum::DE_1D, (int)EChromaSDKDevice1DEnum::DE_Headset);
+		break;
+	case EChromaSDKDeviceEnum::DE_Keyboard:
+		IChromaSDKPlugin::GetChromaSDKPlugin()->StopAnimationType((int)EChromaSDKDeviceTypeEnum::DE_2D, (int)EChromaSDKDevice2DEnum::DE_Keyboard);
+		break;
+	case EChromaSDKDeviceEnum::DE_Keypad:
+		IChromaSDKPlugin::GetChromaSDKPlugin()->StopAnimationType((int)EChromaSDKDeviceTypeEnum::DE_2D, (int)EChromaSDKDevice2DEnum::DE_Keypad);
+		break;
+	case EChromaSDKDeviceEnum::DE_Mouse:
+		IChromaSDKPlugin::GetChromaSDKPlugin()->StopAnimationType((int)EChromaSDKDeviceTypeEnum::DE_2D, (int)EChromaSDKDevice2DEnum::DE_Mouse);
+		break;
+	case EChromaSDKDeviceEnum::DE_Mousepad:
+		IChromaSDKPlugin::GetChromaSDKPlugin()->StopAnimationType((int)EChromaSDKDeviceTypeEnum::DE_1D, (int)EChromaSDKDevice1DEnum::DE_Mousepad);
+		break;
+	}
+	result = ChromaSDKCreateEffectStatic(device, color);
+	if (result.Result == 0)
+	{
+		ChromaSDKSetEffect(result.EffectId);
+		ChromaSDKDeleteEffect(result.EffectId);
+	}
+#endif
+}
+
+void UChromaSDKPluginBPLibrary::SetStaticColorAll(const FLinearColor& color)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	SetStaticColor(EChromaSDKDeviceEnum::DE_ChromaLink, color);
+	SetStaticColor(EChromaSDKDeviceEnum::DE_Headset, color);
+	SetStaticColor(EChromaSDKDeviceEnum::DE_Keyboard, color);
+	SetStaticColor(EChromaSDKDeviceEnum::DE_Keypad, color);
+	SetStaticColor(EChromaSDKDeviceEnum::DE_Mouse, color);
+	SetStaticColor(EChromaSDKDeviceEnum::DE_Mousepad, color);
+#endif
+}
 
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
