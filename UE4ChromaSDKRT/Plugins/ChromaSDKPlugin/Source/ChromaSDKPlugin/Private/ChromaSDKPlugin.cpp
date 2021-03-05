@@ -1,5 +1,6 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
+#include "IChromaSDKPlugin.h"
 #include "ChromaSDKPluginPrivatePCH.h"
 #include "AnimationBase.h"
 #include "Animation1D.h"
