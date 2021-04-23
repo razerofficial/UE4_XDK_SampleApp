@@ -363,7 +363,7 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 	}
 	ChromaThread::Instance()->Start();
 
-	if (_mMethodInit == nullptr)
+	if (_mMethodInitSDK == nullptr)
 	{
 		return RZRESULT_INVALID;
 	}

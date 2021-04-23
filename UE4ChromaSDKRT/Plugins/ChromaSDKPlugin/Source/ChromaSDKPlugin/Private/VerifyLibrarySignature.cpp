@@ -65,7 +65,7 @@ namespace ChromaSDK
 			MAX_PATH);
 		*/
 
-		FWindowsPlatformMisc::GetEnvironmentVariable(L"SystemRoot",
+		FPlatformMisc::GetEnvironmentVariable(L"SystemRoot",
 			szPath,
 			MAX_PATH);
 		dwLength = wcslen(szPath);
@@ -89,7 +89,7 @@ namespace ChromaSDK
 			MAX_PATH);
 		*/
 
-		FWindowsPlatformMisc::GetEnvironmentVariable(L"ProgramFiles",
+		FPlatformMisc::GetEnvironmentVariable(L"ProgramFiles",
 			szPath,
 			MAX_PATH);
 		dwLength = wcslen(szPath);
