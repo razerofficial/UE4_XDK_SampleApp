@@ -13,6 +13,11 @@
 
 #include "Windows/AllowWindowsPlatformTypes.h" 
 
+#if PLATFORM_WINDOWS
+#include "Misc/Paths.h"
+#pragma comment(lib, "version")
+#endif
+
 typedef unsigned char byte;
 #define ANIMATION_VERSION 1
 
@@ -108,6 +113,32 @@ FLinearColor IChromaSDKPlugin::ToLinearColor(const int color)
     return FLinearColor(red, green, blue, alpha);
 }
 
+// Clear Method Pointer
+#undef CHROMASDK_CLEAR_METHOD_PTR
+#define CHROMASDK_CLEAR_METHOD_PTR(FieldName) _mMethod ## FieldName = NULL
+
+// validate static methods
+#undef CHROMASDK_VALIDATE_METHOD
+#define CHROMASDK_VALIDATE_METHOD(Signature, FieldName) if (_mMethod ## FieldName == nullptr) \
+{ \
+	_mMethod ## FieldName = (Signature) GetProcAddress(_mLibraryChroma, #FieldName); \
+	if (ValidateGetProcAddress(_mMethod ## FieldName == nullptr, FString(#FieldName))) \
+	{ \
+		return; \
+	} \
+}
+
+// assign static methods
+#undef CHROMASDK_ASSIGN_METHOD
+#define CHROMASDK_ASSIGN_METHOD(Signature, FieldName) if (_mMethod ## FieldName == nullptr) \
+{ \
+	_mMethod ## FieldName = (Signature) GetProcAddress(_mLibraryChroma, #FieldName); \
+	if (_mMethod ## FieldName == nullptr) \
+	{ \
+		UE_LOG(LogChromaPlugin, Warning, TEXT("Method not available %s!"), *FString(#FieldName)); \
+	} \
+}
+
 
 void FChromaSDKPlugin::StartupModule()
 {
@@ -121,18 +152,19 @@ void FChromaSDKPlugin::StartupModule()
 	_mPlayMap1D.clear();
 	_mPlayMap2D.clear();
 
-	_mMethodInit = nullptr;
-	_mMethodInitSDK = nullptr;
-	_mMethodUnInit = nullptr;
-	_mMethodCreateEffect = nullptr;
-	_mMethodCreateChromaLinkEffect = nullptr;
-	_mMethodCreateHeadsetEffect = nullptr;
-	_mMethodCreateKeyboardEffect = nullptr;
-	_mMethodCreateKeypadEffect = nullptr;
-	_mMethodCreateMouseEffect = nullptr;
-	_mMethodCreateMousepadEffect = nullptr;
-	_mMethodSetEffect = nullptr;
-	_mMethodDeleteEffect = nullptr;
+	// CORE API METHODS
+	CHROMASDK_CLEAR_METHOD_PTR(Init);
+	CHROMASDK_CLEAR_METHOD_PTR(InitSDK);
+	CHROMASDK_CLEAR_METHOD_PTR(UnInit);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateChromaLinkEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateKeyboardEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateKeypadEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateHeadsetEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateMouseEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateMousepadEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(SetEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(DeleteEffect);
 
 	// abort load if an invalid signature was detected
 	if (_sInvalidSignature)
@@ -148,6 +180,16 @@ void FChromaSDKPlugin::StartupModule()
 #if PLATFORM_XBOXONE
 	_mLibraryChroma = LoadLibrary(*FPaths::Combine(*FPaths::LaunchDir(), CHROMASDKDLL));
 #else
+
+	if (!IsChromaSDKAvailable())
+	{
+		// ChromaSDK is not installed, users require Synapse and the connect module
+		// in order to use Chroma.
+		//UE_LOG(LogChromaPlugin, Warning, TEXT("ChromaSDK is not available!"));
+		_sLibraryMissing = true;
+		return;
+	}
+
 	_mLibraryChroma = LoadLibrary(CHROMASDKDLL);
 #endif
 	if (_mLibraryChroma == NULL)
@@ -175,68 +217,20 @@ void FChromaSDKPlugin::StartupModule()
 
 	// GetProcAddress will throw 4191 because it's an unsafe type cast
 #pragma warning(disable: 4191)
-	_mMethodInit = (CHROMA_SDK_INIT)GetProcAddress(_mLibraryChroma, "Init");
-	if (ValidateGetProcAddress(_mMethodInit == nullptr, FString("Init")))
-	{
-		return;
-	}
-	_mMethodInitSDK = (CHROMA_SDK_INIT_SDK)GetProcAddress(_mLibraryChroma, "InitSDK");
-	if (ValidateGetProcAddress(_mMethodInitSDK == nullptr, FString("InitSDK")))
-	{
-		return;
-	}
-	_mMethodUnInit = (CHROMA_SDK_UNINIT)GetProcAddress(_mLibraryChroma, "UnInit");
-	if (ValidateGetProcAddress(_mMethodUnInit == nullptr, FString("UnInit")))
-	{
-		return;
-	}
 
-	_mMethodCreateChromaLinkEffect = (CHROMA_SDK_CREATE_CHROMA_LINK_EFFECT)GetProcAddress(_mLibraryChroma, "CreateChromaLinkEffect");
-	if (ValidateGetProcAddress(_mMethodCreateChromaLinkEffect == nullptr, FString("CreateChromaLinkEffect")))
-	{
-		return;
-	}
-	_mMethodCreateHeadsetEffect = (CHROMA_SDK_CREATE_HEADSET_EFFECT)GetProcAddress(_mLibraryChroma, "CreateHeadsetEffect");
-	if (ValidateGetProcAddress(_mMethodCreateHeadsetEffect == nullptr, FString("CreateHeadsetEffect")))
-	{
-		return;
-	}
-	_mMethodCreateKeyboardEffect = (CHROMA_SDK_CREATE_KEYBOARD_EFFECT)GetProcAddress(_mLibraryChroma, "CreateKeyboardEffect");
-	if (ValidateGetProcAddress(_mMethodCreateKeyboardEffect == nullptr, FString("CreateKeyboardEffect")))
-	{
-		return;
-	}
-	_mMethodCreateMouseEffect = (CHROMA_SDK_CREATE_MOUSE_EFFECT)GetProcAddress(_mLibraryChroma, "CreateMouseEffect");
-	if (ValidateGetProcAddress(_mMethodCreateMouseEffect == nullptr, FString("CreateMouseEffect")))
-	{
-		return;
-	}
-	_mMethodCreateMousepadEffect = (CHROMA_SDK_CREATE_MOUSEPAD_EFFECT)GetProcAddress(_mLibraryChroma, "CreateMousepadEffect");
-	if (ValidateGetProcAddress(_mMethodCreateMousepadEffect == nullptr, FString("CreateMousepadEffect")))
-	{
-		return;
-	}
-	_mMethodCreateKeypadEffect = (CHROMA_SDK_CREATE_KEYPAD_EFFECT)GetProcAddress(_mLibraryChroma, "CreateKeypadEffect");
-	if (ValidateGetProcAddress(_mMethodCreateKeypadEffect == nullptr, FString("CreateKeypadEffect")))
-	{
-		return;
-	}
-
-	_mMethodCreateEffect = (CHROMA_SDK_CREATE_EFFECT)GetProcAddress(_mLibraryChroma, "CreateEffect");
-	if (ValidateGetProcAddress(_mMethodCreateEffect == nullptr, FString("CreateEffect")))
-	{
-		return;
-	}
-	_mMethodSetEffect = (CHROMA_SDK_SET_EFFECT)GetProcAddress(_mLibraryChroma, "SetEffect");
-	if (ValidateGetProcAddress(_mMethodSetEffect == nullptr, FString("SetEffect")))
-	{
-		return;
-	}
-	_mMethodDeleteEffect = (CHROMA_SDK_DELETE_EFFECT)GetProcAddress(_mLibraryChroma, "DeleteEffect");
-	if (ValidateGetProcAddress(_mMethodDeleteEffect == nullptr, FString("DeleteEffect")))
-	{
-		return;
-	}
+	// CORE API METHODS
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_INIT, Init);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_INIT_SDK, InitSDK);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_UNINIT, UnInit);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_EFFECT, CreateEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_CHROMA_LINK_EFFECT, CreateChromaLinkEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_KEYBOARD_EFFECT, CreateKeyboardEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_KEYPAD_EFFECT, CreateKeypadEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_HEADSET_EFFECT, CreateHeadsetEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_MOUSE_EFFECT, CreateMouseEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_CREATE_MOUSEPAD_EFFECT, CreateMousepadEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_SET_EFFECT, SetEffect);
+	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_DELETE_EFFECT, DeleteEffect);
 
 #pragma warning(default: 4191)
 
@@ -266,17 +260,19 @@ void FChromaSDKPlugin::ShutdownModule()
 		_mLibraryChroma = nullptr;
 	}
 
-	_mMethodInit = nullptr;
-	_mMethodUnInit = nullptr;
-	_mMethodCreateEffect = nullptr;
-	_mMethodCreateChromaLinkEffect = nullptr;
-	_mMethodCreateHeadsetEffect = nullptr;
-	_mMethodCreateKeyboardEffect = nullptr;
-	_mMethodCreateKeypadEffect = nullptr;
-	_mMethodCreateMouseEffect = nullptr;
-	_mMethodCreateMousepadEffect = nullptr;
-	_mMethodSetEffect = nullptr;
-	_mMethodDeleteEffect = nullptr;
+	// CORE API METHODS
+	CHROMASDK_CLEAR_METHOD_PTR(Init);
+	CHROMASDK_CLEAR_METHOD_PTR(InitSDK);
+	CHROMASDK_CLEAR_METHOD_PTR(UnInit);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateChromaLinkEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateKeyboardEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateKeypadEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateHeadsetEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateMouseEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(CreateMousepadEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(SetEffect);
+	CHROMASDK_CLEAR_METHOD_PTR(DeleteEffect);
 
 	_sInstance = nullptr;
 #endif
@@ -295,6 +291,80 @@ IChromaSDKPlugin* IChromaSDKPlugin::GetChromaSDKPlugin()
     return nullptr;
 #endif
 }
+
+#if PLATFORM_WINDOWS
+bool IChromaSDKPlugin::IsChromaSDKAvailable() const
+{
+	wstring fileName;
+#ifdef _WIN64
+	fileName = L"C:\\Program Files\\Razer Chroma SDK\\bin\\RzChromaSDK64.dll";
+#else
+	fileName = L"C:\\Program Files (x86)\\Razer Chroma SDK\\bin\\RzChromaSDK.dll";
+#endif
+
+	if (!FPaths::FileExists(fileName.c_str()))
+	{
+		return false;
+	}
+
+	bool result = false;
+
+	DWORD  verHandle = 0;
+	UINT   size = 0;
+	LPBYTE lpBuffer = NULL;
+	DWORD  verSize = GetFileVersionInfoSize(fileName.c_str(), &verHandle);
+
+	if (verSize)
+	{
+		LPSTR verData = (LPSTR)malloc(verSize);
+
+		if (GetFileVersionInfo(fileName.c_str(), verHandle, verSize, verData))
+		{
+			if (VerQueryValue(verData, L"\\", (VOID FAR * FAR*) & lpBuffer, &size))
+			{
+				if (size)
+				{
+					VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lpBuffer;
+					if (verInfo->dwSignature == 0xfeef04bd)
+					{
+						const int major = (verInfo->dwProductVersionMS >> 16) & 0xffff;
+						const int minor = (verInfo->dwProductVersionMS >> 0) & 0xffff;
+						const int revision = (verInfo->dwProductVersionMS >> 16) & 0xffff;
+						const int build = (verInfo->dwProductVersionMS >> 0) & 0xffff;
+
+						//printf("Product Version: %d.%d.%d.%d\n", major, minor, revision, build);
+
+						// Anything less than the min version returns false
+						const int minMajor = 3;
+						const int minMinor = 20;
+						const int minRevision = 2;
+
+						if (major < minMajor) // Less than 3.X.X
+						{
+							result = false;
+						}
+						else if (major == minMajor && minor < minMinor) // Less than 3.20
+						{
+							result = false;
+						}
+						else if (major == minMajor && minor == minMinor && revision < minRevision) // Less than 3.20.2
+						{
+							result = false;
+						}
+						else
+						{
+							result = true; // production version or better
+						}
+					}
+				}
+			}
+		}
+		free(verData);
+	}
+
+	return result;
+}
+#endif
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
@@ -400,7 +470,7 @@ RZRESULT IChromaSDKPlugin::ChromaSDKUnInit()
 	if (!_mInitialized)
 	{
 		//UE_LOG(LogChromaPlugin, Error, TEXT("ChromaSDKPlugin is not initialized!"));
-		return RZRESULT_INVALID;
+		return RZRESULT_SUCCESS; //already uninitialized
 	}
 
 	if (ChromaThread::Instance())

@@ -303,6 +303,17 @@ UChromaSDKPluginBPLibrary::UChromaSDKPluginBPLibrary(const FObjectInitializer& O
 #endif
 }
 
+bool UChromaSDKPluginBPLibrary::IsChromaSDKAvailable()
+{
+#if PLATFORM_XBOXONE
+	return true;
+#elif PLATFORM_WINDOWS
+	return IChromaSDKPlugin::GetChromaSDKPlugin()->IsChromaSDKAvailable();
+#else
+	return false;
+#endif
+}
+
 bool UChromaSDKPluginBPLibrary::IsPlatformWindows()
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE

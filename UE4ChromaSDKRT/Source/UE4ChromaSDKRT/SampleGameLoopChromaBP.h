@@ -51,6 +51,7 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 		int32* colorsMousepad, int32* tempColorsMousepad);
 	static void InitArrayBGRInt(int32** colors, int32 size);
 	static void UninitArrayBGRInt(int32** colors);
+	static void SetStaticColor(int* colors, int color, int size);
 #endif
 
 
@@ -63,6 +64,12 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopUpdate", Keywords = "Example"), Category = "Sample")
 	static void SampleGameLoopUpdate(float deltaSeconds, UPARAM(ref) FChromaSDKScene& scene, bool toggleHotkeys, bool toggleAmmo);
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopGenerateRandomColor", Keywords = "Example"), Category = "Sample")
+	static FLinearColor SampleGameLoopGenerateRandomColor();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopSetAmbientColor", Keywords = "Example"), Category = "Sample")
+	static void SampleGameLoopSetAmbientColor(const FLinearColor& ambientColor);
+
 private:
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
@@ -73,6 +80,8 @@ private:
 	static int32 _sSizeKeypad;
 	static int32 _sSizeMouse;
 	static int32 _sSizeMousepad;
+
+	static int32 _sAmbientColor;
 
 	static int32* _sColorsChromaLink;
 	static int32* _sColorsHeadset;

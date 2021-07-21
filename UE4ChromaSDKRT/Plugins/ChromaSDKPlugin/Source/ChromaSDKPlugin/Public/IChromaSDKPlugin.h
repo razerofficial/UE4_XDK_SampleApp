@@ -34,6 +34,9 @@ namespace ChromaSDK
 	class AnimationBase;
 }
 
+#undef CHROMASDK_DECLARE_METHOD
+#define CHROMASDK_DECLARE_METHOD(Signature, FieldName) Signature _mMethod ## FieldName
+
 #endif
 
 /**
@@ -77,6 +80,11 @@ protected:
 	static int max(const int a, const int b);
 
 public:
+
+#if PLATFORM_WINDOWS
+	bool IsChromaSDKAvailable() const;
+#endif
+
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	// SDK Methods
 	RZRESULT ChromaSDKInit();
@@ -532,18 +540,19 @@ protected:
 	static bool _sLibraryMissing;
 	static bool _sInvalidSignature;
 
-	CHROMA_SDK_INIT _mMethodInit;
-	CHROMA_SDK_INIT_SDK _mMethodInitSDK;
-	CHROMA_SDK_UNINIT _mMethodUnInit;
-	CHROMA_SDK_CREATE_EFFECT _mMethodCreateEffect;
-	CHROMA_SDK_CREATE_CHROMA_LINK_EFFECT _mMethodCreateChromaLinkEffect;
-	CHROMA_SDK_CREATE_HEADSET_EFFECT _mMethodCreateHeadsetEffect;
-	CHROMA_SDK_CREATE_KEYBOARD_EFFECT _mMethodCreateKeyboardEffect;
-	CHROMA_SDK_CREATE_KEYPAD_EFFECT _mMethodCreateKeypadEffect;
-	CHROMA_SDK_CREATE_MOUSE_EFFECT _mMethodCreateMouseEffect;
-	CHROMA_SDK_CREATE_MOUSEPAD_EFFECT _mMethodCreateMousepadEffect;
-	CHROMA_SDK_SET_EFFECT _mMethodSetEffect;
-	CHROMA_SDK_DELETE_EFFECT _mMethodDeleteEffect;
+	// Core API Methods
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_INIT, Init);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_INIT_SDK, InitSDK);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_UNINIT, UnInit);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_EFFECT, CreateEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_CHROMA_LINK_EFFECT, CreateChromaLinkEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_KEYBOARD_EFFECT, CreateKeyboardEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_KEYPAD_EFFECT, CreateKeypadEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_HEADSET_EFFECT, CreateHeadsetEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_MOUSE_EFFECT, CreateMouseEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_CREATE_MOUSEPAD_EFFECT, CreateMousepadEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_SET_EFFECT, SetEffect);
+	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_DELETE_EFFECT, DeleteEffect);
 
 	int _mAnimationId;
 	std::map<std::string, int> _mAnimationMapID;

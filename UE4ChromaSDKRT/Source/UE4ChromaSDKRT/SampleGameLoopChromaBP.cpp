@@ -15,6 +15,8 @@ int32 USampleGameLoopChromaBP::_sSizeKeypad = 0;
 int32 USampleGameLoopChromaBP::_sSizeMouse = 0;
 int32 USampleGameLoopChromaBP::_sSizeMousepad = 0;
 
+int32 USampleGameLoopChromaBP::_sAmbientColor = 0;
+
 int32* USampleGameLoopChromaBP::_sColorsChromaLink = NULL;
 int32* USampleGameLoopChromaBP::_sColorsHeadset = NULL;
 int32* USampleGameLoopChromaBP::_sColorsKeyboard = NULL;
@@ -515,6 +517,26 @@ void USampleGameLoopChromaBP::UninitArrayBGRInt(int32** colors)
 	(*colors) = NULL;
 }
 
+FLinearColor USampleGameLoopChromaBP::SampleGameLoopGenerateRandomColor()
+{
+	return UChromaSDKPluginBPLibrary::GetRGB(rand() % 256, rand() % 256, rand() % 256);
+}
+
+void USampleGameLoopChromaBP::SampleGameLoopSetAmbientColor(const FLinearColor& ambientColor)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	_sAmbientColor = UChromaSDKPluginBPLibrary::ToBGR(ambientColor);
+#endif
+}
+
+void USampleGameLoopChromaBP::SetStaticColor(int* colors, int color, int size)
+{
+	for (int i = 0; i < size; ++i)
+	{
+		colors[i] = color;
+	}
+}
+
 #endif
 
 void USampleGameLoopChromaBP::SampleGameLoopSampleStart()
@@ -634,12 +656,12 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 		}
 
 		// start with a blank frame
-		memset(_sColorsChromaLink, 0, sizeof(int) * _sSizeChromaLink);
-		memset(_sColorsHeadset, 0, sizeof(int) * _sSizeHeadset);
-		memset(_sColorsKeyboard, 0, sizeof(int) * _sSizeKeyboard);
-		memset(_sColorsKeypad, 0, sizeof(int) * _sSizeKeypad);
-		memset(_sColorsMouse, 0, sizeof(int) * _sSizeMouse);
-		memset(_sColorsMousepad, 0, sizeof(int) * _sSizeMousepad);
+		SetStaticColor(_sColorsChromaLink, _sAmbientColor, _sSizeChromaLink);
+		SetStaticColor(_sColorsHeadset, _sAmbientColor, _sSizeHeadset);
+		SetStaticColor(_sColorsKeyboard, _sAmbientColor, _sSizeKeyboard);
+		SetStaticColor(_sColorsKeypad, _sAmbientColor, _sSizeKeypad);
+		SetStaticColor(_sColorsMouse, _sAmbientColor, _sSizeMouse);
+		SetStaticColor(_sColorsMousepad, _sAmbientColor, _sSizeMousepad);
 
 		BlendAnimations(scene,
 			_sColorsChromaLink, _sTempColorsChromaLink,

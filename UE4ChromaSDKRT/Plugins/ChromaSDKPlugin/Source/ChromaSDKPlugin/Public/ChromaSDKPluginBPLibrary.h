@@ -14,6 +14,9 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 {
 	GENERATED_UCLASS_BODY()
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "IsChromaSDKAvailable", Keywords = "Check if ChromaSDK is available"), Category = "ChromaSDK")
+	static bool IsChromaSDKAvailable();
+
 #pragma region Auto sort blueprint methods
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "AddNonZeroAllKeys", Keywords = "Copy nonzero color from a source animation to a target animation for a frame"), Category = "ChromaSDK")
@@ -1516,6 +1519,18 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static void SetMouseLedColor(EChromaSDKMouseLed::Type led, const FLinearColor& colorParam, UPARAM(ref) TArray<FChromaSDKColors>& colors);
 
 	/*
+	Sets the target device to the static color.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetStaticColor", Keywords = "Set the target device to the static color"), Category = "ChromaSDK")
+	static void SetStaticColor(EChromaSDKDeviceEnum::Type device, const FLinearColor& color);
+
+	/*
+	Sets all devices to the static color.
+	*/
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetStaticColorAll", Keywords = "Set the all devices to the static color"), Category = "ChromaSDK")
+	static void SetStaticColorAll(const FLinearColor& color);
+
+	/*
 	`PluginStopAll` will automatically stop all animations that are playing.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StopAll", Keywords = "Stop playing all animations"), Category = "ChromaSDK")
@@ -1696,18 +1711,6 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "UsePreloadingName", Keywords = "Set preloading animation flag"), Category = "ChromaSDK")
 	static void UsePreloadingName(const FString& animationName, bool flag);
-
-	/*
-		Set the target device to the static color.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetStaticColor", Keywords = "Set the target device to the static color"), Category = "ChromaSDK")
-	static void SetStaticColor(EChromaSDKDeviceEnum::Type device, const FLinearColor& color);
-
-	/*
-		Set the all devices to the static color.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SetStaticColorAll", Keywords = "Set the all devices to the static color"), Category = "ChromaSDK")
-	static void SetStaticColorAll(const FLinearColor& color);
 
 
 #pragma endregion
