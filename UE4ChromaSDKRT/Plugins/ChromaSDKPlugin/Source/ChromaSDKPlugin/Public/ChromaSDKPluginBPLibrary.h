@@ -1747,7 +1747,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static RZRESULT SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
 
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 private:
 
 	static std::map<FKey, EChromaSDKKeyboardKey::Type> _sKeyboardFKeyMap;

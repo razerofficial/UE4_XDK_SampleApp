@@ -4,7 +4,7 @@
 #include "ChromaSDKPluginBPLibrary.h"
 #include "ChromaThread.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 #include "Windows/AllowWindowsPlatformTypes.h" 
 

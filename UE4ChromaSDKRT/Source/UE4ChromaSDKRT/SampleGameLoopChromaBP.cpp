@@ -6,7 +6,7 @@
 #include "ChromaSDKPluginBPLibrary.h"
 
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 int32 USampleGameLoopChromaBP::_sSizeChromaLink = 0;
 int32 USampleGameLoopChromaBP::_sSizeHeadset = 0;
@@ -42,7 +42,7 @@ uint32 USampleGameLoopChromaBP::_sTimeMS = 0;
 USampleGameLoopChromaBP::USampleGameLoopChromaBP(const FObjectInitializer& ObjectInitializer) //___HACK_UE4_VERSION_4_9_OR_GREATER
 	: Super(ObjectInitializer) //___HACK_UE4_VERSION_4_9_OR_GREATER
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	_sSizeChromaLink = GetColorArraySize1D(EChromaSDKDevice1DEnum::DE_ChromaLink);
 	_sSizeHeadset = GetColorArraySize1D(EChromaSDKDevice1DEnum::DE_Headset);
 	_sSizeKeyboard = GetColorArraySize2D(EChromaSDKDevice2DEnum::DE_Keyboard);
@@ -52,7 +52,7 @@ USampleGameLoopChromaBP::USampleGameLoopChromaBP(const FObjectInitializer& Objec
 #endif
 }
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 int USampleGameLoopChromaBP::min(int a, int b)
 {
@@ -524,7 +524,7 @@ FLinearColor USampleGameLoopChromaBP::SampleGameLoopGenerateRandomColor()
 
 void USampleGameLoopChromaBP::SampleGameLoopSetAmbientColor(const FLinearColor& ambientColor)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	_sAmbientColor = UChromaSDKPluginBPLibrary::ToBGR(ambientColor);
 #endif
 }
@@ -541,7 +541,7 @@ void USampleGameLoopChromaBP::SetStaticColor(int* colors, int color, int size)
 
 void USampleGameLoopChromaBP::SampleGameLoopSampleStart()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		FChromaSDKAppInfoType appInfo;
@@ -599,7 +599,7 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleStart()
 
 void USampleGameLoopChromaBP::SampleGameLoopSampleEnd()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		UninitArrayBGRInt(&_sColorsChromaLink);
@@ -623,7 +623,7 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleEnd()
 
 void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSDKScene& scene, bool toggleHotkeys, bool toggleAmmo)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 	const int MAX_FPS = 30;
 	const float MAX_FPS_INV = 1 / (float)MAX_FPS;
