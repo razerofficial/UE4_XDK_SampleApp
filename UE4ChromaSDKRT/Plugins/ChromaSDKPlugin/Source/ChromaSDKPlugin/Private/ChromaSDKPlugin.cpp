@@ -166,6 +166,10 @@ void FChromaSDKPlugin::StartupModule()
 	CHROMASDK_CLEAR_METHOD_PTR(SetEffect);
 	CHROMASDK_CLEAR_METHOD_PTR(DeleteEffect);
 
+#if PLATFORM_SWITCH
+	return;
+#endif
+
 	// abort load if an invalid signature was detected
 	if (_sInvalidSignature)
 	{
@@ -244,6 +248,10 @@ void FChromaSDKPlugin::StartupModule()
 
 void FChromaSDKPlugin::ShutdownModule()
 {
+#if PLATFORM_SWITCH
+	return;
+#endif
+
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 
@@ -370,6 +378,10 @@ bool IChromaSDKPlugin::IsChromaSDKAvailable() const
 
 RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 {
+#if PLATFORM_SWITCH
+	return RZRESULT_DLL_NOT_FOUND;
+#endif
+
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -411,6 +423,10 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 
 RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 {
+#if PLATFORM_SWITCH
+	return RZRESULT_DLL_NOT_FOUND;
+#endif
+
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -457,6 +473,10 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 
 RZRESULT IChromaSDKPlugin::ChromaSDKUnInit()
 {
+#if PLATFORM_SWITCH
+	return RZRESULT_DLL_NOT_FOUND;
+#endif
+
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;

@@ -630,7 +630,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetMouseLedColor(EChromaSDKMouseLed::Typ
 
 bool UChromaSDKPluginBPLibrary::IsInitialized()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE //|| PLATFORM_SWITCH
 	return IChromaSDKPlugin::GetChromaSDKPlugin()->IsInitialized();
 #else
 	return false;
@@ -639,7 +639,7 @@ bool UChromaSDKPluginBPLibrary::IsInitialized()
 
 int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE //|| PLATFORM_SWITCH
 	if (!IChromaSDKPlugin::GetChromaSDKPlugin()->IsInitialized())
 	{
 		// Init the SDK
@@ -657,7 +657,7 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 
 int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& appInfo)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE //|| PLATFORM_SWITCH
 	if (!IChromaSDKPlugin::GetChromaSDKPlugin()->IsInitialized())
 	{
 		ChromaSDK::APPINFOTYPE coreAppInfo = {};
@@ -705,7 +705,7 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& a
 
 int32 UChromaSDKPluginBPLibrary::ChromaSDKUnInit()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE //|| PLATFORM_SWITCH
 	// Stop all animations
 	// UnInit the SDK
 	UE_LOG(LogTemp, Log, TEXT("UChromaSDKPluginBPLibrary:: Uninit"));
