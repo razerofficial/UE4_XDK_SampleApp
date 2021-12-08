@@ -18,7 +18,7 @@ USampleGameButton::USampleGameButton(const FObjectInitializer& ObjectInitializer
 
 void USampleGameButton::HandleClick()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
     if (!UChromaSDKPluginBPLibrary::IsInitialized())
     {
         UE_LOG(LogTemp, Error, TEXT("Chroma is not initialized!"));

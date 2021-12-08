@@ -2,7 +2,7 @@
 
 #include "AnimationBase.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 namespace ChromaSDK
 {

@@ -8,7 +8,7 @@
 #include <sstream>
 
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 using namespace ChromaSDK;
 using namespace std;

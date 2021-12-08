@@ -6,7 +6,7 @@
 
 #pragma once
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 #ifndef GUID_DEFINED
 #include "Windows/AllowWindowsPlatformTypes.h" 

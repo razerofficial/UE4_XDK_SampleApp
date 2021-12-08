@@ -9,7 +9,7 @@
 #include "ChromaThread.h"
 #include "VerifyLibrarySignature.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 #include "Windows/AllowWindowsPlatformTypes.h" 
 
@@ -32,7 +32,7 @@ using namespace std;
 
 DEFINE_LOG_CATEGORY(LogChromaPlugin);
 
-#if PLATFORM_XBOXONE
+#if PLATFORM_XBOXONE || PLATFORM_SWITCH
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
 #elif PLATFORM_WINDOWS
 #if _WIN64
@@ -45,7 +45,7 @@ DEFINE_LOG_CATEGORY(LogChromaPlugin);
 #endif
 
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 bool IChromaSDKPlugin::_sLibraryMissing = false;
 bool IChromaSDKPlugin::_sInvalidSignature = false;
 #endif
@@ -144,7 +144,7 @@ void FChromaSDKPlugin::StartupModule()
 {
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	_mInitialized = false;
 	_mAnimationId = 0;
 	_mAnimationMapID.clear();
@@ -166,6 +166,10 @@ void FChromaSDKPlugin::StartupModule()
 	CHROMASDK_CLEAR_METHOD_PTR(SetEffect);
 	CHROMASDK_CLEAR_METHOD_PTR(DeleteEffect);
 
+#if PLATFORM_SWITCH
+	return;
+#endif
+
 	// abort load if an invalid signature was detected
 	if (_sInvalidSignature)
 	{
@@ -177,7 +181,7 @@ void FChromaSDKPlugin::StartupModule()
 		return;
 	}
 
-#if PLATFORM_XBOXONE
+#if PLATFORM_XBOXONE || PLATFORM_SWITCH
 	_mLibraryChroma = LoadLibrary(*FPaths::Combine(*FPaths::LaunchDir(), CHROMASDKDLL));
 #else
 
@@ -244,10 +248,14 @@ void FChromaSDKPlugin::StartupModule()
 
 void FChromaSDKPlugin::ShutdownModule()
 {
+#if PLATFORM_SWITCH
+	return;
+#endif
+
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
 	{
@@ -280,7 +288,7 @@ void FChromaSDKPlugin::ShutdownModule()
 
 IChromaSDKPlugin* IChromaSDKPlugin::GetChromaSDKPlugin()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	if (_sInstance == nullptr)
 	{
 		IChromaSDKPlugin& instance = Get();
@@ -366,10 +374,14 @@ bool IChromaSDKPlugin::IsChromaSDKAvailable() const
 }
 #endif
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 {
+#if PLATFORM_SWITCH
+	return RZRESULT_DLL_NOT_FOUND;
+#endif
+
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -411,6 +423,10 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 
 RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 {
+#if PLATFORM_SWITCH
+	return RZRESULT_DLL_NOT_FOUND;
+#endif
+
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -457,6 +473,10 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 
 RZRESULT IChromaSDKPlugin::ChromaSDKUnInit()
 {
+#if PLATFORM_SWITCH
+	return RZRESULT_DLL_NOT_FOUND;
+#endif
+
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -686,7 +706,7 @@ RZRESULT IChromaSDKPlugin::ChromaSDKDeleteEffect(RZEFFECTID effectId)
 
 int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	switch (device)
 	{
 	case EChromaSDKDevice1DEnum::DE_ChromaLink:
@@ -702,7 +722,7 @@ int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 
 int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
@@ -718,7 +738,7 @@ int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 
 int IChromaSDKPlugin::GetMaxColumn(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:

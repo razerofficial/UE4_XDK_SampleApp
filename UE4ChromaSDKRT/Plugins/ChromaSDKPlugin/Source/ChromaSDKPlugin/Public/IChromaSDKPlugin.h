@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 
 //expose HMODULE
 #include "RzChromaSDKDefines.h"
@@ -85,7 +85,7 @@ public:
 	bool IsChromaSDKAvailable() const;
 #endif
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
 	// SDK Methods
 	RZRESULT ChromaSDKInit();
 	RZRESULT ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo);
