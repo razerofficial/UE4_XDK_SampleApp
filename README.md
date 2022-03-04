@@ -1,3 +1,7 @@
+* Note: Visit the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) to find the latest supported plugin for Chroma RGB.
+
+* Note: This is the current Chroma SDK supported plugin for UE4.
+
 ## Table of contents
 
 * [See Also](#see-also)
