@@ -40,7 +40,7 @@
 
 - [UE4_XDK_SampleApp](https://github.com/razerofficial/UE4_XDK_SampleApp) - UE4 Chroma samples and runtime module with Blueprint library for the ChromaSDK
 
-- [UnityNativeChromaSDK](https://github.com/RazerOfficial/UnityNativeChromaSDK) - Unity native library for the ChromaSDK
+- [Unity_SampleApp](https://github.com/razerofficial/Unity_SampleApp) - ChromaSDK plugin for Unity
 
 
 ## Quick Start ##
