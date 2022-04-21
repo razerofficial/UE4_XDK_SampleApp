@@ -64,13 +64,13 @@
 
 ## Supported versions
 
-This project is checked in under `UE 4.21`. To use a later version of Unreal, open the [UE4ChromaSDKRT\UE4ChromaSDKRT.uproject](UE4ChromaSDKRT\UE4ChromaSDKRT.uproject) project file in a text editor and change the `EngineAssociation` to the target version.
+This project is checked in under `UE 4.21`. To use a later version of Unreal, open the [UE4ChromaSDKRT/UE4ChromaSDKRT.uproject](UE4ChromaSDKRT/UE4ChromaSDKRT.uproject) project file in a text editor and change the `EngineAssociation` to the target version.
 
 ```
 "EngineAssociation": "4.21",
 ```
 
-To update the plugin version, open [UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\ChromaSDKPlugin.uplugin](UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\ChromaSDKPlugin.uplugin) in a text editor and set the target version.
+To update the plugin version, open [UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/ChromaSDKPlugin.uplugin](UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/ChromaSDKPlugin.uplugin) in a text editor and set the target version.
 
 ```
 "EngineVersion": "4.21.0",
