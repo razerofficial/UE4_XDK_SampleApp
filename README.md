@@ -90,35 +90,35 @@ Implementation: `UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Source/ChromaSDKPlugin/P
 
 ![image_1](images/image_2.png)
 
+## Sample Blueprint Init / Uninit Setup
+
+`Event BeginPlay` invokes `InitSDK` passing the `AppInfo` that provides the information that displays within `Synapse->Connect->Apps`. `InitSDK` returns `0` upon success after a 100ms delay the Chroma API is ready to use. If `InitSDK` returns nonzero, avoid further calls to the Chroma API. After success, make a call to `SupportsStreaming` and save the result. If `SupportsStreaming` returns true, the streaming API can be used for broadcasting Chroma.
+
+![image_10](images/image_10.png)
+
 ## Samples
 
-**Animation Sample**
+The project has a few sample levels.
 
-* The animation sample showcases invoking the ChromaSDK `Blueprint Library` from the C++ [Sample BP Library](Source/UE4ChromaSDKRT/SampleBPLibrary.cpp).
+---
 
-![image_3](images/image_3.png)
+**UE4 Chroma Sample App**
 
-* Event `BeginPlay` invokes the setup for UI and buttons, and finishes invoking the `SampleStart` BP function.
+The [UE4ChromaSDKRT/Content/Levels/SampleApp_Level.umap](UE4ChromaSDKRT/Content/Levels/SampleApp_Level.umap) level shows the sample animations from the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/). The level blueprint uses BP functions defined in the [UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleAppChromaBP.h](UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleAppChromaBP.h) header and implemented in the [UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleAppChromaBP.cpp](UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleAppChromaBP.cpp) source.
 
-![image_4](images/image_4.png)
+![image_11](images/image_11.png)
 
-* Event `EndPlay` ends the application by invoking the `SampleEnd` BP function.
+**UE4 Game Loop Chroma Sample App**
 
-![image_5](images/image_5.png)
+The [UE4ChromaSDKRT/Content/Levels/SampleGameLoopLevel.umap](UE4ChromaSDKRT/Content/Levels/SampleGameLoopLevel.umap) level shows how to dynamically set color effects directly through the API and while also playing several animations at the same time using various blending operations. This sample shows how to do Chroma effects without using premade Chroma animations. Chroma animations can be used as source color information when doing dynamic blending. The level blueprint uses BP functions defined in the [UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameLoopChromaBP.h](UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameLoopChromaBP.h) header and implemented in the [UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameLoopChromaBP.cpp](UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameLoopChromaBP.cpp) source.
 
-* The `SetupUI` custom event loads the sample BP Widget and adds the stored widget var to the viewport.
+![image_12](images/image_12.png)
 
-![image_6](images/image_6.png)
+**UE4 Sample Game Chroma Design**
 
-* The `AnimationWidget_BP` UI Widget defines the all the button variable names.
+The [UE4ChromaSDKRT/Content/Levels/SampleGameLevel.umap](UE4ChromaSDKRT/Content/Levels/SampleGameLevel.umap) level is a template intended to work with the automated [Chroma Design Converter](https://github.com/razerofficial/ChromaDesignConverter) for quickly porting sample effects from HTML5 to Unity. The level blueprint uses BP functions defined in the [UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameChromaBP.h](UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameChromaBP.h) header and implemented in the [UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameChromaBP.cpp](UE4ChromaSDKRT/Source/UE4ChromaSDKRT/SampleGameChromaBP.cpp) source. Chroma Design samples are commonly created with 15 sample effects which is why the template has that many buttons to play the sample effects from the ported code. The Chroma Design Converter is not limited to just 15 sample effects and can generate more effect code from the input HTML5 script.
 
-![image_8](images/image_8.png)
-
-* The `SetupButtons` custom event manually uses the `Widget` variable to add a click handler for each UI Widget button accessor which invokes the corresponding BP sample function.
-
-![image_7](images/image_7.png)
-
-* The animation sample `Chroma` files are found in the project's content folder. There's a set of `Blank`, `Fire`, and `Random` Chroma animation files. After building the Windows standalone application, the `Chroma` files should be copied to the compiled application content folder.
+![image_13](images/image_13.png)
 
 ## API
 
