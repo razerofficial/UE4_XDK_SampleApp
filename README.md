@@ -64,7 +64,17 @@
 
 ## Supported versions
 
-This project is checked in with engine 4.21 and supports later versions. The scripts at [UE4ChromaSDKRT_Versions](https://github.com/razerofficial/UE4ChromaSDKRT_Versions) can convert to earlier versions.
+This project is checked in under `UE 4.21`. To use a later version of Unreal, open the [UE4ChromaSDKRT\UE4ChromaSDKRT.uproject](UE4ChromaSDKRT\UE4ChromaSDKRT.uproject) project file in a text editor and change the `EngineAssociation` to the target version.
+
+```
+"EngineAssociation": "4.21",
+```
+
+To update the plugin version, open [UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\ChromaSDKPlugin.uplugin](UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\ChromaSDKPlugin.uplugin) in a text editor and set the target version.
+
+```
+"EngineVersion": "4.21.0",
+```
 
 ## Plugin Structure
 
@@ -2982,6 +2992,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(
 **TrimEndFrames**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId
+
 * 1. Reference the animation by id.
 
 ```c++
@@ -2993,6 +3004,7 @@ void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrame
 **TrimEndFramesName**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId
+
 * 1. Reference the animation by name.
 
 ```c++
