@@ -14,9 +14,6 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 {
 	GENERATED_UCLASS_BODY()
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "IsChromaSDKAvailable", Keywords = "Check if ChromaSDK is available"), Category = "ChromaSDK")
-	static bool IsChromaSDKAvailable();
-
 #pragma region Auto sort blueprint methods
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "AddNonZeroAllKeys", Keywords = "Copy nonzero color from a source animation to a target animation for a frame"), Category = "ChromaSDK")
@@ -1557,6 +1554,36 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StopAnimationType", Keywords = "Stop playing the Animation type"), Category = "ChromaSDK")
 	static void StopAnimationType(EChromaSDKDeviceEnum::Type device);
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamBroadcast", Keywords = "Start Chroma Broadcasting"), Category = "ChromaSDK")
+	static void StreamBroadcast(const FString& streamId, const FString& streamKey);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamBroadcastEnd", Keywords = "End Chroma Broadcasting"), Category = "ChromaSDK")
+	static void StreamBroadcastEnd();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetAuthShortcode", Keywords = "Get Stream Shortcode for Authorization"), Category = "ChromaSDK")
+	static FString StreamGetAuthShortcode(const FString& platform, const FString& title);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetId", Keywords = "Get Stream Id"), Category = "ChromaSDK")
+	static FString StreamGetId(const FString& shortcode);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetKey", Keywords = "Get Stream Id"), Category = "ChromaSDK")
+	static FString StreamGetKey(const FString& shortcode);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetStatus", Keywords = "Get Stream Status"), Category = "ChromaSDK")
+	static const EChromaSDKStreamStatusEnum::Type StreamGetStatus();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetStatusString", Keywords = "Get Status Stream String"), Category = "ChromaSDK")
+	static FString StreamGetStatusString(const EChromaSDKStreamStatusEnum::Type status);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamReleaseShortcode", Keywords = "Release Stream Shortcode"), Category = "ChromaSDK")
+	static bool StreamReleaseShortcode(const FString& shortcode);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamWatch", Keywords = "Start Chroma Watching"), Category = "ChromaSDK")
+	static void StreamWatch(const FString& streamId, int32 timestamp);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamWatchEnd", Keywords = "End Chroma Watching"), Category = "ChromaSDK")
+	static void StreamWatchEnd();
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SubtractNonZeroAllKeys", Keywords = "Copy nonzero color from a source animation to a target animation for a frame"), Category = "ChromaSDK")
 	static void SubtractNonZeroAllKeys(int32 sourceAnimationId, int32 targetAnimationId, int32 frameId);
 
@@ -1622,6 +1649,9 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SubtractNonZeroTargetAllKeysAllFramesOffsetName", Keywords = "Subtract nonzero color from a source animation to a target animation for all frames"), Category = "ChromaSDK")
 	static void SubtractNonZeroTargetAllKeysAllFramesOffsetName(const FString& sourceAnimationName, const FString& targetAnimationName, int32 offset);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SupportsStreaming", Keywords = "Release Stream Shortcode"), Category = "ChromaSDK")
+	static bool SupportsStreaming();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "ToBGR", Keywords = "Convert LinearColor to BGR int"), Category = "ChromaSDK")
 	static int32 ToBGR(const FLinearColor& colorParam);
@@ -1747,7 +1777,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	static RZRESULT SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
 
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 private:
 
 	static std::map<FKey, EChromaSDKKeyboardKey::Type> _sKeyboardFKeyMap;

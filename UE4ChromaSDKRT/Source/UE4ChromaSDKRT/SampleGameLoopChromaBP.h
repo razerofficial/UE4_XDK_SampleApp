@@ -11,7 +11,7 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	static int32 min(int32 a, int32 b);
 	static int32 max(int32 a, int32 b);
 
@@ -72,7 +72,7 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 
 private:
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	static int32 _sSizeChromaLink;
 	static int32 _sSizeHeadset;

@@ -60,7 +60,7 @@ void USampleAppChromaBP::SampleAppSetupButtonsEffects(const TArray<UButton*>& bu
 
 void USampleAppChromaBP::SampleAppSampleStart()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		FChromaSDKAppInfoType appInfo;
@@ -101,7 +101,7 @@ void USampleAppChromaBP::SampleAppSampleStart()
 
 void USampleAppChromaBP::SampleAppSampleEnd()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		UChromaSDKPluginBPLibrary::ChromaSDKUnInit();

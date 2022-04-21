@@ -1,4 +1,4 @@
-// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
+﻿// Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 #include "SampleGameChromaBP.h" //___HACK_UE4_VERSION_4_16_OR_GREATER
 #include "UE4ChromaSDKRT.h"
@@ -56,7 +56,7 @@ void USampleGameChromaBP::SampleGameSetupButtonsEffects(const TArray<UButton*>& 
 
 void USampleGameChromaBP::SampleGameSampleStart()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		FChromaSDKAppInfoType appInfo;
@@ -97,7 +97,7 @@ void USampleGameChromaBP::SampleGameSampleStart()
 
 void USampleGameChromaBP::SampleGameSampleEnd()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
 	{
 		UChromaSDKPluginBPLibrary::ChromaSDKUnInit();

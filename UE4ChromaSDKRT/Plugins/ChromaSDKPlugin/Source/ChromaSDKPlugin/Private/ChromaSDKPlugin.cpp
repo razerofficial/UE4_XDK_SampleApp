@@ -8,15 +8,11 @@
 #include "ChromaSDKPluginBPLibrary.h"
 #include "ChromaThread.h"
 #include "VerifyLibrarySignature.h"
+#include "RzChromaStreamPlugin.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 #include "Windows/AllowWindowsPlatformTypes.h" 
-
-#if PLATFORM_WINDOWS
-#include "Misc/Paths.h"
-#pragma comment(lib, "version")
-#endif
 
 typedef unsigned char byte;
 #define ANIMATION_VERSION 1
@@ -32,7 +28,7 @@ using namespace std;
 
 DEFINE_LOG_CATEGORY(LogChromaPlugin);
 
-#if PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_XBOXONE
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
 #elif PLATFORM_WINDOWS
 #if _WIN64
@@ -45,9 +41,10 @@ DEFINE_LOG_CATEGORY(LogChromaPlugin);
 #endif
 
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 bool IChromaSDKPlugin::_sLibraryMissing = false;
 bool IChromaSDKPlugin::_sInvalidSignature = false;
+bool IChromaSDKPlugin::_sSupportsStreaming = false;
 #endif
 
 int g_seed = 0;
@@ -144,7 +141,7 @@ void FChromaSDKPlugin::StartupModule()
 {
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	_mInitialized = false;
 	_mAnimationId = 0;
 	_mAnimationMapID.clear();
@@ -166,10 +163,6 @@ void FChromaSDKPlugin::StartupModule()
 	CHROMASDK_CLEAR_METHOD_PTR(SetEffect);
 	CHROMASDK_CLEAR_METHOD_PTR(DeleteEffect);
 
-#if PLATFORM_SWITCH
-	return;
-#endif
-
 	// abort load if an invalid signature was detected
 	if (_sInvalidSignature)
 	{
@@ -181,19 +174,9 @@ void FChromaSDKPlugin::StartupModule()
 		return;
 	}
 
-#if PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_XBOXONE
 	_mLibraryChroma = LoadLibrary(*FPaths::Combine(*FPaths::LaunchDir(), CHROMASDKDLL));
 #else
-
-	if (!IsChromaSDKAvailable())
-	{
-		// ChromaSDK is not installed, users require Synapse and the connect module
-		// in order to use Chroma.
-		//UE_LOG(LogChromaPlugin, Warning, TEXT("ChromaSDK is not available!"));
-		_sLibraryMissing = true;
-		return;
-	}
-
 	_mLibraryChroma = LoadLibrary(CHROMASDKDLL);
 #endif
 	if (_mLibraryChroma == NULL)
@@ -206,7 +189,7 @@ void FChromaSDKPlugin::StartupModule()
 
 #if PLATFORM_WINDOWS
 	// verify the library has a valid signature
-	_sInvalidSignature = !ChromaSDK::VerifyLibrarySignature::VerifyModule(_mLibraryChroma);
+	//_sInvalidSignature = !ChromaSDK::VerifyLibrarySignature::VerifyModule(_mLibraryChroma);
 	if (_sInvalidSignature)
 	{
 		UE_LOG(LogChromaPlugin, Error, TEXT("Failed to load Chroma library with invalid signature!"));
@@ -236,6 +219,8 @@ void FChromaSDKPlugin::StartupModule()
 	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_SET_EFFECT, SetEffect);
 	CHROMASDK_VALIDATE_METHOD(CHROMA_SDK_DELETE_EFFECT, DeleteEffect);
 
+	_sSupportsStreaming = RzChromaStreamPlugin::GetLibraryLoadedState() == RZRESULT_SUCCESS;
+
 #pragma warning(default: 4191)
 
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
@@ -248,14 +233,10 @@ void FChromaSDKPlugin::StartupModule()
 
 void FChromaSDKPlugin::ShutdownModule()
 {
-#if PLATFORM_SWITCH
-	return;
-#endif
-
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 	if (UChromaSDKPluginBPLibrary::IsInitialized())
 	{
@@ -266,6 +247,12 @@ void FChromaSDKPlugin::ShutdownModule()
 	{
 		FreeLibrary(_mLibraryChroma);
 		_mLibraryChroma = nullptr;
+	}
+
+	if (_sSupportsStreaming)
+	{
+		RzChromaStreamPlugin::Unload();
+		_sSupportsStreaming = false;
 	}
 
 	// CORE API METHODS
@@ -286,9 +273,18 @@ void FChromaSDKPlugin::ShutdownModule()
 #endif
 }
 
+#pragma region Streaming
+
+bool IChromaSDKPlugin::SupportsStreaming()
+{
+	return _sSupportsStreaming;
+}
+
+#pragma endregion
+
 IChromaSDKPlugin* IChromaSDKPlugin::GetChromaSDKPlugin()
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (_sInstance == nullptr)
 	{
 		IChromaSDKPlugin& instance = Get();
@@ -300,88 +296,10 @@ IChromaSDKPlugin* IChromaSDKPlugin::GetChromaSDKPlugin()
 #endif
 }
 
-#if PLATFORM_WINDOWS
-bool IChromaSDKPlugin::IsChromaSDKAvailable() const
-{
-	wstring fileName;
-#ifdef _WIN64
-	fileName = L"C:\\Program Files\\Razer Chroma SDK\\bin\\RzChromaSDK64.dll";
-#else
-	fileName = L"C:\\Program Files (x86)\\Razer Chroma SDK\\bin\\RzChromaSDK.dll";
-#endif
-
-	if (!FPaths::FileExists(fileName.c_str()))
-	{
-		return false;
-	}
-
-	bool result = false;
-
-	DWORD  verHandle = 0;
-	UINT   size = 0;
-	LPBYTE lpBuffer = NULL;
-	DWORD  verSize = GetFileVersionInfoSize(fileName.c_str(), &verHandle);
-
-	if (verSize)
-	{
-		LPSTR verData = (LPSTR)malloc(verSize);
-
-		if (GetFileVersionInfo(fileName.c_str(), verHandle, verSize, verData))
-		{
-			if (VerQueryValue(verData, L"\\", (VOID FAR * FAR*) & lpBuffer, &size))
-			{
-				if (size)
-				{
-					VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lpBuffer;
-					if (verInfo->dwSignature == 0xfeef04bd)
-					{
-						const int major = (verInfo->dwProductVersionMS >> 16) & 0xffff;
-						const int minor = (verInfo->dwProductVersionMS >> 0) & 0xffff;
-						const int revision = (verInfo->dwProductVersionMS >> 16) & 0xffff;
-						const int build = (verInfo->dwProductVersionMS >> 0) & 0xffff;
-
-						//printf("Product Version: %d.%d.%d.%d\n", major, minor, revision, build);
-
-						// Anything less than the min version returns false
-						const int minMajor = 3;
-						const int minMinor = 20;
-						const int minRevision = 2;
-
-						if (major < minMajor) // Less than 3.X.X
-						{
-							result = false;
-						}
-						else if (major == minMajor && minor < minMinor) // Less than 3.20
-						{
-							result = false;
-						}
-						else if (major == minMajor && minor == minMinor && revision < minRevision) // Less than 3.20.2
-						{
-							result = false;
-						}
-						else
-						{
-							result = true; // production version or better
-						}
-					}
-				}
-			}
-		}
-		free(verData);
-	}
-
-	return result;
-}
-#endif
-
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 {
-#if PLATFORM_SWITCH
-	return RZRESULT_DLL_NOT_FOUND;
-#endif
-
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -423,10 +341,6 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInit()
 
 RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 {
-#if PLATFORM_SWITCH
-	return RZRESULT_DLL_NOT_FOUND;
-#endif
-
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -449,7 +363,7 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 	}
 	ChromaThread::Instance()->Start();
 
-	if (_mMethodInitSDK == nullptr)
+	if (_mMethodInit == nullptr)
 	{
 		return RZRESULT_INVALID;
 	}
@@ -473,10 +387,6 @@ RZRESULT IChromaSDKPlugin::ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo)
 
 RZRESULT IChromaSDKPlugin::ChromaSDKUnInit()
 {
-#if PLATFORM_SWITCH
-	return RZRESULT_DLL_NOT_FOUND;
-#endif
-
 	if (_sLibraryMissing)
 	{
 		return RZRESULT_DLL_NOT_FOUND;
@@ -516,6 +426,7 @@ RZRESULT IChromaSDKPlugin::ChromaSDKUnInit()
 	{
 		UE_LOG(LogChromaPlugin, Error, TEXT("ChromaSDKPlugin [Uninit] result=%d"), result);
 	}
+
 	return result;
 }
 
@@ -706,7 +617,7 @@ RZRESULT IChromaSDKPlugin::ChromaSDKDeleteEffect(RZEFFECTID effectId)
 
 int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice1DEnum::DE_ChromaLink:
@@ -722,7 +633,7 @@ int IChromaSDKPlugin::GetMaxLeds(EChromaSDKDevice1DEnum::Type device)
 
 int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
@@ -738,7 +649,7 @@ int IChromaSDKPlugin::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 
 int IChromaSDKPlugin::GetMaxColumn(EChromaSDKDevice2DEnum::Type device)
 {
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:

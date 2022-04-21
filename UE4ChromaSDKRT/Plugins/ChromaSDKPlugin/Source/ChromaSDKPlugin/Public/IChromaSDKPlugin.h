@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 //expose HMODULE
 #include "RzChromaSDKDefines.h"
@@ -80,12 +80,7 @@ protected:
 	static int max(const int a, const int b);
 
 public:
-
-#if PLATFORM_WINDOWS
-	bool IsChromaSDKAvailable() const;
-#endif
-
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	// SDK Methods
 	RZRESULT ChromaSDKInit();
 	RZRESULT ChromaSDKInitSDK(ChromaSDK::APPINFOTYPE* appInfo);
@@ -528,6 +523,8 @@ public:
 	*/
 	int GetFrameCountName(const char* path);
 
+	bool SupportsStreaming();
+
 protected:
 
 	bool ValidateGetProcAddress(bool condition, FString methodName);
@@ -539,6 +536,7 @@ protected:
 	HMODULE _mLibraryChroma;
 	static bool _sLibraryMissing;
 	static bool _sInvalidSignature;
+	static bool _sSupportsStreaming;
 
 	// Core API Methods
 	CHROMASDK_DECLARE_METHOD(CHROMA_SDK_INIT, Init);

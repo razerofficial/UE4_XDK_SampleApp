@@ -223,7 +223,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKGuid
 {
 	GENERATED_USTRUCT_BODY()
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	RZEFFECTID Data;
 #endif
 
@@ -291,22 +291,22 @@ struct CHROMASDKPLUGIN_API FChromaSDKAppInfoType
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	FString Title;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	FString Description;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	FString Author_Name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	FString Author_Contact;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	int32 SupportedDevice;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
 	int32 Category;
 };
 
@@ -405,3 +405,18 @@ struct CHROMASDKPLUGIN_API FChromaSDKScene
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	TArray<FChromaSDKSceneEffect> Effects;
 };
+
+UENUM(BlueprintType)
+namespace EChromaSDKStreamStatusEnum
+{
+	enum Type
+	{
+		READY = 0					UMETA(DisplayName = "READY"),
+		AUTHORIZING = 1				UMETA(DisplayName = "AUTHORIZING"),
+		BROADCASTING = 2			UMETA(DisplayName = "BROADCASTING"),
+		WATCHING = 3				UMETA(DisplayName = "WATCHING"),
+		NOT_AUTHORIZED = 4			UMETA(DisplayName = "NOT_AUTHORIZED"),
+		BROADCAST_DUPLICATE = 5		UMETA(DisplayName = "BROADCAST_DUPLICATE"),
+		SERVICE_OFFLINE = 6			UMETA(DisplayName = "SERVICE_OFFLINE"),
+	};
+}
