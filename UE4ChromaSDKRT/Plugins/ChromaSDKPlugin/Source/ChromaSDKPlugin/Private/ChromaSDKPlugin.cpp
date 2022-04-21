@@ -32,9 +32,9 @@ DEFINE_LOG_CATEGORY(LogChromaPlugin);
 #define CHROMASDKDLL        _T("RzChromaSDK64.dll")
 #elif PLATFORM_WINDOWS
 #if _WIN64
-#define CHROMASDKDLL        _T("RzChromaSDK64.dll")
+#define CHROMASDKDLL        _T("C:\\Program Files\\Razer Chroma SDK\\bin\\RzChromaSDK64.dll")
 #else
-#define CHROMASDKDLL        _T("RzChromaSDK.dll")
+#define CHROMASDKDLL        _T("C:\\Program Files (x86)\\Razer Chroma SDK\\bin\\RzChromaSDK.dll")
 #endif
 #endif
 
@@ -163,41 +163,51 @@ void FChromaSDKPlugin::StartupModule()
 	CHROMASDK_CLEAR_METHOD_PTR(SetEffect);
 	CHROMASDK_CLEAR_METHOD_PTR(DeleteEffect);
 
+	// library may be missing without the SDK installed or if it's an old version
+	if (_sLibraryMissing)
+	{
+		return;
+	}
+
 	// abort load if an invalid signature was detected
 	if (_sInvalidSignature)
 	{
 		return;
 	}
 
-	if (_sLibraryMissing)
+#if PLATFORM_WINDOWS
+	// check the library file version
+	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(CHROMASDKDLL, 3, 7, 3, 130))
 	{
+		// treat old versions as if the library is missing
+		_sLibraryMissing = true;
 		return;
 	}
+#endif
 
 #if PLATFORM_XBOXONE
 	_mLibraryChroma = LoadLibrary(*FPaths::Combine(*FPaths::LaunchDir(), CHROMASDKDLL));
 #else
 	_mLibraryChroma = LoadLibrary(CHROMASDKDLL);
 #endif
+
 	if (_mLibraryChroma == NULL)
 	{
-		UE_LOG(LogChromaPlugin, Warning, TEXT("ChromaSDKPlugin failed to load!"));
+		//UE_LOG(LogChromaPlugin, Warning, TEXT("ChromaSDKPlugin failed to load!"));
 		_sLibraryMissing = true;
 		return;
 	}
-	//UE_LOG(LogChromaPlugin, Log, TEXT("ChromaSDKPlugin loaded."));
 
 #if PLATFORM_WINDOWS
 	// verify the library has a valid signature
-	//_sInvalidSignature = !ChromaSDK::VerifyLibrarySignature::VerifyModule(_mLibraryChroma);
+	_sInvalidSignature = !ChromaSDK::VerifyLibrarySignature::VerifyModule(_mLibraryChroma);
 	if (_sInvalidSignature)
 	{
-		UE_LOG(LogChromaPlugin, Error, TEXT("Failed to load Chroma library with invalid signature!"));
-
 		// unload the library
 		FreeLibrary(_mLibraryChroma);
 		_mLibraryChroma = NULL;
 
+		UE_LOG(LogChromaPlugin, Error, TEXT("Failed to load Chroma library with invalid signature!"));
 		return;
 	}
 #endif
