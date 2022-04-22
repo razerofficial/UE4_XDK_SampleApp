@@ -1574,6 +1574,12 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetAuthShortcode", Keywords = "Get Stream Shortcode for Authorization"), Category = "ChromaSDK")
 		static FString StreamGetAuthShortcode(const FString& platform, const FString& title);
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetFocus", Keywords = "Get Stream Focus"), Category = "ChromaSDK")
+		static FString StreamGetFocus();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamSetFocus", Keywords = "Stream Set Focus"), Category = "ChromaSDK")
+		static bool StreamSetFocus(const FString& streamFocus);
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetId", Keywords = "Get Stream Id"), Category = "ChromaSDK")
 		static FString StreamGetId(const FString& shortcode);
 

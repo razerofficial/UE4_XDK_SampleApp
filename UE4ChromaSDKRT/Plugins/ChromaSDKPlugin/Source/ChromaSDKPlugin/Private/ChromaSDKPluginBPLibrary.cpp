@@ -5257,6 +5257,38 @@ FString UChromaSDKPluginBPLibrary::StreamGetAuthShortcode(const FString& platfor
 	return FString("");
 }
 
+FString UChromaSDKPluginBPLibrary::StreamGetFocus()
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	if (IChromaSDKPlugin::GetChromaSDKPlugin()->SupportsStreaming())
+	{
+		char streamFocus[48] = { 0 };
+		unsigned char lenStreamFocus = 0;
+		RzChromaStreamPlugin::StreamGetFocus(streamFocus, &lenStreamFocus);
+		if (lenStreamFocus == 0)
+		{
+			return FString("");
+		}
+		else
+		{
+			return FString(streamFocus);
+		}
+	}
+#endif
+	return FString("");
+}
+
+bool UChromaSDKPluginBPLibrary::StreamSetFocus(const FString& streamFocus)
+{
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	if (IChromaSDKPlugin::GetChromaSDKPlugin()->SupportsStreaming())
+	{
+		return RzChromaStreamPlugin::StreamSetFocus(TCHAR_TO_ANSI(*streamFocus));
+	}
+#endif
+	return false;
+}
+
 FString UChromaSDKPluginBPLibrary::StreamGetId(const FString& shortcode)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
