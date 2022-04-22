@@ -328,10 +328,12 @@ The [UE4ChromaSDKRT/Content/Levels/SampleGameLevel.umap](UE4ChromaSDKRT/Content/
 * [StreamBroadcast](#StreamBroadcast)
 * [StreamBroadcastEnd](#StreamBroadcastEnd)
 * [StreamGetAuthShortcode](#StreamGetAuthShortcode)
+* [StreamGetFocus](#StreamGetFocus)
 * [StreamGetId](#StreamGetId)
 * [StreamGetKey](#StreamGetKey)
 * [StreamGetStatusString](#StreamGetStatusString)
 * [StreamReleaseShortcode](#StreamReleaseShortcode)
+* [StreamSetFocus](#StreamSetFocus)
 * [StreamWatch](#StreamWatch)
 * [StreamWatchEnd](#StreamWatchEnd)
 * [SubtractNonZeroAllKeysAllFrames](#SubtractNonZeroAllKeysAllFrames)
@@ -2795,6 +2797,19 @@ FString UChromaSDKPluginBPLibrary::StreamGetAuthShortcode(const FString&
 ```
 
 ---
+<a name="StreamGetFocus"></a>
+**StreamGetFocus**
+
+focus: Pass the address of a preallocated character buffer to get the stream
+focus. The buffer should have a length of 48  length: Length will return
+as zero if the stream focus could not be obtained. If length is greater
+than zero, it will be the length of the returned stream focus.
+
+```c++
+FString UChromaSDKPluginBPLibrary::StreamGetFocus();
+```
+
+---
 <a name="StreamGetId"></a>
 **StreamGetId**
 
@@ -2859,6 +2874,18 @@ returns success when shortcode has been released
 
 ```c++
 bool UChromaSDKPluginBPLibrary::StreamReleaseShortcode(const FString& shortcode);
+```
+
+---
+<a name="StreamSetFocus"></a>
+**StreamSetFocus**
+
+The focus is a null terminated string. Set the focus identifer for the application
+designated to automatically change the streaming state.  Returns true on
+success.
+
+```c++
+bool UChromaSDKPluginBPLibrary::StreamSetFocus(const FString& streamFocus);
 ```
 
 ---
@@ -2992,7 +3019,6 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(
 **TrimEndFrames**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId
-
 * 1. Reference the animation by id.
 
 ```c++
@@ -3004,7 +3030,6 @@ void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrame
 **TrimEndFramesName**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId
-
 * 1. Reference the animation by name.
 
 ```c++

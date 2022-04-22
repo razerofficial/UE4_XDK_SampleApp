@@ -1577,9 +1577,6 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetFocus", Keywords = "Get Stream Focus"), Category = "ChromaSDK")
 		static FString StreamGetFocus();
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamSetFocus", Keywords = "Stream Set Focus"), Category = "ChromaSDK")
-		static bool StreamSetFocus(const FString& streamFocus);
-
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamGetId", Keywords = "Get Stream Id"), Category = "ChromaSDK")
 		static FString StreamGetId(const FString& shortcode);
 
@@ -1591,6 +1588,9 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamReleaseShortcode", Keywords = "Release Stream Shortcode"), Category = "ChromaSDK")
 		static bool StreamReleaseShortcode(const FString& shortcode);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamSetFocus", Keywords = "Stream Set Focus"), Category = "ChromaSDK")
+		static bool StreamSetFocus(const FString& streamFocus);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "StreamWatch", Keywords = "Start Chroma Watching"), Category = "ChromaSDK")
 		static void StreamWatch(const FString& streamId, int32 timestamp);
