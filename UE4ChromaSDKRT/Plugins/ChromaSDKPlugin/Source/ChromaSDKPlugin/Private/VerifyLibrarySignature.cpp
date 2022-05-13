@@ -6,15 +6,25 @@
 
 #include "Windows/AllowWindowsPlatformTypes.h" 
 
+#include "ChromaLogger.h"
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <iostream>
+#include <fstream>
+#include <cstdint>
+#include <filesystem>
 #include <psapi.h>
 #include <wintrust.h>
 #include <Softpub.h>
 #include <shlwapi.h>
 
-#pragma comment (lib, "wintrust")
-#pragma comment (lib, "Psapi")
+#pragma comment(lib, "wintrust")
+#pragma comment(lib, "Psapi")
 #pragma comment(lib, "crypt32")
 #pragma comment(lib, "ShLwApi")
+#pragma comment(lib, "version")
+
+using namespace std;
 
 namespace ChromaSDK
 {
@@ -65,7 +75,7 @@ namespace ChromaSDK
 			MAX_PATH);
 		*/
 
-		FPlatformMisc::GetEnvironmentVariable(L"SystemRoot",
+		FWindowsPlatformMisc::GetEnvironmentVariable(L"SystemRoot",
 			szPath,
 			MAX_PATH);
 		dwLength = wcslen(szPath);
@@ -89,7 +99,7 @@ namespace ChromaSDK
 			MAX_PATH);
 		*/
 
-		FPlatformMisc::GetEnvironmentVariable(L"ProgramFiles",
+		FWindowsPlatformMisc::GetEnvironmentVariable(L"ProgramFiles",
 			szPath,
 			MAX_PATH);
 		dwLength = wcslen(szPath);
@@ -338,6 +348,81 @@ namespace ChromaSDK
 			&WinTrustData);
 
 		return bResult;
+	}
+
+	BOOL VerifyLibrarySignature::IsFileVersionSameOrNewer(PTCHAR szFileName, const int minMajor, const int minMinor, const int minRevision, const int minBuild)
+	{
+		wstring fileName = szFileName;
+		/*
+		std::filesystem::path p = fileName.c_str();
+		if (!std::filesystem::exists(p))
+		{
+			return false;
+		}
+		*/
+
+		if (!FPaths::FileExists(fileName.c_str()))
+		{
+			return false;
+		}
+
+		bool result = false;
+
+		DWORD  verHandle = 0;
+		UINT   size = 0;
+		LPBYTE lpBuffer = NULL;
+		DWORD  verSize = GetFileVersionInfoSize(fileName.c_str(), &verHandle);
+
+		if (verSize)
+		{
+			LPSTR verData = (LPSTR)malloc(verSize);
+
+			if (GetFileVersionInfo(fileName.c_str(), verHandle, verSize, verData))
+			{
+				if (VerQueryValue(verData, L"\\", (VOID FAR * FAR*) & lpBuffer, &size))
+				{
+					if (size)
+					{
+						VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lpBuffer;
+						if (verInfo->dwSignature == 0xfeef04bd)
+						{
+							const int major = (verInfo->dwFileVersionMS >> 16) & 0xffff;
+							const int minor = (verInfo->dwFileVersionMS >> 0) & 0xffff;
+							const int revision = (verInfo->dwFileVersionLS >> 16) & 0xffff;
+							const int build = (verInfo->dwFileVersionLS >> 0) & 0xffff;
+
+							ChromaLogger::fprintf(stdout, "File Version: %d.%d.%d.%d\n", major, minor, revision, build);
+
+							// Anything less than the min version returns false
+
+							if (major < minMajor) // Less than X
+							{
+								result = false;
+							}
+							else if (major == minMajor && minor < minMinor) // Less than major.X
+							{
+								result = false;
+							}
+							else if (major == minMajor && minor == minMinor && revision < minRevision) // Less than major.minor.X
+							{
+								result = false;
+							}
+							else if (major == minMajor && minor == minMinor && revision == minRevision && build < minBuild) // Less than major.minor.revision.X
+							{
+								result = false;
+							}
+							else
+							{
+								result = true; // production version or better
+							}
+						}
+					}
+				}
+			}
+			free(verData);
+		}
+
+		return result;
 	}
 
 }

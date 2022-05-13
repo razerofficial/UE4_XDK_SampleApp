@@ -2,7 +2,7 @@
 
 #include "AnimationBase.h"
 
-#if PLATFORM_WINDOWS || PLATFORM_XBOXONE || PLATFORM_SWITCH
+#if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 #include "Windows/AllowWindowsPlatformTypes.h" 
 #include <mutex>
 #include <string>
