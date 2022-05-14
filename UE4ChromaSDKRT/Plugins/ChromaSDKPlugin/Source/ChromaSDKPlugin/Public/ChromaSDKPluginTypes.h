@@ -404,6 +404,8 @@ struct CHROMASDKPLUGIN_API FChromaSDKScene
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	TArray<FChromaSDKSceneEffect> Effects;
+
+	void ToggleState(unsigned int effect);
 };
 
 UENUM(BlueprintType)
