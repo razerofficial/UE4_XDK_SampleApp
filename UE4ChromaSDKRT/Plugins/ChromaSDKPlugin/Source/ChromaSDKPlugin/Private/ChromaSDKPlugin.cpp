@@ -55,57 +55,6 @@ void FChromaSDKPlugin::ShutdownModule()
 #endif
 }
 
-#pragma region Color Operations
-
-int IChromaSDKPlugin::min(const int a, const int b)
-{
-	if (a < b)
-	{
-		return a;
-	}
-	else
-	{
-		return b;
-	}
-}
-int IChromaSDKPlugin::max(const int a, const int b)
-{
-	if (a > b)
-	{
-		return a;
-	}
-	else
-	{
-		return b;
-	}
-}
-
-int IChromaSDKPlugin::GetRGB(const int red, const int green, const int blue)
-{
-	return (red & 0xFF) | ((green & 0xFF) << 8) | ((blue & 0xFF) << 16);
-}
-
-int IChromaSDKPlugin::ToBGR(const FLinearColor& color)
-{
-	int red = max(0, min(255, color.R * 255));
-	int green = max(0, min(255, color.G * 255));
-	int blue = max(0, min(255, color.B * 255));
-	int customFlag = max(0, min(255, color.A * 255));
-	int bgrColor = (red & 0xFF) | ((green & 0xFF) << 8) | ((blue & 0xFF) << 16) | (customFlag << 24);
-	return bgrColor;
-}
-
-FLinearColor IChromaSDKPlugin::ToLinearColor(const int color)
-{
-	float red = (color & 0xFF) / 255.0f;
-	float green = ((color & 0xFF00) >> 8) / 255.0f;
-	float blue = ((color & 0xFF0000) >> 16) / 255.0f;
-	float alpha = ((color & 0xFF000000) >> 24) / 255.0f;
-	return FLinearColor(red, green, blue, alpha);
-}
-
-#pragma endregion
-
 
 #include "Windows/HideWindowsPlatformTypes.h"
 

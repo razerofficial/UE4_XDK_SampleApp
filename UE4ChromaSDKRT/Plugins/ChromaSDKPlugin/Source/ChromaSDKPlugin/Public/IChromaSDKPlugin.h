@@ -39,12 +39,4 @@ public:
 	{
 		return FModuleManager::Get().IsModuleLoaded( "ChromaSDKPlugin" );
 	}
-
-	static int GetRGB(const int red, const int green, const int blue);
-	static int ToBGR(const FLinearColor& color);
-	static FLinearColor ToLinearColor(const int color);
-
-protected:
-	static int min(const int a, const int b);
-	static int max(const int a, const int b);
 };
