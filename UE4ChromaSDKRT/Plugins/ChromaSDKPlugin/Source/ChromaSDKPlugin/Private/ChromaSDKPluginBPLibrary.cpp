@@ -6451,7 +6451,7 @@ bool UChromaSDKPluginBPLibrary::StreamReleaseShortcode(const FString& shortcode)
 bool UChromaSDKPluginBPLibrary::SupportsStreaming()
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-	if (!IsInitialized())
+	if (!ChromaAnimationAPI::GetIsInitializedAPI())
 	{
 		return false;
 	}
