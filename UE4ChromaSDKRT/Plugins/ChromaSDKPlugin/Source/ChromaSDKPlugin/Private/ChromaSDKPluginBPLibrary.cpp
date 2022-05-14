@@ -26,6 +26,8 @@ std::map<EChromaSDKKeyboardKey::Type, int> UChromaSDKPluginBPLibrary::_sKeyboard
 std::map<EChromaSDKMouseLed::Type, ChromaSDK::Mouse::RZLED2> UChromaSDKPluginBPLibrary::_sMouseEnumMap =
 	std::map<EChromaSDKMouseLed::Type, ChromaSDK::Mouse::RZLED2>();
 
+bool UChromaSDKPluginBPLibrary::_sInitialized = false;
+
 #endif
 
 //UChromaSDKPluginBPLibrary::UChromaSDKPluginBPLibrary(const FPostConstructInitializeProperties& PCIP) //___HACK_UE4_VERSION_4_8_OR_LESS
@@ -617,7 +619,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetMouseLedColor(EChromaSDKMouseLed::Typ
 bool UChromaSDKPluginBPLibrary::IsInitialized()
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-	return ChromaAnimationAPI::IsInitialized();
+	return _sInitialized;
 #else
 	return false;
 #endif
@@ -626,10 +628,18 @@ bool UChromaSDKPluginBPLibrary::IsInitialized()
 int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-	if (!ChromaAnimationAPI::IsInitialized())
+	if (!ChromaAnimationAPI::GetIsInitializedAPI())
+	{
+		return -1;
+	}
+	if (!_sInitialized)
 	{
 		// Init the SDK
 		long result = ChromaAnimationAPI::Init();
+		if (result == RZRESULT_SUCCESS)
+		{
+			_sInitialized = true;
+		}
 		return result;
 	}
 	else
@@ -644,7 +654,11 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInit()
 int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& appInfo)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-	if (!ChromaAnimationAPI::IsInitialized())
+	if (!ChromaAnimationAPI::GetIsInitializedAPI())
+	{
+		return -1;
+	}
+	if (!_sInitialized)
 	{
 		ChromaSDK::APPINFOTYPE coreAppInfo = {};
 
@@ -678,6 +692,11 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& a
 		// Init the SDK
 		long result = ChromaAnimationAPI::InitSDK(&coreAppInfo);
 
+		if (result == RZRESULT_SUCCESS)
+		{
+			_sInitialized = true;
+		}
+
 		return result;
 	}
 	else
@@ -692,12 +711,17 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& a
 int32 UChromaSDKPluginBPLibrary::ChromaSDKUnInit()
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
+	if (!ChromaAnimationAPI::GetIsInitializedAPI())
+	{
+		return -1;
+	}
 	// Stop all animations
 	// UnInit the SDK
-	UE_LOG(LogTemp, Log, TEXT("UChromaSDKPluginBPLibrary:: Uninit"));
-	if (ChromaAnimationAPI::IsInitialized())
+	//UE_LOG(LogTemp, Log, TEXT("UChromaSDKPluginBPLibrary:: Uninit"));
+	if (_sInitialized)
 	{
 		RZRESULT result = ChromaAnimationAPI::Uninit();
+		_sInitialized = false;
 		return result;
 	}
 	else

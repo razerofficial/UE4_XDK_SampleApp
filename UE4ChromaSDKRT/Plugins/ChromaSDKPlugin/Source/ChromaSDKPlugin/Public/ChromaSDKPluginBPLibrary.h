@@ -1798,5 +1798,7 @@ private:
 	static std::map<EChromaSDKKeyboardKey::Type, int32> _sKeyboardEnumMap;
 	static std::map<EChromaSDKMouseLed::Type, ChromaSDK::Mouse::RZLED2> _sMouseEnumMap;
 
+	static bool _sInitialized;
+
 #endif
 };

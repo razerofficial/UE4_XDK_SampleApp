@@ -2,8 +2,6 @@
 
 #include "IChromaSDKPlugin.h"
 #include "ChromaSDKPluginPrivatePCH.h"
-#include "ChromaSDKPluginBPLibrary.h"
-#include "VerifyLibrarySignature.h"
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
@@ -20,9 +18,6 @@ class FChromaSDKPlugin : public IChromaSDKPlugin
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-
-protected:
-	bool _mInitialized;
 };
 
 IMPLEMENT_MODULE( FChromaSDKPlugin, ChromaSDKPlugin )
@@ -33,11 +28,7 @@ void FChromaSDKPlugin::StartupModule()
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
-	_mInitialized = false;
-	if (ChromaAnimationAPI::InitAPI() == RZRESULT_SUCCESS)
-	{
-		_mInitialized = true;
-	}
+	ChromaAnimationAPI::InitAPI();
 #endif
 }
 
@@ -49,17 +40,16 @@ void FChromaSDKPlugin::ShutdownModule()
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
-	if (_mInitialized)
+	if (ChromaAnimationAPI::GetIsInitializedAPI())
 	{
 		ChromaAnimationAPI::StopAll();
 		ChromaAnimationAPI::CloseAll();
 		RZRESULT result = ChromaAnimationAPI::Uninit();
-		ChromaAnimationAPI::UninitAPI();
 		if (result != RZRESULT_SUCCESS)
 		{
 			UE_LOG(LogChromaPlugin, Error, TEXT("Failed to uninitialize Chroma!"));
 		}
-		_mInitialized = false;
+		ChromaAnimationAPI::UninitAPI();
 	}
 	
 #endif

@@ -586,15 +586,22 @@ int ChromaAnimationAPI::InitAPI()
 		return 0;
 	}
 
+	std::wstring path;
+#if PLATFORM_WINDOWS && WITH_EDITOR
+	FString projectDir = FPaths::ProjectDir();
+	projectDir = projectDir.Replace(TEXT("/"), TEXT("\\"));
+	path = TCHAR_TO_WCHAR(*projectDir);
+	path += L"Binaries/Win64";
+#else
 	wchar_t filename[MAX_PATH]; //this is a char buffer
 	GetModuleFileNameW(NULL, filename, sizeof(filename));
 
-	std::wstring path;
 	const size_t last_slash_idx = std::wstring(filename).rfind('\\');
 	if (std::string::npos != last_slash_idx)
 	{
 		path = std::wstring(filename).substr(0, last_slash_idx);
 	}
+#endif
 
 	path += L"\\";
 	path += CHROMA_EDITOR_DLL;

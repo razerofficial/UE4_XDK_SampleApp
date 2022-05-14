@@ -92,7 +92,9 @@ void USampleAppChromaBP::SampleAppSampleStart()
 		case RZRESULT_SUCCESS:
 			break;
 		default:
-			UE_LOG(LogTemp, Error, TEXT("Failed to initialize Chroma!"));
+			// It's not an error for Chroma to not initialize.
+			// The SDK might not be installed.
+			// Just avoid making further calls to Chroma until next launch.
 			break;
 		}
 	}
