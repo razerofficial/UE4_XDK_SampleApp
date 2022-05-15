@@ -533,9 +533,9 @@ void UChromaSDKPluginBPLibrary::CloseAll();
 **CloseAnimation**
 
 Closes the `Chroma` animation to free up resources referenced by id. Returns 
-the animation id upon success. Returns -1 upon failure. This might be used 
-while authoring effects if there was a change necessitating re-opening 
-the animation. The animation id can no longer be used once closed.
+the animation id upon success. Returns negative one upon failure. This 
+might be used while authoring effects if there was a change necessitating 
+re-opening the animation. The animation id can no longer be used once closed.
 ```c++
 void UChromaSDKPluginBPLibrary::CloseAnimation(const int32 animationId);
 ```
@@ -1534,8 +1534,8 @@ int32 UChromaSDKPluginBPLibrary::GetCurrentFrameName(const FString& animationNam
 <a name="GetFrameCount"></a>
 **GetFrameCount**
 
-Returns the frame count of a `Chroma` animation upon success. Returns -1 
-upon failure.
+Returns the frame count of a `Chroma` animation upon success. Returns negative 
+one upon failure.
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetFrameCount(const int32 animationId);
 ```
@@ -1544,8 +1544,8 @@ int32 UChromaSDKPluginBPLibrary::GetFrameCount(const int32 animationId);
 <a name="GetFrameCountName"></a>
 **GetFrameCountName**
 
-Returns the frame count of a `Chroma` animation upon success. Returns -1 
-upon failure.
+Returns the frame count of a `Chroma` animation upon success. Returns negative 
+one upon failure.
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetFrameCountName(const FString& animationName);
 ```
@@ -1575,7 +1575,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyColorName(const FString& animation
 **GetMaxColumn**
 
 Returns the `MAX COLUMN` given the `EChromaSDKDevice2DEnum` device as an 
-integer upon success. Returns -1 upon failure.
+integer upon success. Returns negative one upon failure.
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetMaxColumn(EChromaSDKDevice2DEnum::Type 
 	device);
@@ -1586,7 +1586,7 @@ int32 UChromaSDKPluginBPLibrary::GetMaxColumn(EChromaSDKDevice2DEnum::Type
 **GetMaxLeds**
 
 Returns the MAX LEDS given the `EChromaSDKDevice1DEnum` device as an integer 
-upon success. Returns -1 upon failure.
+upon success. Returns negative one upon failure.
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetMaxLeds(EChromaSDKDevice1DEnum::Type 
 	device);
@@ -1597,7 +1597,7 @@ int32 UChromaSDKPluginBPLibrary::GetMaxLeds(EChromaSDKDevice1DEnum::Type
 **GetMaxRow**
 
 Returns the `MAX ROW` given the `EChromaSDKDevice2DEnum` device as an integer 
-upon success. Returns -1 upon failure.
+upon success. Returns negative one upon failure.
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetMaxRow(EChromaSDKDevice2DEnum::Type 
 	device);
@@ -1731,7 +1731,7 @@ FLinearColor UChromaSDKPluginBPLibrary::LerpColor(FLinearColor colorParam1,
 **LoadAnimation**
 
 Loads `Chroma` effects so that the animation can be played immediately. 
-Returns the animation id upon success. Returns -1 upon failure.
+Returns the animation id upon success. Returns negative one upon failure.
 ```c++
 void UChromaSDKPluginBPLibrary::LoadAnimation(const int32 animationId);
 ```
@@ -2158,8 +2158,8 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsName(const FString& animation
 Opens a `Chroma` animation data from memory so that it can be played. `Data` 
 is a pointer to BYTE array of the loaded animation in memory. `Name` will 
 be assigned to the animation when loaded. Returns an animation id >= 0 
-upon success. Returns -1 if there was a failure. The animation id is used 
-in most of the API methods.
+upon success. Returns negative one if there was a failure. The animation 
+id is used in most of the API methods.
 ```c++
 void UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(const TArray<uint8>& 
 	data, const FString& animationName);
@@ -2181,7 +2181,8 @@ void UChromaSDKPluginBPLibrary::OverrideFrameDurationName(const FString&
 **PlayAnimation**
 
 Plays the `Chroma` animation. This will load the animation, if not loaded 
-previously. Returns the animation id upon success. Returns -1 upon failure.
+previously. Returns the animation id upon success. Returns negative one 
+upon failure.
 ```c++
 void UChromaSDKPluginBPLibrary::PlayAnimation(const FString& animationName, 
 	bool loop);
@@ -2204,7 +2205,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimationName(const FString& animationName,
 **PreviewFrame**
 
 Displays the `Chroma` animation frame on `Chroma` hardware given the `frameIndex`. 
-Returns the animation id upon success. Returns -1 upon failure.
+Returns the animation id upon success. Returns negative one upon failure.
 ```c++
 int32 UChromaSDKPluginBPLibrary::PreviewFrame(int32 animationId, int32 frameId);
 ```
@@ -2567,7 +2568,7 @@ void UChromaSDKPluginBPLibrary::StopAll();
 **StopAnimation**
 
 Stops animation playback if in progress. Returns the animation id upon success. 
-Returns -1 upon failure.
+Returns negative one upon failure.
 ```c++
 void UChromaSDKPluginBPLibrary::StopAnimation(const FString& animationName);
 ```
@@ -2855,7 +2856,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(
 **TrimEndFrames**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId 
-+ 1. Reference the animation by id.
+plus one. Reference the animation by id.
 ```c++
 void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrameId);
 ```
@@ -2865,7 +2866,7 @@ void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrame
 **TrimEndFramesName**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId 
-+ 1. Reference the animation by name.
+plus one. Reference the animation by name.
 ```c++
 void UChromaSDKPluginBPLibrary::TrimEndFramesName(const FString& animationName, 
 	int32 lastFrameId);
@@ -2917,7 +2918,8 @@ void UChromaSDKPluginBPLibrary::TrimStartFramesName(const FString& animationName
 **UnloadAnimation**
 
 Unloads `Chroma` effects to free up resources. Returns the animation id 
-upon success. Returns -1 upon failure. Reference the animation by id.
+upon success. Returns negative one upon failure. Reference the animation 
+by id.
 ```c++
 void UChromaSDKPluginBPLibrary::UnloadAnimation(const int32 animationId);
 ```
