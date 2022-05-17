@@ -85,6 +85,12 @@ The [Chroma Editor Library](https://github.com/razerofficial/CChromaEditor) is a
 
 The latest versions of the `Chroma Editor Library` can be found in [Releases](https://github.com/razerofficial/CChromaEditor/releases) for `Windows-PC` and `Windows-Cloud`.
 
+The plugin build file [UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPlugin\ChromaSDKPlugin.Build.cs](UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPlugin\ChromaSDKPlugin.Build.cs) has a preprocessor definition to check the signature of the `Chroma Editor Library`. This a security feature and Chroma libraries won't be loaded that fail to pass the signature validation when this flag is enabled.
+
+```
+Definitions.Add("CHECK_CHROMA_LIBRARY_SIGNATURE=1");
+```
+
 <a name="windows-pc"></a>
 
 ## Windows PC
