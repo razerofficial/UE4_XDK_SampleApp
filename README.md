@@ -165,6 +165,14 @@ Implementation: `UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Source/ChromaSDKPlugin/P
 
 The project has a few sample levels.
 
+Samples share the same `Stream Overlay` logic defined in the [UE4ChromaSDKRT/Content/UI/StreamingWidget_BP.uasset](UE4ChromaSDKRT/Content/UI/StreamingWidget_BP.uasset) Widget Blueprint.
+
+![image_14](images/image_14.png)
+
+Sample UI event construction checks if streaming is supported before showing the button that displays the sample stream overlay.
+
+![image_15](images/image_15.png)
+
 ---
 
 **UE4 Chroma Sample App**
