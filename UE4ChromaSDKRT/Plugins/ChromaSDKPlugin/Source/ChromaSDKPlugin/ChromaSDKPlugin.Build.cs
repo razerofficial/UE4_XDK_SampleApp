@@ -12,7 +12,9 @@ namespace UnrealBuildTool.Rules
 			
 			PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs; //___HACK_UE4_VERSION_4_16_OR_GREATER
 
-			PublicIncludePaths.AddRange(
+            Definitions.Add("CHECK_CHROMA_LIBRARY_SIGNATURE=1");
+
+            PublicIncludePaths.AddRange(
 				new string[] {
                     ModuleDirectory + "/Public",
 					// ... add public include paths required here ...

@@ -1759,7 +1759,6 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 
 #pragma endregion
 	
-
 	/*
 		Gets the frame colors and duration (in seconds) for a `Chroma` animation.
 		The `color` is expected to be an array of the expected dimensions for the
@@ -1790,13 +1789,22 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	*/
 	static RZRESULT SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
 
-
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 private:
+
+#pragma region Helper color functions
+	static int UtilGetRGB(const int red, const int green, const int blue);
+	static int UtilToBGR(const FLinearColor& color);
+
+	static int min(const int a, const int b);
+	static int max(const int a, const int b);
+#pragma endregion
 
 	static std::map<FKey, EChromaSDKKeyboardKey::Type> _sKeyboardFKeyMap;
 	static std::map<EChromaSDKKeyboardKey::Type, int32> _sKeyboardEnumMap;
 	static std::map<EChromaSDKMouseLed::Type, ChromaSDK::Mouse::RZLED2> _sMouseEnumMap;
+
+	static bool _sInitialized;
 
 #endif
 };

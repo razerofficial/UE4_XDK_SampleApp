@@ -1,4 +1,4 @@
-//! \file RzChromaSDKTypes.h
+﻿//! \file RzChromaSDKTypes.h
 //! \brief Data types.
 
 #ifndef _RZCHROMASDKTYPES_H_

@@ -11,6 +11,9 @@
 * [Overview](#overview)
 * [Tutorials](#tutorials)
 * [Supported versions](#supported-versions)
+* [Chroma Editor Library](#chroma-editor-library)
+* [Windows PC](#windows-pc)
+* [Windows Cloud](#windows-cloud)
 * [Dependencies](#dependencies)
 * [Plugin Structure](#plugin-structure)
 * [Samples](#samples)
@@ -76,6 +79,74 @@ To update the plugin version, open [UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Chrom
 "EngineVersion": "4.21.0",
 ```
 
+## Chroma Editor Library
+
+The [Chroma Editor Library](https://github.com/razerofficial/CChromaEditor) is a helper library for Chroma animation playback and realtime manipulation of Chroma animations.
+
+The latest versions of the `Chroma Editor Library` can be found in [Releases](https://github.com/razerofficial/CChromaEditor/releases) for `Windows-PC` and `Windows-Cloud`.
+
+The plugin build file [UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPlugin\ChromaSDKPlugin.Build.cs](UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPlugin\ChromaSDKPlugin.Build.cs) has a preprocessor definition to check the signature of the `Chroma Editor Library`. This a security feature and Chroma libraries won't be loaded that fail to pass the signature validation when this flag is enabled.
+
+```
+Definitions.Add("CHECK_CHROMA_LIBRARY_SIGNATURE=1");
+```
+
+<a name="windows-pc"></a>
+
+## Windows PC
+
+For `Windows PC` builds the `RzChromaSDK.dll` and `RzChromaStreamPlugin.dll` are not packaged with the build. These libraries are automatically updated and managed by Synapse and the Chroma Connect module. Avoid including these files in your build folder for `Windows PC` builds.
+
+Within the `Unreal Editor` the `Chroma Editor Library` files are placed in `Win32` and `Win64` folders on Windows.
+
+**32-bit libraries**
+
+```
+Project Folder\Binaries\Win32\CChromaEditorLibrary.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win32\CChromaEditorLibrary.dll
+```
+
+**64-bit libraries**
+
+```
+Project Folder\Binaries\Win64\CChromaEditorLibrary64.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\CChromaEditorLibrary64.dll
+```
+
+<a name="windows-cloud"></a>
+
+## Windows Cloud
+
+`Windows Cloud` builds run on cloud platforms using `Windows` such as `Amazon Luna`, `Microsoft Game Pass`, and `NVidia GeForce Now`. Game instances run in the cloud without direct access to Chroma hardware. By running the `Windows Cloud` version of the library `Chroma` effects can reach your local machine and connected hardware. Cloud instances won't have Synapse installed which requires special cloud versions of the libraries. The `Chroma Editor Library` uses the core `RzChromaSDK` low-level library to send Chroma effects to the cloud with the `RzChromaStreamPlugin` streaming library. Viewers can watch the cloud stream via the [Razer Stream Portal](https://stream.razer.com/).
+
+**32-bit libraries**
+
+```
+(In Editor)
+Project Folder\Binaries\Win32\CChromaEditorLibrary.dll
+Project Folder\Binaries\Win32\RzChromaSDK.dll
+Project Folder\Binaries\Win32\RzChromaStreamPlugin.dll
+
+(Standalone Build)
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\CChromaEditorLibrary.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\RzChromaSDK.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\RzChromaStreamPlugin.dll
+```
+
+**64-bit libraries**
+
+```
+(In Editor)
+Project Folder\Binaries\Win64\CChromaEditorLibrary64.dll
+Project Folder\Binaries\Win64\RzChromaSDK64.dll
+Project Folder\Binaries\Win64\RzChromaStreamPlugin64.dll
+
+(Standalone Build)
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\CChromaEditorLibrary64.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\RzChromaSDK64.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\RzChromaStreamPlugin64.dll
+```
+
 ## Plugin Structure
 
 Plugin Definition: `Plugins/ChromaSDKPlugin/ChromaSDKPlugin.uplugin`
@@ -99,6 +170,14 @@ Implementation: `UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Source/ChromaSDKPlugin/P
 ## Samples
 
 The project has a few sample levels.
+
+Samples share the same `Stream Overlay` logic defined in the [UE4ChromaSDKRT/Content/UI/StreamingWidget_BP.uasset](UE4ChromaSDKRT/Content/UI/StreamingWidget_BP.uasset) Widget Blueprint.
+
+![image_14](images/image_14.png)
+
+Sample UI event construction checks if streaming is supported before showing the button that displays the sample stream overlay.
+
+![image_15](images/image_15.png)
 
 ---
 
@@ -130,10 +209,12 @@ The [UE4ChromaSDKRT/Content/Levels/SampleGameLevel.umap](UE4ChromaSDKRT/Content/
 
 * No const enum types or passing enums by reference in function parameters - Avoid use of const enum types because that seems to crash in UE 4.5.
 
+* [AddNonZeroAllKeys](#AddNonZeroAllKeys)
 * [AddNonZeroAllKeysAllFrames](#AddNonZeroAllKeysAllFrames)
 * [AddNonZeroAllKeysAllFramesName](#AddNonZeroAllKeysAllFramesName)
 * [AddNonZeroAllKeysAllFramesOffset](#AddNonZeroAllKeysAllFramesOffset)
 * [AddNonZeroAllKeysAllFramesOffsetName](#AddNonZeroAllKeysAllFramesOffsetName)
+* [AddNonZeroAllKeysName](#AddNonZeroAllKeysName)
 * [AddNonZeroTargetAllKeysAllFrames](#AddNonZeroTargetAllKeysAllFrames)
 * [AddNonZeroTargetAllKeysAllFramesName](#AddNonZeroTargetAllKeysAllFramesName)
 * [AddNonZeroTargetAllKeysAllFramesOffset](#AddNonZeroTargetAllKeysAllFramesOffset)
@@ -336,10 +417,12 @@ The [UE4ChromaSDKRT/Content/Levels/SampleGameLevel.umap](UE4ChromaSDKRT/Content/
 * [StreamSetFocus](#StreamSetFocus)
 * [StreamWatch](#StreamWatch)
 * [StreamWatchEnd](#StreamWatchEnd)
+* [SubtractNonZeroAllKeys](#SubtractNonZeroAllKeys)
 * [SubtractNonZeroAllKeysAllFrames](#SubtractNonZeroAllKeysAllFrames)
 * [SubtractNonZeroAllKeysAllFramesName](#SubtractNonZeroAllKeysAllFramesName)
 * [SubtractNonZeroAllKeysAllFramesOffset](#SubtractNonZeroAllKeysAllFramesOffset)
 * [SubtractNonZeroAllKeysAllFramesOffsetName](#SubtractNonZeroAllKeysAllFramesOffsetName)
+* [SubtractNonZeroAllKeysName](#SubtractNonZeroAllKeysName)
 * [SubtractNonZeroTargetAllKeysAllFrames](#SubtractNonZeroTargetAllKeysAllFrames)
 * [SubtractNonZeroTargetAllKeysAllFramesName](#SubtractNonZeroTargetAllKeysAllFramesName)
 * [SubtractNonZeroTargetAllKeysAllFramesOffset](#SubtractNonZeroTargetAllKeysAllFramesOffset)
@@ -356,6 +439,18 @@ The [UE4ChromaSDKRT/Content/Levels/SampleGameLevel.umap](UE4ChromaSDKRT/Content/
 * [UseIdleAnimations](#UseIdleAnimations)
 * [UsePreloading](#UsePreloading)
 * [UsePreloadingName](#UsePreloadingName)
+
+---
+<a name="AddNonZeroAllKeys"></a>
+**AddNonZeroAllKeys**
+
+Add source color to target where color is not black for frame id, reference
+source and target by id.
+
+```c++
+void UChromaSDKPluginBPLibrary::AddNonZeroAllKeys(int32 sourceAnimationId, 
+ int32 targetAnimationId, int32 frameId);
+```
 
 ---
 <a name="AddNonZeroAllKeysAllFrames"></a>
@@ -406,6 +501,18 @@ name.
 void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesOffsetName(const 
  FString& sourceAnimationName, const FString& targetAnimationName, int32 
  offset);
+```
+
+---
+<a name="AddNonZeroAllKeysName"></a>
+**AddNonZeroAllKeysName**
+
+Add source color to target where color is not black for frame id, reference
+source and target by name.
+
+```c++
+void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysName(const FString& sourceAnimationName, 
+ const FString& targetAnimationName, int32 frameId);
 ```
 
 ---
@@ -520,9 +627,9 @@ void UChromaSDKPluginBPLibrary::CloseAll();
 **CloseAnimation**
 
 Closes the `Chroma` animation to free up resources referenced by id. Returns
-the animation id upon success. Returns -1 upon failure. This might be used
-while authoring effects if there was a change necessitating re-opening
-the animation. The animation id can no longer be used once closed.
+the animation id upon success. Returns negative one upon failure. This
+might be used while authoring effects if there was a change necessitating
+re-opening the animation. The animation id can no longer be used once closed.
 
 ```c++
 void UChromaSDKPluginBPLibrary::CloseAnimation(const int32 animationId);
@@ -1609,8 +1716,8 @@ int32 UChromaSDKPluginBPLibrary::GetCurrentFrameName(const FString& animationNam
 <a name="GetFrameCount"></a>
 **GetFrameCount**
 
-Returns the frame count of a `Chroma` animation upon success. Returns -1
-upon failure.
+Returns the frame count of a `Chroma` animation upon success. Returns negative
+one upon failure.
 
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetFrameCount(const int32 animationId);
@@ -1620,8 +1727,8 @@ int32 UChromaSDKPluginBPLibrary::GetFrameCount(const int32 animationId);
 <a name="GetFrameCountName"></a>
 **GetFrameCountName**
 
-Returns the frame count of a `Chroma` animation upon success. Returns -1
-upon failure.
+Returns the frame count of a `Chroma` animation upon success. Returns negative
+one upon failure.
 
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetFrameCountName(const FString& animationName);
@@ -1654,7 +1761,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyColorName(const FString& animation
 **GetMaxColumn**
 
 Returns the `MAX COLUMN` given the `EChromaSDKDevice2DEnum` device as an
-integer upon success. Returns -1 upon failure.
+integer upon success. Returns negative one upon failure.
 
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetMaxColumn(EChromaSDKDevice2DEnum::Type 
@@ -1666,7 +1773,7 @@ int32 UChromaSDKPluginBPLibrary::GetMaxColumn(EChromaSDKDevice2DEnum::Type
 **GetMaxLeds**
 
 Returns the MAX LEDS given the `EChromaSDKDevice1DEnum` device as an integer
-upon success. Returns -1 upon failure.
+upon success. Returns negative one upon failure.
 
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetMaxLeds(EChromaSDKDevice1DEnum::Type 
@@ -1678,7 +1785,7 @@ int32 UChromaSDKPluginBPLibrary::GetMaxLeds(EChromaSDKDevice1DEnum::Type
 **GetMaxRow**
 
 Returns the `MAX ROW` given the `EChromaSDKDevice2DEnum` device as an integer
-upon success. Returns -1 upon failure.
+upon success. Returns negative one upon failure.
 
 ```c++
 int32 UChromaSDKPluginBPLibrary::GetMaxRow(EChromaSDKDevice2DEnum::Type 
@@ -1825,7 +1932,7 @@ FLinearColor UChromaSDKPluginBPLibrary::LerpColor(FLinearColor colorParam1,
 **LoadAnimation**
 
 Loads `Chroma` effects so that the animation can be played immediately.
-Returns the animation id upon success. Returns -1 upon failure.
+Returns the animation id upon success. Returns negative one upon failure.
 
 ```c++
 void UChromaSDKPluginBPLibrary::LoadAnimation(const int32 animationId);
@@ -2286,10 +2393,10 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsName(const FString& animation
 **OpenAnimationFromMemory**
 
 Opens a `Chroma` animation data from memory so that it can be played. `Data`
-is a pointer to byte array of the loaded animation in memory. `Name` will
+is a pointer to BYTE array of the loaded animation in memory. `Name` will
 be assigned to the animation when loaded. Returns an animation id >= 0
-upon success. Returns -1 if there was a failure. The animation id is used
-in most of the API methods.
+upon success. Returns negative one if there was a failure. The animation
+id is used in most of the API methods.
 
 ```c++
 void UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(const TArray<uint8>& 
@@ -2313,7 +2420,8 @@ void UChromaSDKPluginBPLibrary::OverrideFrameDurationName(const FString&
 **PlayAnimation**
 
 Plays the `Chroma` animation. This will load the animation, if not loaded
-previously. Returns the animation id upon success. Returns -1 upon failure.
+previously. Returns the animation id upon success. Returns negative one
+upon failure.
 
 ```c++
 void UChromaSDKPluginBPLibrary::PlayAnimation(const FString& animationName, 
@@ -2338,7 +2446,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimationName(const FString& animationName,
 **PreviewFrame**
 
 Displays the `Chroma` animation frame on `Chroma` hardware given the `frameIndex`.
-Returns the animation id upon success. Returns -1 upon failure.
+Returns the animation id upon success. Returns negative one upon failure.
 
 ```c++
 int32 UChromaSDKPluginBPLibrary::PreviewFrame(int32 animationId, int32 frameId);
@@ -2734,7 +2842,7 @@ void UChromaSDKPluginBPLibrary::StopAll();
 **StopAnimation**
 
 Stops animation playback if in progress. Returns the animation id upon success.
-Returns -1 upon failure.
+Returns negative one upon failure.
 
 ```c++
 void UChromaSDKPluginBPLibrary::StopAnimation(const FString& animationName);
@@ -2789,7 +2897,10 @@ Length will return as zero if the streaming auth code could not be obtained.
 If length is greater than zero, it will be the length of the returned streaming
 auth code.  Once you have the shortcode, it should be shown to the user
 so they can associate the stream with their Razer ID  StreamGetStatus()
-should return the READY status before invoking this method.
+should return the READY status before invoking this method. platform: is
+the null terminated string that identifies the source of the stream: {
+GEFORCE_NOW, LUNA, STADIA, GAME_PASS } title: is the null terminated string
+that identifies the application or game.
 
 ```c++
 FString UChromaSDKPluginBPLibrary::StreamGetAuthShortcode(const FString& 
@@ -2822,9 +2933,8 @@ Length will return zero if the key could not be obtained. If the length
 is greater than zero, it will be the length of the returned streaming id.
 Retrieve the stream id after authorizing the shortcode. The authorization
 window will expire in 5 minutes. Be sure to save the stream key before
-the window expires.  platform: is the null terminated string that identifies
-the source of the stream: { GEFORCE_NOW, LUNA, STADIA, GAME_PASS }
-StreamGetStatus() should return the READY status to use this method.
+the window expires. StreamGetStatus() should return the READY status to
+use this method.
 
 ```c++
 FString UChromaSDKPluginBPLibrary::StreamGetId(const FString& shortcode);
@@ -2913,6 +3023,18 @@ void UChromaSDKPluginBPLibrary::StreamWatchEnd();
 ```
 
 ---
+<a name="SubtractNonZeroAllKeys"></a>
+**SubtractNonZeroAllKeys**
+
+Subtract the source color from the target color for the frame where the
+target color is not black. Source and target are referenced by id.
+
+```c++
+void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeys(int32 sourceAnimationId, 
+ int32 targetAnimationId, int32 frameId);
+```
+
+---
 <a name="SubtractNonZeroAllKeysAllFrames"></a>
 **SubtractNonZeroAllKeysAllFrames**
 
@@ -2961,6 +3083,18 @@ Source and target are referenced by name.
 void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesOffsetName(const 
  FString& sourceAnimationName, const FString& targetAnimationName, int32 
  offset);
+```
+
+---
+<a name="SubtractNonZeroAllKeysName"></a>
+**SubtractNonZeroAllKeysName**
+
+Subtract the source color from the target color for the frame where the
+target color is not black. Source and target are referenced by name.
+
+```c++
+void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysName(const FString& 
+ sourceAnimationName, const FString& targetAnimationName, int32 frameId);
 ```
 
 ---
@@ -3019,8 +3153,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(
 **TrimEndFrames**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId
-
-* 1. Reference the animation by id.
+plus one. Reference the animation by id.
 
 ```c++
 void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrameId);
@@ -3031,8 +3164,7 @@ void UChromaSDKPluginBPLibrary::TrimEndFrames(int32 animationId, int32 lastFrame
 **TrimEndFramesName**
 
 Trim the end of the animation. The length of the animation will be the lastFrameId
-
-* 1. Reference the animation by name.
+plus one. Reference the animation by name.
 
 ```c++
 void UChromaSDKPluginBPLibrary::TrimEndFramesName(const FString& animationName, 
@@ -3089,7 +3221,8 @@ void UChromaSDKPluginBPLibrary::TrimStartFramesName(const FString& animationName
 **UnloadAnimation**
 
 Unloads `Chroma` effects to free up resources. Returns the animation id
-upon success. Returns -1 upon failure. Reference the animation by id.
+upon success. Returns negative one upon failure. Reference the animation
+by id.
 
 ```c++
 void UChromaSDKPluginBPLibrary::UnloadAnimation(const int32 animationId);
