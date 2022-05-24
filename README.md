@@ -128,9 +128,9 @@ Project Folder\Binaries\Win32\RzChromaSDK.dll
 Project Folder\Binaries\Win32\RzChromaStreamPlugin.dll
 
 (Standalone Build)
-Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\CChromaEditorLibrary.dll
-Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\RzChromaSDK.dll
-Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win64\RzChromaStreamPlugin.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win32\CChromaEditorLibrary.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win32\RzChromaSDK.dll
+Build Folder\WindowsNoEditor\UE4ChromaSDKRT\Binaries\Win32\RzChromaStreamPlugin.dll
 ```
 
 **64-bit libraries**
