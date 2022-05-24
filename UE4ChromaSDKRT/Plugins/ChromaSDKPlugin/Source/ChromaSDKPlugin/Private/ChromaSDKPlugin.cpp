@@ -42,12 +42,15 @@ void FChromaSDKPlugin::ShutdownModule()
 
 	if (ChromaAnimationAPI::GetIsInitializedAPI())
 	{
-		ChromaAnimationAPI::StopAll();
-		ChromaAnimationAPI::CloseAll();
-		RZRESULT result = ChromaAnimationAPI::Uninit();
-		if (result != RZRESULT_SUCCESS)
+		if (ChromaAnimationAPI::IsInitialized())
 		{
-			UE_LOG(LogChromaPlugin, Error, TEXT("Failed to uninitialize Chroma!"));
+			ChromaAnimationAPI::StopAll();
+			ChromaAnimationAPI::CloseAll();
+			RZRESULT result = ChromaAnimationAPI::Uninit();
+			if (result != RZRESULT_SUCCESS)
+			{
+				UE_LOG(LogChromaPlugin, Error, TEXT("Failed to uninitialize Chroma!"));
+			}
 		}
 		ChromaAnimationAPI::UninitAPI();
 	}
