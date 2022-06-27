@@ -83,6 +83,22 @@ To update the plugin version, open [UE4ChromaSDKRT/Plugins/ChromaSDKPlugin/Chrom
 
 The [Chroma Editor Library](https://github.com/razerofficial/CChromaEditor) is a helper library for Chroma animation playback and realtime manipulation of Chroma animations.
 
+In the UE4 Editor, Chroma animations files are placed within the project content folder. Animation paths used in the Chroma API are relative to the content folder.
+
+```
+UE4ChromaSDKRT\Content
+```
+
+![image_16](images/image_16.png)
+
+In a standalone PC or Cloud build, Chroma animation files may need to be copied to within the build content folder.
+
+```
+WindowsNoEditor\UE4ChromaSDKRT\Content
+```
+
+![image_17](images/image_17.png)
+
 The latest versions of the `Chroma Editor Library` can be found in [Releases](https://github.com/razerofficial/CChromaEditor/releases) for `Windows-PC` and `Windows-Cloud`.
 
 The plugin build file [UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPlugin\ChromaSDKPlugin.Build.cs](UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPlugin\ChromaSDKPlugin.Build.cs) has a preprocessor definition to check the signature of the `Chroma Editor Library`. This a security feature and Chroma libraries won't be loaded that fail to pass the signature validation when this flag is enabled.
