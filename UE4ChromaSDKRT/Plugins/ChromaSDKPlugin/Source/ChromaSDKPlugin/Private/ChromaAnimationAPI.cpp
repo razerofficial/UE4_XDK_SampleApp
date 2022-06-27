@@ -591,7 +591,7 @@ int ChromaAnimationAPI::InitAPI()
 	FString projectDir = FPaths::ProjectDir();
 	projectDir = projectDir.Replace(TEXT("/"), TEXT("\\"));
 	path = TCHAR_TO_WCHAR(*projectDir);
-	path += L"Binaries/Win64";
+	path += L"Binaries\\Win64";
 #else
 	wchar_t filename[MAX_PATH]; //this is a char buffer
 	GetModuleFileNameW(NULL, filename, sizeof(filename));
@@ -607,10 +607,19 @@ int ChromaAnimationAPI::InitAPI()
 	path += CHROMA_EDITOR_DLL;
 
 	// check the library file version
-	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(path.c_str(), 1, 0, 0, 2))
+	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(path.c_str(), 1, 0, 0, 3))
 	{
 		ChromaLogger::fprintf(stderr, "Detected old version of Chroma Editor Library!\r\n");
 		return RZRESULT_DLL_NOT_FOUND;
+	}
+
+#ifdef CHECK_CHROMA_LIBRARY_SIGNATURE
+	_sInvalidSignature = !VerifyLibrarySignature::VerifyModule(path);
+#endif
+	if (_sInvalidSignature)
+	{
+		ChromaLogger::fprintf(stderr, "Chroma Editor Library has an invalid signature!\r\n");
+		return RZRESULT_DLL_INVALID_SIGNATURE;
 	}
 
 	HMODULE library = LoadLibrary(path.c_str());
@@ -618,20 +627,6 @@ int ChromaAnimationAPI::InitAPI()
 	{ 
 		ChromaLogger::fprintf(stderr, "Failed to load Chroma Editor Library!\r\n");
         return RZRESULT_DLL_NOT_FOUND;
-	}
-
-#ifdef CHECK_CHROMA_LIBRARY_SIGNATURE
-	_sInvalidSignature = !VerifyLibrarySignature::VerifyModule(library, false);
-#endif
- 	if (_sInvalidSignature)
-	{
-		ChromaLogger::fprintf(stderr, "Chroma Editor Library has an invalid signature!\r\n");
-
-		// unload the library
-		FreeLibrary(library);
-		library = NULL;
-
-		return -1;
 	}
 
 	_sLibrary = library;
