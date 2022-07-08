@@ -1,14 +1,25 @@
 #include "ChromaAnimationAPI.h"
 #include "ChromaLogger.h"
+#if !PLATFORM_XBOXONE
 #include "VerifyLibrarySignature.h"
+#endif
 #include <iostream>
 #include <tchar.h>
 
 
-# ifdef _WIN64
+DEFINE_LOG_CATEGORY(LogChromaAnimationAPI);
+
+
+#if PLATFORM_XBOXONE
+#define CHROMA_EDITOR_DLL	L"CChromaEditorLibrary64.dll"
+#else
+
+#ifdef _WIN64
 #define CHROMA_EDITOR_DLL	L"CChromaEditorLibrary64.dll"
 #else
 #define CHROMA_EDITOR_DLL	L"CChromaEditorLibrary.dll"
+#endif
+
 #endif
 
 
@@ -587,6 +598,12 @@ int ChromaAnimationAPI::InitAPI()
 	}
 
 	std::wstring path;
+
+#if PLATFORM_XBOXONE
+	path = CHROMA_EDITOR_DLL;
+#else
+
+	
 #if PLATFORM_WINDOWS && WITH_EDITOR
 	FString projectDir = FPaths::ProjectDir();
 	projectDir = projectDir.Replace(TEXT("/"), TEXT("\\"));
@@ -622,15 +639,23 @@ int ChromaAnimationAPI::InitAPI()
 		return RZRESULT_DLL_INVALID_SIGNATURE;
 	}
 
+#endif
+
+#if PLATFORM_XBOXONE
+	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Load CChromaEditorLibrary64 at: %s"), *FString(path.c_str()));
+#endif
+
 	HMODULE library = LoadLibrary(path.c_str());
 	if (library == NULL)
 	{ 
+		UE_LOG(LogChromaAnimationAPI, Error, TEXT("Failed to load Chroma Editor Library!"));
 		ChromaLogger::fprintf(stderr, "Failed to load Chroma Editor Library!\r\n");
         return RZRESULT_DLL_NOT_FOUND;
 	}
 
 	_sLibrary = library;
 	
+	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Loaded Chroma Editor DLL!"));
 	//ChromaLogger::fprintf(stderr, "Loaded Chroma Editor DLL!\r\n");
 
 #pragma region API validation
@@ -1178,6 +1203,7 @@ CHROMASDK_VALIDATE_METHOD(PLUGIN_USE_PRELOADING, UsePreloading);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_USE_PRELOADING_NAME, UsePreloadingName);
 #pragma endregion
 
+	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Validated all DLL methods [success]"));
 	//ChromaLogger::printf(stdout, "Validated all DLL methods [success]\r\n");
 	_sIsInitializedAPI = true;
 	return 0;

@@ -2,6 +2,11 @@
 
 #pragma once
 
+
+#include "Logging/LogMacros.h"
+DECLARE_LOG_CATEGORY_EXTERN(LogChromaSampleAppButton, Log, All);
+
+
 #include <mutex>
 #include "SampleAppButton.generated.h"
 

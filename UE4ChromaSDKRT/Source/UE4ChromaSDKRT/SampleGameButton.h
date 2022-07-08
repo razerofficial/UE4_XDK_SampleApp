@@ -2,8 +2,14 @@
 
 #pragma once
 
+
+#include "Logging/LogMacros.h"
+DECLARE_LOG_CATEGORY_EXTERN(LogChromaSampleGameButton, Log, All);
+
+
 #include <mutex>
 #include "SampleGameButton.generated.h"
+
 
 UCLASS()
 class USampleGameButton : public UObject

@@ -9,6 +9,10 @@
 #include "ChromaSDKPluginTypes.h"
 #include "ChromaSDKPluginBPLibrary.generated.h"
 
+
+DECLARE_LOG_CATEGORY_EXTERN(LogChromaBlueprintLibrary, Log, All);
+
+
 UCLASS()
 class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionLibrary
 {

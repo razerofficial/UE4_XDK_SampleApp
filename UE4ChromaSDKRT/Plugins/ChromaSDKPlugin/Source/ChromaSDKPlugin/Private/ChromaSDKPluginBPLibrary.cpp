@@ -6,6 +6,10 @@
 
 #include "ChromaAnimationAPI.h"
 
+
+DEFINE_LOG_CATEGORY(LogChromaBlueprintLibrary);
+
+
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
 #include "Misc/Paths.h"
@@ -533,7 +537,7 @@ void UChromaSDKPluginBPLibrary::SetKeyboardKeyColor(EChromaSDKKeyboardKey::Type 
 		colors.Num() == 0 ||
 		maxColumn != colors[0].Colors.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::SetKeyboardKeyColor Array size mismatch row: %d==%d column: %d==%d!"),
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::SetKeyboardKeyColor Array size mismatch row: %d==%d column: %d==%d!"),
 			maxRow,
 			colors.Num(),
 			maxColumn,
@@ -558,7 +562,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyboardKeyColor(EChromaSDKKeyboardKe
 		colors.Num() == 0 ||
 		maxColumn != colors[0].Colors.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::GetKeyboardKeyColor Array size mismatch row: %d==%d column: %d==%d!"),
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::GetKeyboardKeyColor Array size mismatch row: %d==%d column: %d==%d!"),
 			maxRow,
 			colors.Num(),
 			maxColumn,
@@ -584,7 +588,7 @@ void UChromaSDKPluginBPLibrary::SetMouseLedColor(EChromaSDKMouseLed::Type led, c
 		colors.Num() == 0 ||
 		maxColumn != colors[0].Colors.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::SetMouseLedColor Array size mismatch row: %d==%d column: %d==%d!"),
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::SetMouseLedColor Array size mismatch row: %d==%d column: %d==%d!"),
 			maxRow,
 			colors.Num(),
 			maxColumn,
@@ -606,7 +610,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetMouseLedColor(EChromaSDKMouseLed::Typ
 		colors.Num() == 0 ||
 		maxColumn != colors[0].Colors.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::SetMouseLedColor Array size mismatch row: %d==%d column: %d==%d!"),
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::SetMouseLedColor Array size mismatch row: %d==%d column: %d==%d!"),
 			maxRow,
 			colors.Num(),
 			maxColumn,
@@ -660,6 +664,7 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& a
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!ChromaAnimationAPI::GetIsInitializedAPI())
 	{
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary: API is not initialized!"));
 		return -1;
 	}
 	if (!_sInitialized)
@@ -721,7 +726,7 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKUnInit()
 	}
 	// Stop all animations
 	// UnInit the SDK
-	//UE_LOG(LogTemp, Log, TEXT("UChromaSDKPluginBPLibrary:: Uninit"));
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("UChromaSDKPluginBPLibrary:: Uninit"));
 	if (_sInitialized)
 	{
 		RZRESULT result = ChromaAnimationAPI::Uninit();
@@ -771,7 +776,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectNone(EChr
 		result = ChromaAnimationAPI::CoreCreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_NONE, NULL, &effectId);
 		break;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectNone Unsupported device used!"));
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectNone Unsupported device used!"));
 		break;
 	}
 	data.EffectId.Data = effectId;
@@ -793,7 +798,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectStatic(EC
 		return data;
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("ChromaSDKPlugin:: Color R=%f G=%f B=%f"), color.R, color.G, color.B);	
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("ChromaSDKPlugin:: Color R=%f G=%f B=%f"), color.R, color.G, color.B);	
 	int red = colorParam.R * 255;
 	int green = colorParam.G * 255;
 	int blue = colorParam.B * 255;
@@ -846,7 +851,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectStatic(EC
 	}
 	break;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectStatic Unsupported device used!"));
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectStatic Unsupported device used!"));
 		break;
 	}
 	data.EffectId.Data = effectId;
@@ -878,7 +883,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D(
 		maxLeds = ChromaSDK::ChromaLink::MAX_LEDS;
 		if (maxLeds != colors.Num())
 		{
-			UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Array size mismatch elements: %d==%d!"),
+			UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Array size mismatch elements: %d==%d!"),
 				maxLeds,
 				colors.Num());
 			break;
@@ -900,7 +905,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D(
 		maxLeds = ChromaSDK::Headset::MAX_LEDS;
 		if (maxLeds != colors.Num())
 		{
-			UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Array size mismatch elements: %d==%d!"),
+			UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Array size mismatch elements: %d==%d!"),
 				maxLeds,
 				colors.Num());
 			break;
@@ -922,7 +927,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D(
 		maxLeds = ChromaSDK::Mousepad::MAX_LEDS;
 		if (maxLeds != colors.Num())
 		{
-			UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Array size mismatch elements: %d==%d!"),
+			UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Array size mismatch elements: %d==%d!"),
 				maxLeds,
 				colors.Num());
 			break;
@@ -940,7 +945,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D(
 	}
 	break;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Unsupported device used!"));
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom1D Unsupported device used!"));
 		break;
 	}
 	data.EffectId.Data = effectId;
@@ -976,7 +981,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D(
 			(colors.Num() > 0 &&
 			maxColumn != colors[0].Colors.Num()))
 		{
-			UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
+			UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
 				maxRow,
 				colors.Num(),
 				maxColumn,
@@ -1007,7 +1012,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D(
 			(colors.Num() > 0 &&
 			maxColumn != colors[0].Colors.Num()))
 		{
-			UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
+			UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
 				maxRow,
 				colors.Num(),
 				maxColumn,
@@ -1038,7 +1043,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D(
 			(colors.Num() > 0 &&
 			maxColumn != colors[0].Colors.Num()))
 		{
-			UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
+			UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
 				maxRow,
 				colors.Num(),
 				maxColumn,
@@ -1062,7 +1067,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D(
 	}
 	break;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Unsupported device used!"));
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectCustom2D Unsupported device used!"));
 		break;
 	}
 	data.EffectId.Data = effectId;
@@ -1093,7 +1098,7 @@ FChromaSDKEffectResult UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectKeyboardC
 		(colors.Num() > 0 &&
 		maxColumn != colors[0].Colors.Num()))
 	{
-		UE_LOG(LogTemp, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectKeyboardCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
+		UE_LOG(LogChromaBlueprintLibrary, Error, TEXT("UChromaSDKPluginBPLibrary::ChromaSDKCreateEffectKeyboardCustom2D Array size mismatch row: %d==%d column: %d==%d!"),
 			maxRow,
 			colors.Num(),
 			maxColumn,
@@ -1344,7 +1349,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimation(const FString& animationName, bool
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("PlayAnimation: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("PlayAnimation: %s"), *path);
 	ChromaAnimationAPI::PlayAnimationName(TCHAR_TO_ANSI(*path), loop);
 #endif
 }
@@ -1368,7 +1373,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimationName(const FString& animationName, 
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("PlayAnimationName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("PlayAnimationName: %s"), *path);
 	ChromaAnimationAPI::PlayAnimationName(TCHAR_TO_ANSI(*path), loop);
 #endif
 }
@@ -1541,7 +1546,7 @@ bool UChromaSDKPluginBPLibrary::IsAnimationPlaying(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("IsAnimationPlaying: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("IsAnimationPlaying: %s"), *path);
 	return ChromaAnimationAPI::IsPlayingName(TCHAR_TO_ANSI(*path));
 #else
 	return false;
@@ -3373,7 +3378,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorName(const FString& animationNam
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillNonZeroColorName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorName: %s"), *path);
 	ChromaAnimationAPI::FillNonZeroColorName(TCHAR_TO_ANSI(*path), frameId, UtilToBGR(colorParam));
 #endif
 }
@@ -3409,7 +3414,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorRGBName(const FString& animation
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillNonZeroColorName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorName: %s"), *path);
 	ChromaAnimationAPI::FillNonZeroColorRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
 #endif
 }
@@ -3447,7 +3452,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorName(const FString& animationName, 
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillZeroColorName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillZeroColorName: %s"), *path);
 	ChromaAnimationAPI::FillZeroColorName(TCHAR_TO_ANSI(*path), frameId, UtilToBGR(colorParam));
 #endif
 }
@@ -3483,7 +3488,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorRGBName(const FString& animationNam
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillZeroColorName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillZeroColorName: %s"), *path);
 	ChromaAnimationAPI::FillZeroColorRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
 #endif
 }
@@ -3522,7 +3527,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesName(const FString& 
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillThresholdColorsAllFramesName(TCHAR_TO_ANSI(*path), threshold, UtilToBGR(colorParam));
 #endif
 }
@@ -3558,7 +3563,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesRGBName(const FStrin
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillThresholdColorsAllFramesRGBName(TCHAR_TO_ANSI(*path), threshold, red, green, blue);
 #endif
 }
@@ -3597,7 +3602,7 @@ void UChromaSDKPluginBPLibrary::FillColorAllFramesName(const FString& animationN
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillColorAllFramesName(TCHAR_TO_ANSI(*path), UtilToBGR(colorParam));
 #endif
 }
@@ -3633,7 +3638,7 @@ void UChromaSDKPluginBPLibrary::FillColorAllFramesRGBName(const FString& animati
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillColorAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
 #endif
 }
@@ -3671,7 +3676,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesName(const FString& ani
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillNonZeroColorAllFramesName(TCHAR_TO_ANSI(*path), UtilToBGR(colorParam));
 #endif
 }
@@ -3707,7 +3712,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesRGBName(const FString& 
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillNonZeroColorAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
 #endif
 }
@@ -3745,7 +3750,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesName(const FString& animat
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillZeroColorAllFramesName(TCHAR_TO_ANSI(*path), UtilToBGR(colorParam));
 #endif
 }
@@ -3781,7 +3786,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesRGBName(const FString& ani
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillZeroColorAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
 #endif
 }
@@ -3820,7 +3825,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsName(const FString& animationNam
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillRandomColorsName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsName: %s"), *path);
 	ChromaAnimationAPI::FillRandomColorsName(TCHAR_TO_ANSI(*path), frameId);
 #endif
 }
@@ -3853,7 +3858,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsAllFramesName(const FString& ani
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillRandomColorsAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillRandomColorsAllFramesName(TCHAR_TO_ANSI(*path));
 #endif
 }
@@ -3893,7 +3898,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteName(const FString&
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillRandomColorsBlackAndWhiteName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsBlackAndWhiteName: %s"), *path);
 	ChromaAnimationAPI::FillRandomColorsBlackAndWhiteName(TCHAR_TO_ANSI(*path), frameId);
 #endif
 }
@@ -3930,7 +3935,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteAllFramesName(const
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("FillRandomColorsBlackAndWhiteAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsBlackAndWhiteAllFramesName: %s"), *path);
 	ChromaAnimationAPI::FillRandomColorsBlackAndWhiteAllFramesName(TCHAR_TO_ANSI(*path));
 #endif
 }
@@ -3969,7 +3974,7 @@ void UChromaSDKPluginBPLibrary::OffsetColorsName(const FString& animationName, i
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("OffsetColorsName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetColorsName: %s"), *path);
 	ChromaAnimationAPI::OffsetColorsName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
 #endif
 }
@@ -4006,7 +4011,7 @@ void UChromaSDKPluginBPLibrary::OffsetColorsAllFramesName(const FString& animati
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("OffsetColorsAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetColorsAllFramesName: %s"), *path);
 	ChromaAnimationAPI::OffsetColorsAllFramesName(TCHAR_TO_ANSI(*path), red, green, blue);
 #endif
 }
@@ -4043,7 +4048,7 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsName(const FString& animation
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("OffsetNonZeroColorsName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetNonZeroColorsName: %s"), *path);
 	ChromaAnimationAPI::OffsetNonZeroColorsName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
 #endif
 }
@@ -4080,7 +4085,7 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsAllFramesName(const FString& 
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("OffsetNonZeroColorsAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetNonZeroColorsAllFramesName: %s"), *path);
 	ChromaAnimationAPI::OffsetNonZeroColorsAllFramesName(TCHAR_TO_ANSI(*path), red, green, blue);
 #endif
 }
@@ -4119,7 +4124,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityName(const FString& animationNa
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("MultiplyIntensityName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityName: %s"), *path);
 	ChromaAnimationAPI::MultiplyIntensityName(TCHAR_TO_ANSI(*path), frameId, intensity);
 #endif
 }
@@ -4157,7 +4162,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityRGBName(const FString& animatio
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("MultiplyIntensityName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityName: %s"), *path);
 	ChromaAnimationAPI::MultiplyIntensityRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
 #endif
 }
@@ -4197,7 +4202,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorName(const FString& animat
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("MultiplyIntensityName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityName: %s"), *path);
 	int color = ToBGR(colorParam);
 	ChromaAnimationAPI::MultiplyIntensityColorName(TCHAR_TO_ANSI(*path), frameId, color);
 #endif
@@ -4237,7 +4242,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesName(const FString& an
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("MultiplyIntensityAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityAllFramesName: %s"), *path);
 	ChromaAnimationAPI::MultiplyIntensityAllFramesName(TCHAR_TO_ANSI(*path), intensity);
 #endif
 }
@@ -4277,7 +4282,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorAllFramesName(const FStrin
 		path += animationName + ".chroma";
 	}
 	
-	//UE_LOG(LogTemp, Log, TEXT("MultiplyIntensityAllFramesName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityAllFramesName: %s"), *path);
 	int color = ToBGR(colorParam);
 	ChromaAnimationAPI::MultiplyIntensityColorAllFramesName(TCHAR_TO_ANSI(*path), color);
 #endif
@@ -4316,7 +4321,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesRGBName(const FString&
 		path += animationName + ".chroma";
 	}
 
-	//UE_LOG(LogTemp, Log, TEXT("MultiplyIntensityAllFramesRGBName: %s"), *path);
+	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityAllFramesRGBName: %s"), *path);
 	ChromaAnimationAPI::MultiplyIntensityAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
 #endif
 }

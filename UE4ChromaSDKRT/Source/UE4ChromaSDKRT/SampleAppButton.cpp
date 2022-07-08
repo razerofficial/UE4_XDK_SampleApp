@@ -5,6 +5,10 @@
 #include "ChromaSDKPluginBPLibrary.h"
 #include "SampleAppChromaBP.h"
 
+
+DEFINE_LOG_CATEGORY(LogChromaSampleAppButton);
+
+
 using namespace std;
 
 mutex USampleAppButton::_sMutex;
@@ -21,7 +25,7 @@ void USampleAppButton::HandleClick()
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
-		UE_LOG(LogTemp, Error, TEXT("Chroma is not initialized!"));
+		UE_LOG(LogChromaSampleAppButton, Error, TEXT("Chroma is not initialized!"));
 		return;
 	}
 

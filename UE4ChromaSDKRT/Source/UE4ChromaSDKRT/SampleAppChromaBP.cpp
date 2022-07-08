@@ -7,6 +7,9 @@
 #include "SampleAppButton.h"
 
 
+DEFINE_LOG_CATEGORY(LogChromaSampleApp);
+
+
 typedef unsigned char byte;
 
 
@@ -84,17 +87,19 @@ void USampleAppChromaBP::SampleAppSampleStart()
 		switch (result)
 		{
 		case RZRESULT_DLL_NOT_FOUND:
-			UE_LOG(LogTemp, Error, TEXT("Chroma DLL is not found!"));
+			UE_LOG(LogChromaSampleApp, Log, TEXT("Chroma DLL is not found!"));
 			break;
 		case RZRESULT_DLL_INVALID_SIGNATURE:
-			UE_LOG(LogTemp, Error, TEXT("Chroma DLL has an invalid signature!"));
+			UE_LOG(LogChromaSampleApp, Log, TEXT("Chroma DLL has an invalid signature!"));
 			break;
 		case RZRESULT_SUCCESS:
+			//UE_LOG(LogChromaSampleApp, Log, TEXT("Chroma has initialized successfully!"));
 			break;
 		default:
 			// It's not an error for Chroma to not initialize.
 			// The SDK might not be installed.
 			// Just avoid making further calls to Chroma until next launch.
+			UE_LOG(LogChromaSampleApp, Log, TEXT("Failed to initialize Chroma!"));
 			break;
 		}
 	}

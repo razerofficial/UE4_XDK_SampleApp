@@ -7,6 +7,10 @@
 #include "SampleAppButton.h"
 #include "SampleAppChromaBP.generated.h"
 
+
+DECLARE_LOG_CATEGORY_EXTERN(LogChromaSampleApp, Log, All);
+
+
 UCLASS()
 class USampleAppChromaBP : public UBlueprintFunctionLibrary
 {

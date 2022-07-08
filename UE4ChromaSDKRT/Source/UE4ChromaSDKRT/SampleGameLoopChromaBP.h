@@ -6,6 +6,10 @@
 #include "ChromaSDKPluginTypes.h"
 #include "SampleGameLoopChromaBP.generated.h"
 
+
+DECLARE_LOG_CATEGORY_EXTERN(LogChromaSampleGameLoop, Log, All);
+
+
 UCLASS()
 class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 {

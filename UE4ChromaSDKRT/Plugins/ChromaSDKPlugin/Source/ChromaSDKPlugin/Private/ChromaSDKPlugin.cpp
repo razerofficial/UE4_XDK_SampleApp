@@ -25,6 +25,10 @@ IMPLEMENT_MODULE( FChromaSDKPlugin, ChromaSDKPlugin )
 
 void FChromaSDKPlugin::StartupModule()
 {
+#if PLATFORM_XBOXONE
+	//UE_LOG(LogChromaPlugin, Log, TEXT("FChromaSDKPlugin::StartupModule()"));
+#endif
+
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
@@ -35,6 +39,10 @@ void FChromaSDKPlugin::StartupModule()
 
 void FChromaSDKPlugin::ShutdownModule()
 {
+#if PLATFORM_XBOXONE
+	//UE_LOG(LogChromaPlugin, Log, TEXT("FChromaSDKPlugin::ShutdownModule()"));
+#endif
+
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 
