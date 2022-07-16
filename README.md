@@ -107,6 +107,10 @@ The plugin build file [UE4ChromaSDKRT\Plugins\ChromaSDKPlugin\Source\ChromaSDKPl
 Definitions.Add("CHECK_CHROMA_LIBRARY_SIGNATURE=1");
 ```
 
+Video: **UE4 Chroma Animation Sample App - Streaming on Windows PC and Cloud**
+
+<a target="_blank" href="https://www.youtube.com/watch?v=MpdEF6hVu5E"><img src="https://img.youtube.com/vi/MpdEF6hVu5E/0.jpg"/></a>
+
 <a name="windows-pc"></a>
 
 ## Windows PC
