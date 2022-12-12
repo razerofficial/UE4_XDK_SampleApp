@@ -577,10 +577,7 @@ CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_USE_PRELOADING, UsePreloading);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_USE_PRELOADING_NAME, UsePreloadingName);
 #pragma endregion
 
-#pragma warning(push)
-#pragma warning(disable: 4191) // warning C4191: 'type cast' : unsafe conversion
-
-#define CHROMASDK_VALIDATE_METHOD(Signature, FieldName) FieldName = (Signature) GetProcAddress(library, "Plugin" #FieldName); \
+#define CHROMASDK_VALIDATE_METHOD(Signature, FieldName) FieldName = reinterpret_cast<Signature>(reinterpret_cast<void*>(GetProcAddress(library, "Plugin" #FieldName))); \
 if (FieldName == nullptr) \
 { \
 	cerr << "Failed to find method: " << ("Plugin" #FieldName) << endl; \
@@ -1789,6 +1786,3 @@ int ChromaAnimationAPI::UninitAPI()
 	
 	return 0;
 }
-
-//#pragma warning(disable: 4191) // warning C4191: 'type cast' : unsafe conversion
-#pragma warning(pop)
