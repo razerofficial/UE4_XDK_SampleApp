@@ -269,7 +269,8 @@ namespace ChromaSDK
 	{
 		/*
 		std::filesystem::path p = filename.c_str();
-		if (!std::filesystem::exists(p))
+		std::error_code pathError;
+		if (!std::filesystem::exists(p, pathError))
 		{
 			ChromaLogger::fwprintf(stderr, L"Library not found! %s\r\n", filename.c_str());
 			return false;

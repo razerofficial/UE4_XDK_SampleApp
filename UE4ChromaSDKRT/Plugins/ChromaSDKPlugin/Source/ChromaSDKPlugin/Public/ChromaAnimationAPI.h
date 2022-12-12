@@ -2135,7 +2135,7 @@ typedef double		(*PLUGIN_SET_CURRENT_FRAME_NAME_D)(const char* path, double fram
 /*
 	Set the custom alpha flag on the color array
 */
-typedef RZRESULT	(*PLUGIN_SET_CUSTOM_COLOR_FLAG_2D_)(int device, int* colors);
+typedef RZRESULT	(*PLUGIN_SET_CUSTOM_COLOR_FLAG_2D)(int device, int* colors);
 /*
 	Changes the `deviceType` and `device` of a `Chroma` animation. If the device 
 	is changed, the `Chroma` animation will be reset with 1 blank frame. Returns 
@@ -2149,16 +2149,17 @@ typedef RZRESULT	(*PLUGIN_SET_EFFECT)(const FChromaSDKGuid& effectId);
 /*
 	SetEffectCustom1D will display the referenced colors immediately
 */
-typedef RZRESULT	(*PLUGIN_SET_EFFECT_CUSTOM_1D_)(const int device, const int* colors);
+typedef RZRESULT	(*PLUGIN_SET_EFFECT_CUSTOM_1D)(const int device, const int* colors);
 /*
-	SetEffectCustom2D will display the referenced colors immediately
+	SetEffectCustom2D will display the referenced colors immediately.
 */
-typedef RZRESULT	(*PLUGIN_SET_EFFECT_CUSTOM_2D_)(const int device, const int* colors);
+typedef RZRESULT	(*PLUGIN_SET_EFFECT_CUSTOM_2D)(const int device, const int* colors);
 /*
 	SetEffectKeyboardCustom2D will display the referenced custom keyboard colors 
-	immediately
+	immediately. Colors represent a visual grid layout. Keys represent the 
+	hotkeys for any layout.
 */
-typedef RZRESULT	(*PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D_)(const int device, const int* colors);
+typedef RZRESULT	(*PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D)(const int device, const int* colors, const int* keys);
 /*
 	When the idle animation is used, the named animation will play when no other 
 	animations are playing. Reference the animation by id.
@@ -2692,7 +2693,7 @@ typedef int			(*PLUGIN_UPDATE_FRAME)(int animationId, int frameIndex, float dura
 	times `MAX COLUMN`. Returns the animation id upon success. Returns negative 
 	one upon failure.
 */
-typedef int			(*PLUGIN_UPDATE_FRAME_NAME)(const char* path, int frameIndex, float duration, int* colors, int length);
+typedef int			(*PLUGIN_UPDATE_FRAME_NAME)(const char* path, int frameIndex, float duration, int* colors, int length, int* keys, int keysLength);
 /*
 	When the idle animation flag is true, when no other animations are playing, 
 	the idle animation will be used. The idle animation will not be affected 
@@ -4854,7 +4855,7 @@ namespace ChromaSDK
 		/*
 			Set the custom alpha flag on the color array
 		*/
-		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_CUSTOM_COLOR_FLAG_2D_, SetCustomColorFlag2D);
+		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_CUSTOM_COLOR_FLAG_2D, SetCustomColorFlag2D);
 		/*
 			Changes the `deviceType` and `device` of a `Chroma` animation. If the device 
 			is changed, the `Chroma` animation will be reset with 1 blank frame. Returns 
@@ -4868,16 +4869,17 @@ namespace ChromaSDK
 		/*
 			SetEffectCustom1D will display the referenced colors immediately
 		*/
-		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_1D_, SetEffectCustom1D);
+		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_1D, SetEffectCustom1D);
 		/*
-			SetEffectCustom2D will display the referenced colors immediately
+			SetEffectCustom2D will display the referenced colors immediately.
 		*/
-		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_2D_, SetEffectCustom2D);
+		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_2D, SetEffectCustom2D);
 		/*
 			SetEffectKeyboardCustom2D will display the referenced custom keyboard colors 
-			immediately
+			immediately. Colors represent a visual grid layout. Keys represent the 
+			hotkeys for any layout.
 		*/
-		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D_, SetEffectKeyboardCustom2D);
+		CHROMASDK_DECLARE_METHOD(PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D, SetEffectKeyboardCustom2D);
 		/*
 			When the idle animation is used, the named animation will play when no other 
 			animations are playing. Reference the animation by id.

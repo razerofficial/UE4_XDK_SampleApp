@@ -455,12 +455,12 @@ CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_CHROMA_CUSTOM_FLAG_NAME_D, SetChromaCus
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_CURRENT_FRAME, SetCurrentFrame);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_CURRENT_FRAME_NAME, SetCurrentFrameName);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_CURRENT_FRAME_NAME_D, SetCurrentFrameNameD);
-CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_CUSTOM_COLOR_FLAG_2D_, SetCustomColorFlag2D);
+CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_CUSTOM_COLOR_FLAG_2D, SetCustomColorFlag2D);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_DEVICE, SetDevice);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT, SetEffect);
-CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT_CUSTOM_1D_, SetEffectCustom1D);
-CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT_CUSTOM_2D_, SetEffectCustom2D);
-CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D_, SetEffectKeyboardCustom2D);
+CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT_CUSTOM_1D, SetEffectCustom1D);
+CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT_CUSTOM_2D, SetEffectCustom2D);
+CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D, SetEffectKeyboardCustom2D);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_IDLE_ANIMATION, SetIdleAnimation);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_IDLE_ANIMATION_NAME, SetIdleAnimationName);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_SET_KEY_COLOR, SetKeyColor);
@@ -577,7 +577,10 @@ CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_USE_PRELOADING, UsePreloading);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_USE_PRELOADING_NAME, UsePreloadingName);
 #pragma endregion
 
-#define CHROMASDK_VALIDATE_METHOD(Signature, FieldName) FieldName = reinterpret_cast<Signature>(reinterpret_cast<void*>(GetProcAddress(library, "Plugin" #FieldName))); \
+#pragma warning(push)
+#pragma warning(disable: 4191) // warning C4191: 'type cast' : unsafe conversion
+
+#define CHROMASDK_VALIDATE_METHOD(Signature, FieldName) FieldName = (Signature) GetProcAddress(library, "Plugin" #FieldName); \
 if (FieldName == nullptr) \
 { \
 	cerr << "Failed to find method: " << ("Plugin" #FieldName) << endl; \
@@ -624,7 +627,7 @@ int ChromaAnimationAPI::InitAPI()
 	path += CHROMA_EDITOR_DLL;
 
 	// check the library file version
-	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(path.c_str(), 1, 0, 0, 3))
+	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(path.c_str(), 1, 0, 0, 6))
 	{
 		ChromaLogger::fprintf(stderr, "Detected old version of Chroma Editor Library!\r\n");
 		return RZRESULT_DLL_NOT_FOUND;
@@ -654,9 +657,9 @@ int ChromaAnimationAPI::InitAPI()
 	}
 
 	_sLibrary = library;
-	
-	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Loaded Chroma Editor DLL!"));
+
 	//ChromaLogger::fprintf(stderr, "Loaded Chroma Editor DLL!\r\n");
+	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Loaded Chroma Editor DLL!"));	
 
 #pragma region API validation
 CHROMASDK_VALIDATE_METHOD(PLUGIN_ADD_COLOR, AddColor);
@@ -1081,12 +1084,12 @@ CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_CHROMA_CUSTOM_FLAG_NAME_D, SetChromaCustomF
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_CURRENT_FRAME, SetCurrentFrame);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_CURRENT_FRAME_NAME, SetCurrentFrameName);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_CURRENT_FRAME_NAME_D, SetCurrentFrameNameD);
-CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_CUSTOM_COLOR_FLAG_2D_, SetCustomColorFlag2D);
+CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_CUSTOM_COLOR_FLAG_2D, SetCustomColorFlag2D);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_DEVICE, SetDevice);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT, SetEffect);
-CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_1D_, SetEffectCustom1D);
-CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_2D_, SetEffectCustom2D);
-CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D_, SetEffectKeyboardCustom2D);
+CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_1D, SetEffectCustom1D);
+CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT_CUSTOM_2D, SetEffectCustom2D);
+CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_EFFECT_KEYBOARD_CUSTOM_2D, SetEffectKeyboardCustom2D);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_IDLE_ANIMATION, SetIdleAnimation);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_IDLE_ANIMATION_NAME, SetIdleAnimationName);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_SET_KEY_COLOR, SetKeyColor);
@@ -1203,8 +1206,8 @@ CHROMASDK_VALIDATE_METHOD(PLUGIN_USE_PRELOADING, UsePreloading);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_USE_PRELOADING_NAME, UsePreloadingName);
 #pragma endregion
 
-	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Validated all DLL methods [success]"));
 	//ChromaLogger::printf(stdout, "Validated all DLL methods [success]\r\n");
+	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Validated all DLL methods [success]"));
 	_sIsInitializedAPI = true;
 	return 0;
 }
@@ -1786,3 +1789,6 @@ int ChromaAnimationAPI::UninitAPI()
 	
 	return 0;
 }
+
+//#pragma warning(disable: 4191) // warning C4191: 'type cast' : unsafe conversion
+#pragma warning(pop)

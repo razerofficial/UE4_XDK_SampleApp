@@ -4461,7 +4461,6 @@ void USampleAppChromaBP::SampleAppShowEffect43()
 		UChromaSDKPluginBPLibrary::SetKeysColorAllFramesName(baseLayer, keys, color);
 	};	
 	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
-	UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(baseLayer);
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	UChromaSDKPluginBPLibrary::PlayAnimationName(baseLayer, true);
 }
@@ -4559,7 +4558,6 @@ void USampleAppChromaBP::SampleAppShowEffect44()
 		UChromaSDKPluginBPLibrary::CopyKeysColorAllFramesName(layer2, baseLayer, keys);
 	};
 	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
-	UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(baseLayer);
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	UChromaSDKPluginBPLibrary::PlayAnimationName(baseLayer, true);
 }
@@ -4677,7 +4675,6 @@ void USampleAppChromaBP::SampleAppShowEffect45()
 		}
 	};
 	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
-	UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(baseLayer);
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	UChromaSDKPluginBPLibrary::PlayAnimationName(baseLayer, true);
 }
@@ -4805,7 +4802,6 @@ void USampleAppChromaBP::SampleAppShowEffect46()
 		}
 	};
 	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
-	UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(baseLayer);
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	UChromaSDKPluginBPLibrary::PlayAnimationName(baseLayer, true);
 }
@@ -4897,7 +4893,6 @@ void USampleAppChromaBP::SampleAppShowEffect47()
 	UChromaSDKPluginBPLibrary::CloseAnimationName(baseLayer);
 	UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(EMBED_Sample_Keyboard, baseLayer);
 	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
-	UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(baseLayer);
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	UChromaSDKPluginBPLibrary::PlayAnimationName(baseLayer, true);
 }
