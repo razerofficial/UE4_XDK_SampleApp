@@ -1987,10 +1987,7 @@ void UChromaSDKPluginBPLibrary::SetKeyColorAllFramesName(const FString& animatio
 	{
 		int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
 		int colorArg = UtilToBGR(colorParam);
-		for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
-		{
-			ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
-		}
+		ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_ANSI(*path), rzkey, colorArg);
 	}
 #endif
 }
@@ -2102,10 +2099,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesName(const FString& animati
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
-			{
-				ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
-			}
+			ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_ANSI(*path), rzkey, colorArg);
 		}
 	}
 #endif
@@ -2128,10 +2122,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGB(int animationId, const 
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
-			{
-				ChromaAnimationAPI::SetKeyColor(animationId, frameIndex, rzkey, colorArg);
-			}
+			ChromaAnimationAPI::SetKeyColorAllFrames(animationId, rzkey, colorArg);
 		}
 	}
 #endif
@@ -2164,10 +2155,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGBName(const FString& anim
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
-			{
-				ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
-			}
+			ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_ANSI(*path), rzkey, colorArg);
 		}
 	}
 #endif
