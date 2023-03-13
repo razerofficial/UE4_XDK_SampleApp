@@ -675,20 +675,16 @@ int32 UChromaSDKPluginBPLibrary::ChromaSDKInitSDK(const FChromaSDKAppInfoType& a
 	{
 		ChromaSDK::APPINFOTYPE coreAppInfo = {};
 
-		string strTitle = TCHAR_TO_ANSI(*appInfo.Title);
-		wstring title = wstring(strTitle.begin(), strTitle.end());
+		wstring title = TCHAR_TO_WCHAR(*appInfo.Title);
 		_tcscpy_s(coreAppInfo.Title, 256, title.c_str());
 
-		string strDesc = TCHAR_TO_ANSI(*appInfo.Description);
-		wstring desc = wstring(strDesc.begin(), strDesc.end());
+		wstring desc = TCHAR_TO_WCHAR(*appInfo.Description);
 		_tcscpy_s(coreAppInfo.Description, 1024, desc.c_str());
 
-		string strName = TCHAR_TO_ANSI(*appInfo.Author_Name);
-		wstring name = wstring(strName.begin(), strName.end());
+		wstring name = TCHAR_TO_WCHAR(*appInfo.Author_Name);
 		_tcscpy_s(coreAppInfo.Author.Name, 256, name.c_str());
 
-		string strContact = TCHAR_TO_ANSI(*appInfo.Author_Contact);
-		wstring contact = wstring(strContact.begin(), strContact.end());
+		wstring contact = TCHAR_TO_WCHAR(*appInfo.Author_Contact);
 		_tcscpy_s(coreAppInfo.Author.Contact, 256, contact.c_str());
 
 		//appInfo.SupportedDevice = 
@@ -1176,7 +1172,7 @@ int UChromaSDKPluginBPLibrary::GetAnimation(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	return ChromaAnimationAPI::GetAnimation(TCHAR_TO_ANSI(*path));
+	return ChromaAnimationAPI::GetAnimation(TCHAR_TO_WCHAR(*path));
 #else
 	return -1;
 #endif
@@ -1201,7 +1197,7 @@ int UChromaSDKPluginBPLibrary::GetAnimationId(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	return ChromaAnimationAPI::GetAnimation(TCHAR_TO_ANSI(*path));
+	return ChromaAnimationAPI::GetAnimation(TCHAR_TO_WCHAR(*path));
 #else
 	return -1;
 #endif
@@ -1251,7 +1247,7 @@ void UChromaSDKPluginBPLibrary::LoadAnimationName(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::LoadAnimationName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::LoadAnimationName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -1296,7 +1292,7 @@ void UChromaSDKPluginBPLibrary::CloseAnimationName(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CloseAnimationName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::CloseAnimationName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -1330,7 +1326,7 @@ void UChromaSDKPluginBPLibrary::UnloadAnimationName(const FString& animationName
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::UnloadAnimationName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::UnloadAnimationName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -1354,7 +1350,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimation(const FString& animationName, bool
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("PlayAnimation: %s"), *path);
-	ChromaAnimationAPI::PlayAnimationName(TCHAR_TO_ANSI(*path), loop);
+	ChromaAnimationAPI::PlayAnimationName(TCHAR_TO_WCHAR(*path), loop);
 #endif
 }
 
@@ -1378,7 +1374,7 @@ void UChromaSDKPluginBPLibrary::PlayAnimationName(const FString& animationName, 
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("PlayAnimationName: %s"), *path);
-	ChromaAnimationAPI::PlayAnimationName(TCHAR_TO_ANSI(*path), loop);
+	ChromaAnimationAPI::PlayAnimationName(TCHAR_TO_WCHAR(*path), loop);
 #endif
 }
 
@@ -1401,7 +1397,7 @@ void UChromaSDKPluginBPLibrary::StopAnimation(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::StopAnimationName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::StopAnimationName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -1551,7 +1547,7 @@ bool UChromaSDKPluginBPLibrary::IsAnimationPlaying(const FString& animationName)
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("IsAnimationPlaying: %s"), *path);
-	return ChromaAnimationAPI::IsPlayingName(TCHAR_TO_ANSI(*path));
+	return ChromaAnimationAPI::IsPlayingName(TCHAR_TO_WCHAR(*path));
 #else
 	return false;
 #endif
@@ -1660,7 +1656,7 @@ FLinearColor UChromaSDKPluginBPLibrary::GetKeyColorName(const FString& animation
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		int color = ChromaAnimationAPI::GetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey);
+		int color = ChromaAnimationAPI::GetKeyColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey);
 		return ToLinearColor(color);
 	}
 #endif
@@ -1706,7 +1702,7 @@ void UChromaSDKPluginBPLibrary::SetKeyColorName(const FString& animationName, co
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, UtilToBGR(colorParam));
+		ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, UtilToBGR(colorParam));
 	}
 #endif
 }
@@ -1734,7 +1730,7 @@ void UChromaSDKPluginBPLibrary::SetKeyRowColumnColorName(const FString& animatio
 	int rzkey = (row << 8) | column;
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, UtilToBGR(colorParam));
+		ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, UtilToBGR(colorParam));
 	}
 #endif
 }
@@ -1778,7 +1774,7 @@ void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorName(const FString& animationN
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, UtilToBGR(colorParam));
+		ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, UtilToBGR(colorParam));
 	}
 #endif
 }
@@ -1831,7 +1827,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorName(const FString& animationName, c
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
+			ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, colorArg);
 		}
 	}
 #endif
@@ -1885,7 +1881,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorRGBName(const FString& animationName
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
+			ChromaAnimationAPI::SetKeyColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, colorArg);
 		}
 	}
 #endif
@@ -1939,7 +1935,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorName(const FString& animation
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
+			ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, colorArg);
 		}
 	}
 #endif
@@ -1989,9 +1985,9 @@ void UChromaSDKPluginBPLibrary::SetKeyColorAllFramesName(const FString& animatio
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
+		int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*path));
 		int colorArg = UtilToBGR(colorParam);
-		ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_ANSI(*path), rzkey, colorArg);
+		ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_WCHAR(*path), rzkey, colorArg);
 	}
 #endif
 }
@@ -2040,11 +2036,11 @@ void UChromaSDKPluginBPLibrary::SetKeyNonZeroColorAllFramesName(const FString& a
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
+		int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*path));
 		int colorArg = UtilToBGR(colorParam);
 		for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 		{
-			ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
+			ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, colorArg);
 		}
 	}
 #endif
@@ -2095,7 +2091,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesName(const FString& animati
 		path += animationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*path));
 	int colorArg = UtilToBGR(colorParam);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -2103,7 +2099,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesName(const FString& animati
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_ANSI(*path), rzkey, colorArg);
+			ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_WCHAR(*path), rzkey, colorArg);
 		}
 	}
 #endif
@@ -2151,7 +2147,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGBName(const FString& anim
 		path += animationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*path));
 	int colorArg = UtilGetRGB(red, green, blue);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -2159,7 +2155,7 @@ void UChromaSDKPluginBPLibrary::SetKeysColorAllFramesRGBName(const FString& anim
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_ANSI(*path), rzkey, colorArg);
+			ChromaAnimationAPI::SetKeyColorAllFramesName(TCHAR_TO_WCHAR(*path), rzkey, colorArg);
 		}
 	}
 #endif
@@ -2210,7 +2206,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorAllFramesName(const FString& 
 		path += animationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*path));
 	int colorArg = UtilToBGR(colorParam);
 	for (int k = 0; k < keys.Num(); ++k)
 	{
@@ -2220,7 +2216,7 @@ void UChromaSDKPluginBPLibrary::SetKeysNonZeroColorAllFramesName(const FString& 
 		{
 			for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 			{
-				ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_ANSI(*path), frameIndex, rzkey, colorArg);
+				ChromaAnimationAPI::SetKeyNonZeroColorName(TCHAR_TO_WCHAR(*path), frameIndex, rzkey, colorArg);
 			}
 		}
 	}
@@ -2273,7 +2269,7 @@ void UChromaSDKPluginBPLibrary::CopyKeyColorName(const FString& sourceAnimationN
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		ChromaAnimationAPI::CopyKeyColorName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, rzkey);
+		ChromaAnimationAPI::CopyKeyColorName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, rzkey);
 	}
 #endif
 }
@@ -2334,7 +2330,7 @@ void UChromaSDKPluginBPLibrary::CopyKeysColorName(const FString& sourceAnimation
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::CopyKeyColorName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, rzkey);
+			ChromaAnimationAPI::CopyKeyColorName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, rzkey);
 		}
 	}
 #endif
@@ -2394,7 +2390,7 @@ void UChromaSDKPluginBPLibrary::CopyKeysColorAllFramesName(const FString& source
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int k = 0; k < keys.Num(); ++k)
 	{
 		EChromaSDKKeyboardKey::Type key = keys[k];
@@ -2403,7 +2399,7 @@ void UChromaSDKPluginBPLibrary::CopyKeysColorAllFramesName(const FString& source
 		{
 			for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 			{
-				ChromaAnimationAPI::CopyKeyColorName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, rzkey);
+				ChromaAnimationAPI::CopyKeyColorName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, rzkey);
 			}
 		}
 	}
@@ -2454,7 +2450,7 @@ void UChromaSDKPluginBPLibrary::CopyAllKeysName(const FString& sourceAnimationNa
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+	ChromaAnimationAPI::CopyAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 #endif
 }
 
@@ -2502,7 +2498,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysName(const FString& sourceAnim
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyNonZeroAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+	ChromaAnimationAPI::CopyNonZeroAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 #endif
 }
 
@@ -2550,7 +2546,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysName(const FString& sourceAnima
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::AddNonZeroAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+	ChromaAnimationAPI::AddNonZeroAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 #endif
 }
 
@@ -2598,7 +2594,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysName(const FString& source
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SubtractNonZeroAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+	ChromaAnimationAPI::SubtractNonZeroAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 #endif
 }
 
@@ -2646,7 +2642,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysOffsetName(const FString& sour
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyNonZeroAllKeysOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, offset);
+	ChromaAnimationAPI::CopyNonZeroAllKeysOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, offset);
 #endif
 }
 
@@ -2698,10 +2694,10 @@ void UChromaSDKPluginBPLibrary::CopyAllKeysAllFramesName(const FString& sourceAn
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::CopyAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+		ChromaAnimationAPI::CopyAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 	}
 #endif
 }
@@ -2755,7 +2751,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeyColorName(const FString& sourceAni
 	int rzkey = _sKeyboardEnumMap[key];
 	if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 	{
-		ChromaAnimationAPI::CopyNonZeroKeyColorName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, rzkey);
+		ChromaAnimationAPI::CopyNonZeroKeyColorName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, rzkey);
 	}
 #endif
 }
@@ -2816,7 +2812,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorName(const FString& sourceAn
 		int rzkey = _sKeyboardEnumMap[key];
 		if (rzkey != ChromaSDK::Keyboard::RZKEY::RZKEY_INVALID)
 		{
-			ChromaAnimationAPI::CopyNonZeroKeyColorName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, rzkey);
+			ChromaAnimationAPI::CopyNonZeroKeyColorName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, rzkey);
 		}
 	}
 #endif
@@ -2876,7 +2872,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorAllFramesName(const FString&
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int k = 0; k < keys.Num(); ++k)
 	{
 		EChromaSDKKeyboardKey::Type key = keys[k];
@@ -2885,7 +2881,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroKeysColorAllFramesName(const FString&
 		{
 			for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 			{
-				ChromaAnimationAPI::CopyNonZeroKeyColorName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, rzkey);
+				ChromaAnimationAPI::CopyNonZeroKeyColorName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, rzkey);
 			}
 		}
 	}
@@ -2940,10 +2936,10 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesName(const FString& s
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::CopyNonZeroAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+		ChromaAnimationAPI::CopyNonZeroAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 	}
 #endif
 }
@@ -2996,10 +2992,10 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesName(const FString& so
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::AddNonZeroAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+		ChromaAnimationAPI::AddNonZeroAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 	}
 #endif
 }
@@ -3052,10 +3048,10 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesName(const FStrin
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::SubtractNonZeroAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex);
+		ChromaAnimationAPI::SubtractNonZeroAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex);
 	}
 #endif
 }
@@ -3108,10 +3104,10 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroAllKeysAllFramesOffsetName(const FStr
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::CopyNonZeroAllKeysOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, offset);
+		ChromaAnimationAPI::CopyNonZeroAllKeysOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, offset);
 	}
 #endif
 }
@@ -3164,10 +3160,10 @@ void UChromaSDKPluginBPLibrary::AddNonZeroAllKeysAllFramesOffsetName(const FStri
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*sourcePath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*sourcePath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::AddNonZeroAllKeysOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, offset);
+		ChromaAnimationAPI::AddNonZeroAllKeysOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, offset);
 	}
 #endif
 }
@@ -3220,10 +3216,10 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroAllKeysAllFramesOffsetName(const 
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*targetPath));
+	int frameCount = ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*targetPath));
 	for (int frameIndex = 0; frameIndex < frameCount; ++frameIndex)
 	{
-		ChromaAnimationAPI::SubtractNonZeroAllKeysOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameIndex, offset);
+		ChromaAnimationAPI::SubtractNonZeroAllKeysOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameIndex, offset);
 	}
 #endif
 }
@@ -3261,7 +3257,7 @@ void UChromaSDKPluginBPLibrary::FillColorName(const FString& animationName, int 
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FillColorName(TCHAR_TO_ANSI(*path), frameId, UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillColorName(TCHAR_TO_WCHAR(*path), frameId, UtilToBGR(colorParam));
 #endif
 }
 
@@ -3296,7 +3292,7 @@ void UChromaSDKPluginBPLibrary::FillColorRGBName(const FString& animationName, i
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FillColorRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
+	ChromaAnimationAPI::FillColorRGBName(TCHAR_TO_WCHAR(*path), frameId, red, green, blue);
 #endif
 }
 
@@ -3332,7 +3328,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsRGBName(const FString& animat
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FillThresholdColorsRGBName(TCHAR_TO_ANSI(*path), frameId, threshold, red, green, blue);
+	ChromaAnimationAPI::FillThresholdColorsRGBName(TCHAR_TO_WCHAR(*path), frameId, threshold, red, green, blue);
 #endif
 }
 
@@ -3371,7 +3367,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorName(const FString& animationNam
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorName: %s"), *path);
-	ChromaAnimationAPI::FillNonZeroColorName(TCHAR_TO_ANSI(*path), frameId, UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillNonZeroColorName(TCHAR_TO_WCHAR(*path), frameId, UtilToBGR(colorParam));
 #endif
 }
 
@@ -3407,7 +3403,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorRGBName(const FString& animation
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorName: %s"), *path);
-	ChromaAnimationAPI::FillNonZeroColorRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
+	ChromaAnimationAPI::FillNonZeroColorRGBName(TCHAR_TO_WCHAR(*path), frameId, red, green, blue);
 #endif
 }
 
@@ -3445,7 +3441,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorName(const FString& animationName, 
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillZeroColorName: %s"), *path);
-	ChromaAnimationAPI::FillZeroColorName(TCHAR_TO_ANSI(*path), frameId, UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillZeroColorName(TCHAR_TO_WCHAR(*path), frameId, UtilToBGR(colorParam));
 #endif
 }
 
@@ -3481,7 +3477,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorRGBName(const FString& animationNam
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillZeroColorName: %s"), *path);
-	ChromaAnimationAPI::FillZeroColorRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
+	ChromaAnimationAPI::FillZeroColorRGBName(TCHAR_TO_WCHAR(*path), frameId, red, green, blue);
 #endif
 }
 
@@ -3520,7 +3516,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesName(const FString& 
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillThresholdColorsAllFramesName(TCHAR_TO_ANSI(*path), threshold, UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillThresholdColorsAllFramesName(TCHAR_TO_WCHAR(*path), threshold, UtilToBGR(colorParam));
 #endif
 }
 
@@ -3556,7 +3552,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsAllFramesRGBName(const FStrin
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillThresholdColorsAllFramesRGBName(TCHAR_TO_ANSI(*path), threshold, red, green, blue);
+	ChromaAnimationAPI::FillThresholdColorsAllFramesRGBName(TCHAR_TO_WCHAR(*path), threshold, red, green, blue);
 #endif
 }
 
@@ -3595,7 +3591,7 @@ void UChromaSDKPluginBPLibrary::FillColorAllFramesName(const FString& animationN
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillColorAllFramesName(TCHAR_TO_ANSI(*path), UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillColorAllFramesName(TCHAR_TO_WCHAR(*path), UtilToBGR(colorParam));
 #endif
 }
 
@@ -3631,7 +3627,7 @@ void UChromaSDKPluginBPLibrary::FillColorAllFramesRGBName(const FString& animati
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillColorAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
+	ChromaAnimationAPI::FillColorAllFramesRGBName(TCHAR_TO_WCHAR(*path), red, green, blue);
 #endif
 }
 
@@ -3669,7 +3665,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesName(const FString& ani
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillNonZeroColorAllFramesName(TCHAR_TO_ANSI(*path), UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillNonZeroColorAllFramesName(TCHAR_TO_WCHAR(*path), UtilToBGR(colorParam));
 #endif
 }
 
@@ -3705,7 +3701,7 @@ void UChromaSDKPluginBPLibrary::FillNonZeroColorAllFramesRGBName(const FString& 
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillNonZeroColorAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
+	ChromaAnimationAPI::FillNonZeroColorAllFramesRGBName(TCHAR_TO_WCHAR(*path), red, green, blue);
 #endif
 }
 
@@ -3743,7 +3739,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesName(const FString& animat
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillZeroColorAllFramesName(TCHAR_TO_ANSI(*path), UtilToBGR(colorParam));
+	ChromaAnimationAPI::FillZeroColorAllFramesName(TCHAR_TO_WCHAR(*path), UtilToBGR(colorParam));
 #endif
 }
 
@@ -3779,7 +3775,7 @@ void UChromaSDKPluginBPLibrary::FillZeroColorAllFramesRGBName(const FString& ani
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillNonZeroColorAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillZeroColorAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
+	ChromaAnimationAPI::FillZeroColorAllFramesRGBName(TCHAR_TO_WCHAR(*path), red, green, blue);
 #endif
 }
 
@@ -3818,7 +3814,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsName(const FString& animationNam
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsName: %s"), *path);
-	ChromaAnimationAPI::FillRandomColorsName(TCHAR_TO_ANSI(*path), frameId);
+	ChromaAnimationAPI::FillRandomColorsName(TCHAR_TO_WCHAR(*path), frameId);
 #endif
 }
 
@@ -3851,7 +3847,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsAllFramesName(const FString& ani
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillRandomColorsAllFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::FillRandomColorsAllFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -3891,7 +3887,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteName(const FString&
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsBlackAndWhiteName: %s"), *path);
-	ChromaAnimationAPI::FillRandomColorsBlackAndWhiteName(TCHAR_TO_ANSI(*path), frameId);
+	ChromaAnimationAPI::FillRandomColorsBlackAndWhiteName(TCHAR_TO_WCHAR(*path), frameId);
 #endif
 }
 
@@ -3928,7 +3924,7 @@ void UChromaSDKPluginBPLibrary::FillRandomColorsBlackAndWhiteAllFramesName(const
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("FillRandomColorsBlackAndWhiteAllFramesName: %s"), *path);
-	ChromaAnimationAPI::FillRandomColorsBlackAndWhiteAllFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::FillRandomColorsBlackAndWhiteAllFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -3967,7 +3963,7 @@ void UChromaSDKPluginBPLibrary::OffsetColorsName(const FString& animationName, i
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetColorsName: %s"), *path);
-	ChromaAnimationAPI::OffsetColorsName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
+	ChromaAnimationAPI::OffsetColorsName(TCHAR_TO_WCHAR(*path), frameId, red, green, blue);
 #endif
 }
 
@@ -4004,7 +4000,7 @@ void UChromaSDKPluginBPLibrary::OffsetColorsAllFramesName(const FString& animati
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetColorsAllFramesName: %s"), *path);
-	ChromaAnimationAPI::OffsetColorsAllFramesName(TCHAR_TO_ANSI(*path), red, green, blue);
+	ChromaAnimationAPI::OffsetColorsAllFramesName(TCHAR_TO_WCHAR(*path), red, green, blue);
 #endif
 }
 
@@ -4041,7 +4037,7 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsName(const FString& animation
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetNonZeroColorsName: %s"), *path);
-	ChromaAnimationAPI::OffsetNonZeroColorsName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
+	ChromaAnimationAPI::OffsetNonZeroColorsName(TCHAR_TO_WCHAR(*path), frameId, red, green, blue);
 #endif
 }
 
@@ -4078,7 +4074,7 @@ void UChromaSDKPluginBPLibrary::OffsetNonZeroColorsAllFramesName(const FString& 
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("OffsetNonZeroColorsAllFramesName: %s"), *path);
-	ChromaAnimationAPI::OffsetNonZeroColorsAllFramesName(TCHAR_TO_ANSI(*path), red, green, blue);
+	ChromaAnimationAPI::OffsetNonZeroColorsAllFramesName(TCHAR_TO_WCHAR(*path), red, green, blue);
 #endif
 }
 
@@ -4117,7 +4113,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityName(const FString& animationNa
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityName: %s"), *path);
-	ChromaAnimationAPI::MultiplyIntensityName(TCHAR_TO_ANSI(*path), frameId, intensity);
+	ChromaAnimationAPI::MultiplyIntensityName(TCHAR_TO_WCHAR(*path), frameId, intensity);
 #endif
 }
 
@@ -4155,7 +4151,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityRGBName(const FString& animatio
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityName: %s"), *path);
-	ChromaAnimationAPI::MultiplyIntensityRGBName(TCHAR_TO_ANSI(*path), frameId, red, green, blue);
+	ChromaAnimationAPI::MultiplyIntensityRGBName(TCHAR_TO_WCHAR(*path), frameId, red, green, blue);
 #endif
 }
 
@@ -4196,7 +4192,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorName(const FString& animat
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityName: %s"), *path);
 	int color = ToBGR(colorParam);
-	ChromaAnimationAPI::MultiplyIntensityColorName(TCHAR_TO_ANSI(*path), frameId, color);
+	ChromaAnimationAPI::MultiplyIntensityColorName(TCHAR_TO_WCHAR(*path), frameId, color);
 #endif
 }
 
@@ -4235,7 +4231,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesName(const FString& an
 	}
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityAllFramesName: %s"), *path);
-	ChromaAnimationAPI::MultiplyIntensityAllFramesName(TCHAR_TO_ANSI(*path), intensity);
+	ChromaAnimationAPI::MultiplyIntensityAllFramesName(TCHAR_TO_WCHAR(*path), intensity);
 #endif
 }
 
@@ -4276,7 +4272,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityColorAllFramesName(const FStrin
 	
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityAllFramesName: %s"), *path);
 	int color = ToBGR(colorParam);
-	ChromaAnimationAPI::MultiplyIntensityColorAllFramesName(TCHAR_TO_ANSI(*path), color);
+	ChromaAnimationAPI::MultiplyIntensityColorAllFramesName(TCHAR_TO_WCHAR(*path), color);
 #endif
 }
 
@@ -4314,7 +4310,7 @@ void UChromaSDKPluginBPLibrary::MultiplyIntensityAllFramesRGBName(const FString&
 	}
 
 	//UE_LOG(LogChromaBlueprintLibrary, Log, TEXT("MultiplyIntensityAllFramesRGBName: %s"), *path);
-	ChromaAnimationAPI::MultiplyIntensityAllFramesRGBName(TCHAR_TO_ANSI(*path), red, green, blue);
+	ChromaAnimationAPI::MultiplyIntensityAllFramesRGBName(TCHAR_TO_WCHAR(*path), red, green, blue);
 #endif
 }
 
@@ -4352,7 +4348,7 @@ int UChromaSDKPluginBPLibrary::GetFrameCountName(const FString& animationName)
 		path += animationName + ".chroma";
 	}
 
-	return ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_ANSI(*path));
+	return ChromaAnimationAPI::GetFrameCountName(TCHAR_TO_WCHAR(*path));
 #else
 	return 0;
 #endif
@@ -4377,7 +4373,7 @@ void UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(const FString& animation
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SetChromaCustomFlagName(TCHAR_TO_ANSI(*path), flag);
+	ChromaAnimationAPI::SetChromaCustomFlagName(TCHAR_TO_WCHAR(*path), flag);
 #endif
 }
 
@@ -4400,7 +4396,7 @@ void UChromaSDKPluginBPLibrary::SetChromaCustomColorAllFramesName(const FString&
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SetChromaCustomColorAllFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::SetChromaCustomColorAllFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -4438,7 +4434,7 @@ void UChromaSDKPluginBPLibrary::PreviewFrameName(const FString& animationName, i
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::PreviewFrameName(TCHAR_TO_ANSI(*path), frameId);
+	ChromaAnimationAPI::PreviewFrameName(TCHAR_TO_WCHAR(*path), frameId);
 #endif
 }
 
@@ -4462,7 +4458,7 @@ void UChromaSDKPluginBPLibrary::OverrideFrameDurationName(const FString& animati
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::OverrideFrameDurationName(TCHAR_TO_ANSI(*path), duration);
+	ChromaAnimationAPI::OverrideFrameDurationName(TCHAR_TO_WCHAR(*path), duration);
 #endif
 }
 
@@ -4499,7 +4495,7 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesName(const FString& animationName
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::MakeBlankFramesName(TCHAR_TO_ANSI(*path), frameCount, duration, ToBGR(colorParam));
+	ChromaAnimationAPI::MakeBlankFramesName(TCHAR_TO_WCHAR(*path), frameCount, duration, ToBGR(colorParam));
 #endif
 }
 
@@ -4534,7 +4530,7 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesRGBName(const FString& animationN
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::MakeBlankFramesRGBName(TCHAR_TO_ANSI(*path), frameCount, duration, red, green, blue);
+	ChromaAnimationAPI::MakeBlankFramesRGBName(TCHAR_TO_WCHAR(*path), frameCount, duration, red, green, blue);
 #endif
 }
 
@@ -4571,7 +4567,7 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomName(const FString& animati
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::MakeBlankFramesRandomName(TCHAR_TO_ANSI(*path), frameCount, duration);
+	ChromaAnimationAPI::MakeBlankFramesRandomName(TCHAR_TO_WCHAR(*path), frameCount, duration);
 #endif
 }
 
@@ -4608,7 +4604,7 @@ void UChromaSDKPluginBPLibrary::MakeBlankFramesRandomBlackAndWhiteName(const FSt
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::MakeBlankFramesRandomBlackAndWhiteName(TCHAR_TO_ANSI(*path), frameCount, duration);
+	ChromaAnimationAPI::MakeBlankFramesRandomBlackAndWhiteName(TCHAR_TO_WCHAR(*path), frameCount, duration);
 #endif
 }
 
@@ -4646,7 +4642,7 @@ void UChromaSDKPluginBPLibrary::ReverseAllFramesName(const FString& animationNam
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::ReverseAllFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::ReverseAllFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -4684,7 +4680,7 @@ void UChromaSDKPluginBPLibrary::DuplicateFramesName(const FString& animationName
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::DuplicateFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::DuplicateFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -4722,7 +4718,7 @@ void UChromaSDKPluginBPLibrary::DuplicateFirstFrameName(const FString& animation
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::DuplicateFirstFrameName(TCHAR_TO_ANSI(*path), frameCount);
+	ChromaAnimationAPI::DuplicateFirstFrameName(TCHAR_TO_WCHAR(*path), frameCount);
 #endif
 }
 
@@ -4760,7 +4756,7 @@ void UChromaSDKPluginBPLibrary::DuplicateMirrorFramesName(const FString& animati
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::DuplicateMirrorFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::DuplicateMirrorFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -4798,7 +4794,7 @@ void UChromaSDKPluginBPLibrary::InsertFrameName(const FString& animationName, in
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::InsertFrameName(TCHAR_TO_ANSI(*path), sourceFrame, targetFrame);
+	ChromaAnimationAPI::InsertFrameName(TCHAR_TO_WCHAR(*path), sourceFrame, targetFrame);
 #endif
 }
 
@@ -4836,7 +4832,7 @@ void UChromaSDKPluginBPLibrary::InsertDelayName(const FString& animationName, in
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::InsertDelayName(TCHAR_TO_ANSI(*path), frameId, delay);
+	ChromaAnimationAPI::InsertDelayName(TCHAR_TO_WCHAR(*path), frameId, delay);
 #endif
 }
 
@@ -4874,7 +4870,7 @@ void UChromaSDKPluginBPLibrary::ReduceFramesName(const FString& animationName, i
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::ReduceFramesName(TCHAR_TO_ANSI(*path), n);
+	ChromaAnimationAPI::ReduceFramesName(TCHAR_TO_WCHAR(*path), n);
 #endif
 }
 
@@ -4912,7 +4908,7 @@ void UChromaSDKPluginBPLibrary::TrimFrameName(const FString& animationName, int3
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::TrimFrameName(TCHAR_TO_ANSI(*path), frameId);
+	ChromaAnimationAPI::TrimFrameName(TCHAR_TO_WCHAR(*path), frameId);
 #endif
 }
 
@@ -4950,7 +4946,7 @@ void UChromaSDKPluginBPLibrary::TrimStartFramesName(const FString& animationName
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::TrimStartFramesName(TCHAR_TO_ANSI(*path), numberOfFrames);
+	ChromaAnimationAPI::TrimStartFramesName(TCHAR_TO_WCHAR(*path), numberOfFrames);
 #endif
 }
 
@@ -4988,7 +4984,7 @@ void UChromaSDKPluginBPLibrary::TrimEndFramesName(const FString& animationName, 
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::TrimEndFramesName(TCHAR_TO_ANSI(*path), lastFrameId);
+	ChromaAnimationAPI::TrimEndFramesName(TCHAR_TO_WCHAR(*path), lastFrameId);
 #endif
 }
 
@@ -5026,7 +5022,7 @@ void UChromaSDKPluginBPLibrary::FadeStartFramesName(const FString& animationName
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FadeStartFramesName(TCHAR_TO_ANSI(*path), fade);
+	ChromaAnimationAPI::FadeStartFramesName(TCHAR_TO_WCHAR(*path), fade);
 #endif
 }
 
@@ -5064,7 +5060,7 @@ void UChromaSDKPluginBPLibrary::FadeEndFramesName(const FString& animationName, 
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FadeEndFramesName(TCHAR_TO_ANSI(*path), fade);
+	ChromaAnimationAPI::FadeEndFramesName(TCHAR_TO_WCHAR(*path), fade);
 #endif
 }
 
@@ -5108,7 +5104,7 @@ void UChromaSDKPluginBPLibrary::CopyAnimation(int32 sourceAnimationId, const FSt
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyAnimation(sourceAnimationId, TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::CopyAnimation(sourceAnimationId, TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5142,7 +5138,7 @@ void UChromaSDKPluginBPLibrary::CopyAnimationName(const FString& sourceAnimation
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyAnimationName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::CopyAnimationName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5191,7 +5187,7 @@ void UChromaSDKPluginBPLibrary::AppendAllFramesName(const FString& sourceAnimati
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::AppendAllFramesName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::AppendAllFramesName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5229,7 +5225,7 @@ void UChromaSDKPluginBPLibrary::InvertColorsAllFramesName(const FString& animati
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::InvertColorsAllFramesName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::InvertColorsAllFramesName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -5278,7 +5274,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysName(const FString& sour
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyNonZeroTargetAllKeysName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), frameId);
+	ChromaAnimationAPI::CopyNonZeroTargetAllKeysName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), frameId);
 #endif
 }
 
@@ -5326,7 +5322,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesName(const FStr
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyNonZeroTargetAllKeysAllFramesName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::CopyNonZeroTargetAllKeysAllFramesName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5374,7 +5370,7 @@ void UChromaSDKPluginBPLibrary::CopyZeroTargetAllKeysAllFramesName(const FString
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyZeroTargetAllKeysAllFramesName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::CopyZeroTargetAllKeysAllFramesName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5422,7 +5418,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesName(const FStri
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::AddNonZeroTargetAllKeysAllFramesName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::AddNonZeroTargetAllKeysAllFramesName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5471,7 +5467,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesName(const 
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SubtractNonZeroTargetAllKeysAllFramesName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath));
+	ChromaAnimationAPI::SubtractNonZeroTargetAllKeysAllFramesName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath));
 #endif
 }
 
@@ -5519,7 +5515,7 @@ void UChromaSDKPluginBPLibrary::CopyNonZeroTargetAllKeysAllFramesOffsetName(cons
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::CopyNonZeroTargetAllKeysAllFramesOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), offset);
+	ChromaAnimationAPI::CopyNonZeroTargetAllKeysAllFramesOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), offset);
 #endif
 }
 
@@ -5568,7 +5564,7 @@ void UChromaSDKPluginBPLibrary::AddNonZeroTargetAllKeysAllFramesOffsetName(const
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::AddNonZeroTargetAllKeysAllFramesOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), offset);
+	ChromaAnimationAPI::AddNonZeroTargetAllKeysAllFramesOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), offset);
 #endif
 }
 
@@ -5617,7 +5613,7 @@ void UChromaSDKPluginBPLibrary::SubtractNonZeroTargetAllKeysAllFramesOffsetName(
 		targetPath += targetAnimationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SubtractNonZeroTargetAllKeysAllFramesOffsetName(TCHAR_TO_ANSI(*sourcePath), TCHAR_TO_ANSI(*targetPath), offset);
+	ChromaAnimationAPI::SubtractNonZeroTargetAllKeysAllFramesOffsetName(TCHAR_TO_WCHAR(*sourcePath), TCHAR_TO_WCHAR(*targetPath), offset);
 #endif
 }
 
@@ -5658,7 +5654,7 @@ void UChromaSDKPluginBPLibrary::MultiplyColorLerpAllFramesName(const FString& an
 
 	int color1 = ToBGR(colorParam1);
 	int color2 = ToBGR(colorParam2);
-	ChromaAnimationAPI::MultiplyColorLerpAllFramesName(TCHAR_TO_ANSI(*path), color1, color2);
+	ChromaAnimationAPI::MultiplyColorLerpAllFramesName(TCHAR_TO_WCHAR(*path), color1, color2);
 #endif
 }
 
@@ -5699,7 +5695,7 @@ void UChromaSDKPluginBPLibrary::MultiplyTargetColorLerpAllFramesName(const FStri
 
 	int color1 = ToBGR(colorParam1);
 	int color2 = ToBGR(colorParam2);
-	ChromaAnimationAPI::MultiplyTargetColorLerpAllFramesName(TCHAR_TO_ANSI(*path), color1, color2);
+	ChromaAnimationAPI::MultiplyTargetColorLerpAllFramesName(TCHAR_TO_WCHAR(*path), color1, color2);
 #endif
 }
 
@@ -5733,7 +5729,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdRGBColorsAllFramesRGBName(const FSt
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FillThresholdRGBColorsAllFramesRGBName(TCHAR_TO_ANSI(*path), redThreshold, greenThreshold, blueThreshold, red, green, blue);
+	ChromaAnimationAPI::FillThresholdRGBColorsAllFramesRGBName(TCHAR_TO_WCHAR(*path), redThreshold, greenThreshold, blueThreshold, red, green, blue);
 #endif
 }
 
@@ -5769,7 +5765,7 @@ void UChromaSDKPluginBPLibrary::FillThresholdColorsMinMaxAllFramesRGBName(const 
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::FillThresholdColorsMinMaxAllFramesRGBName(TCHAR_TO_ANSI(*path), minThreshold, minRed, minGreen, minBlue, maxThreshold, maxRed, maxGreen, maxBlue);
+	ChromaAnimationAPI::FillThresholdColorsMinMaxAllFramesRGBName(TCHAR_TO_WCHAR(*path), minThreshold, minRed, minGreen, minBlue, maxThreshold, maxRed, maxGreen, maxBlue);
 #endif
 }
 
@@ -5811,7 +5807,7 @@ void UChromaSDKPluginBPLibrary::MultiplyNonZeroTargetColorLerpAllFramesName(cons
 
 	int color1 = ToBGR(colorParam1);
 	int color2 = ToBGR(colorParam2);
-	ChromaAnimationAPI::MultiplyNonZeroTargetColorLerpAllFramesName(TCHAR_TO_ANSI(*path), color1, color2);
+	ChromaAnimationAPI::MultiplyNonZeroTargetColorLerpAllFramesName(TCHAR_TO_WCHAR(*path), color1, color2);
 #endif
 }
 
@@ -5858,7 +5854,7 @@ void UChromaSDKPluginBPLibrary::SetIdleAnimationName(const FString& animationNam
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SetIdleAnimationName(TCHAR_TO_ANSI(*path));
+	ChromaAnimationAPI::SetIdleAnimationName(TCHAR_TO_WCHAR(*path));
 #endif
 }
 
@@ -5893,7 +5889,7 @@ void UChromaSDKPluginBPLibrary::UsePreloadingName(const FString& animationName, 
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::UsePreloadingName(TCHAR_TO_ANSI(*path), flag);
+	ChromaAnimationAPI::UsePreloadingName(TCHAR_TO_WCHAR(*path), flag);
 #endif
 }
 
@@ -5931,7 +5927,7 @@ int32 UChromaSDKPluginBPLibrary::GetCurrentFrameName(const FString& animationNam
 		path += animationName + ".chroma";
 	}
 
-	return ChromaAnimationAPI::GetCurrentFrameName(TCHAR_TO_ANSI(*path));
+	return ChromaAnimationAPI::GetCurrentFrameName(TCHAR_TO_WCHAR(*path));
 #else
 	return 0;
 #endif
@@ -5969,7 +5965,7 @@ void UChromaSDKPluginBPLibrary::SetCurrentFrameName(const FString& animationName
 		path += animationName + ".chroma";
 	}
 
-	ChromaAnimationAPI::SetCurrentFrameName(TCHAR_TO_ANSI(*path), frameId);
+	ChromaAnimationAPI::SetCurrentFrameName(TCHAR_TO_WCHAR(*path), frameId);
 #endif
 }
 
@@ -6001,7 +5997,7 @@ void UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(const TArray<uint8>& dat
 			buffer[i] = data[i];
 		}
 
-		ChromaAnimationAPI::OpenAnimationFromMemory(buffer, TCHAR_TO_ANSI(*path));		
+		ChromaAnimationAPI::OpenAnimationFromMemory(buffer, TCHAR_TO_WCHAR(*path));
 
 		delete[] buffer;
 	}

@@ -39,11 +39,11 @@ typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES)(int sourceAnimationId, 
 	Add source color to target where color is not black for all frames, reference 
 	source and target by name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Add source color to target where color is not black for all frames starting 
 	at offset for the length of the source, reference source and target by 
@@ -55,16 +55,16 @@ typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET)(int sourceAnimat
 	at offset for the length of the source, reference source and target by 
 	name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Add source color to target where color is not black for frame id, reference 
 	source and target by name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	Add source color to target where color is not black for the source frame 
 	and target offset frame, reference source and target by id.
@@ -74,11 +74,11 @@ typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_OFFSET)(int sourceAnimationId, int 
 	Add source color to target where color is not black for the source frame 
 	and target offset frame, reference source and target by name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double offset);
+typedef double		(*PLUGIN_ADD_NON_ZERO_ALL_KEYS_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double offset);
 /*
 	Add source color to target where the target color is not black for all frames, 
 	reference source and target by id.
@@ -88,11 +88,11 @@ typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES)(int sourceAnimat
 	Add source color to target where the target color is not black for all frames, 
 	reference source and target by name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Add source color to target where the target color is not black for all frames 
 	starting at offset for the length of the source, reference source and target 
@@ -104,11 +104,11 @@ typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET)(int sourc
 	starting at offset for the length of the source, reference source and target 
 	by name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Add source color to target where target color is not blank from the source 
 	frame to the target offset frame, reference source and target by id.
@@ -118,11 +118,11 @@ typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_OFFSET)(int sourceAnimationI
 	Add source color to target where target color is not blank from the source 
 	frame to the target offset frame, reference source and target by name.
 */
-typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double offset);
+typedef double		(*PLUGIN_ADD_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double offset);
 /*
 	Append all source frames to the target animation, reference source and target 
 	by id.
@@ -132,11 +132,11 @@ typedef void		(*PLUGIN_APPEND_ALL_FRAMES)(int sourceAnimationId, int targetAnima
 	Append all source frames to the target animation, reference source and target 
 	by name.
 */
-typedef void		(*PLUGIN_APPEND_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_APPEND_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_APPEND_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_APPEND_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	`PluginClearAll` will issue a `CLEAR` effect for all devices.
 */
@@ -165,20 +165,20 @@ typedef double		(*PLUGIN_CLOSE_ANIMATION_D)(double animationId);
 	Closes the `Chroma` animation referenced by name so that the animation can 
 	be reloaded from disk.
 */
-typedef void		(*PLUGIN_CLOSE_ANIMATION_NAME)(const char* path);
+typedef void		(*PLUGIN_CLOSE_ANIMATION_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_CLOSE_ANIMATION_NAME_D)(const char* path);
+typedef double		(*PLUGIN_CLOSE_ANIMATION_NAME_D)(const wchar_t* path);
 /*
 	`PluginCloseComposite` closes a set of animations so they can be reloaded 
 	from disk. The set of animations will be stopped if playing.
 */
-typedef void		(*PLUGIN_CLOSE_COMPOSITE)(const char* name);
+typedef void		(*PLUGIN_CLOSE_COMPOSITE)(const wchar_t* name);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_CLOSE_COMPOSITE_D)(const char* name);
+typedef double		(*PLUGIN_CLOSE_COMPOSITE_D)(const wchar_t* name);
 /*
 	Copy source animation to target animation for the given frame. Source and 
 	target are referenced by id.
@@ -188,21 +188,21 @@ typedef void		(*PLUGIN_COPY_ALL_KEYS)(int sourceAnimationId, int targetAnimation
 	Copy source animation to target animation for the given frame. Source and 
 	target are referenced by id.
 */
-typedef void		(*PLUGIN_COPY_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_COPY_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	Copy animation to named target animation in memory. If target animation 
 	exists, close first. Source is referenced by id.
 */
-typedef int			(*PLUGIN_COPY_ANIMATION)(int sourceAnimationId, const char* targetAnimation);
+typedef int			(*PLUGIN_COPY_ANIMATION)(int sourceAnimationId, const wchar_t* targetAnimation);
 /*
 	Copy animation to named target animation in memory. If target animation 
 	exists, close first. Source is referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ANIMATION_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_COPY_ANIMATION_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_ANIMATION_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_COPY_ANIMATION_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Copy blue channel to other channels for all frames. Intensity range is 0.0 
 	to 1.0. Reference the animation by id.
@@ -212,11 +212,11 @@ typedef void		(*PLUGIN_COPY_BLUE_CHANNEL_ALL_FRAMES)(int animationId, float redI
 	Copy blue channel to other channels for all frames. Intensity range is 0.0 
 	to 1.0. Reference the animation by name.
 */
-typedef void		(*PLUGIN_COPY_BLUE_CHANNEL_ALL_FRAMES_NAME)(const char* path, float redIntensity, float greenIntensity);
+typedef void		(*PLUGIN_COPY_BLUE_CHANNEL_ALL_FRAMES_NAME)(const wchar_t* path, float redIntensity, float greenIntensity);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_BLUE_CHANNEL_ALL_FRAMES_NAME_D)(const char* path, double redIntensity, double greenIntensity);
+typedef double		(*PLUGIN_COPY_BLUE_CHANNEL_ALL_FRAMES_NAME_D)(const wchar_t* path, double redIntensity, double greenIntensity);
 /*
 	Copy green channel to other channels for all frames. Intensity range is 
 	0.0 to 1.0. Reference the animation by id.
@@ -226,11 +226,11 @@ typedef void		(*PLUGIN_COPY_GREEN_CHANNEL_ALL_FRAMES)(int animationId, float red
 	Copy green channel to other channels for all frames. Intensity range is 
 	0.0 to 1.0. Reference the animation by name.
 */
-typedef void		(*PLUGIN_COPY_GREEN_CHANNEL_ALL_FRAMES_NAME)(const char* path, float redIntensity, float blueIntensity);
+typedef void		(*PLUGIN_COPY_GREEN_CHANNEL_ALL_FRAMES_NAME)(const wchar_t* path, float redIntensity, float blueIntensity);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_GREEN_CHANNEL_ALL_FRAMES_NAME_D)(const char* path, double redIntensity, double blueIntensity);
+typedef double		(*PLUGIN_COPY_GREEN_CHANNEL_ALL_FRAMES_NAME_D)(const wchar_t* path, double redIntensity, double blueIntensity);
 /*
 	Copy animation key color from the source animation to the target animation 
 	for the given frame. Reference the source and target by id.
@@ -245,11 +245,11 @@ typedef void		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES)(int sourceAnimationId, int tar
 	Copy animation key color from the source animation to the target animation 
 	for all frames. Reference the source and target by name.
 */
-typedef void		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation, int rzkey);
+typedef void		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int rzkey);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double rzkey);
+typedef double		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double rzkey);
 /*
 	Copy animation key color from the source animation to the target animation 
 	for all frames, starting at the offset for the length of the source animation. 
@@ -261,20 +261,20 @@ typedef void		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_OFFSET)(int sourceAnimationId, 
 	for all frames, starting at the offset for the length of the source animation. 
 	Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int rzkey, int offset);
+typedef void		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int rzkey, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double rzkey, double offset);
+typedef double		(*PLUGIN_COPY_KEY_COLOR_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double rzkey, double offset);
 /*
 	Copy animation key color from the source animation to the target animation 
 	for the given frame.
 */
-typedef void		(*PLUGIN_COPY_KEY_COLOR_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int rzkey);
+typedef void		(*PLUGIN_COPY_KEY_COLOR_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int rzkey);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_KEY_COLOR_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double rzkey);
+typedef double		(*PLUGIN_COPY_KEY_COLOR_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double rzkey);
 /*
 	Copy animation color for a set of keys from the source animation to the 
 	target animation for the given frame. Reference the source and target by 
@@ -290,13 +290,13 @@ typedef void		(*PLUGIN_COPY_KEYS_COLOR_ALL_FRAMES)(int sourceAnimationId, int ta
 	Copy animation color for a set of keys from the source animation to the 
 	target animation for all frames. Reference the source and target by name.
 */
-typedef void		(*PLUGIN_COPY_KEYS_COLOR_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation, const int* keys, int size);
+typedef void		(*PLUGIN_COPY_KEYS_COLOR_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, const int* keys, int size);
 /*
 	Copy animation color for a set of keys from the source animation to the 
 	target animation for the given frame. Reference the source and target by 
 	name.
 */
-typedef void		(*PLUGIN_COPY_KEYS_COLOR_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, const int* keys, int size);
+typedef void		(*PLUGIN_COPY_KEYS_COLOR_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, const int* keys, int size);
 /*
 	Copy animation color for a set of keys from the source animation to the 
 	target animation from the source frame to the target frame. Reference the 
@@ -308,7 +308,7 @@ typedef void		(*PLUGIN_COPY_KEYS_COLOR_OFFSET)(int sourceAnimationId, int target
 	target animation from the source frame to the target frame. Reference the 
 	source and target by name.
 */
-typedef void		(*PLUGIN_COPY_KEYS_COLOR_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int sourceFrameId, int targetFrameId, const int* keys, int size);
+typedef void		(*PLUGIN_COPY_KEYS_COLOR_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int sourceFrameId, int targetFrameId, const int* keys, int size);
 /*
 	Copy source animation to target animation for the given frame. Source and 
 	target are referenced by id.
@@ -323,11 +323,11 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES)(int sourceAnimationId,
 	Copy nonzero colors from a source animation to a target animation for all 
 	frames. Reference source and target by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Copy nonzero colors from a source animation to a target animation for all 
 	frames starting at the offset for the length of the source animation. The 
@@ -339,20 +339,20 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET)(int sourceAnima
 	frames starting at the offset for the length of the source animation. The 
 	source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Copy nonzero colors from source animation to target animation for the specified 
 	frame. Source and target are referenced by id.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId);
+typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId);
 /*
 	Copy nonzero colors from the source animation to the target animation from 
 	the source frame to the target offset frame. Source and target are referenced 
@@ -364,11 +364,11 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_OFFSET)(int sourceAnimationId, int
 	the source frame to the target offset frame. Source and target are referenced 
 	by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double offset);
+typedef double		(*PLUGIN_COPY_NON_ZERO_ALL_KEYS_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double offset);
 /*
 	Copy animation key color from the source animation to the target animation 
 	for the given frame where color is not zero.
@@ -378,11 +378,11 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_KEY_COLOR)(int sourceAnimationId, int targe
 	Copy animation key color from the source animation to the target animation 
 	for the given frame where color is not zero.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_KEY_COLOR_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int rzkey);
+typedef void		(*PLUGIN_COPY_NON_ZERO_KEY_COLOR_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int rzkey);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_KEY_COLOR_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double rzkey);
+typedef double		(*PLUGIN_COPY_NON_ZERO_KEY_COLOR_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double rzkey);
 /*
 	Copy nonzero colors from the source animation to the target animation where 
 	the target color is nonzero for the specified frame. Source and target 
@@ -400,11 +400,11 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES)(int sourceAnima
 	the target color is nonzero for all frames. Source and target are referenced 
 	by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Copy nonzero colors from the source animation to the target animation where 
 	the target color is nonzero for all frames. Source and target are referenced 
@@ -417,21 +417,21 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET)(int sour
 	for the length of the source animation. Source and target animations are 
 	referenced by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Copy nonzero colors from the source animation to the target animation where 
 	the target color is nonzero for the specified frame. The source and target 
 	are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId);
+typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId);
 /*
 	Copy nonzero colors from the source animation to the target animation where 
 	the target color is nonzero for the specified source frame and target offset 
@@ -443,11 +443,11 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_OFFSET)(int sourceAnimation
 	the target color is nonzero for the specified source frame and target offset 
 	frame. The source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double offset);
+typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double offset);
 /*
 	Copy nonzero colors from the source animation to the target animation where 
 	the target color is zero for all frames. Source and target are referenced 
@@ -459,11 +459,11 @@ typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ZERO_ALL_KEYS_ALL_FRAMES)(int source
 	the target color is zero for all frames. Source and target are referenced 
 	by name.
 */
-typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_COPY_NON_ZERO_TARGET_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_COPY_NON_ZERO_TARGET_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Copy red channel to other channels for all frames. Intensity range is 0.0 
 	to 1.0. Reference the animation by id.
@@ -473,11 +473,11 @@ typedef void		(*PLUGIN_COPY_RED_CHANNEL_ALL_FRAMES)(int animationId, float green
 	Copy green channel to other channels for all frames. Intensity range is 
 	0.0 to 1.0. Reference the animation by name.
 */
-typedef void		(*PLUGIN_COPY_RED_CHANNEL_ALL_FRAMES_NAME)(const char* path, float greenIntensity, float blueIntensity);
+typedef void		(*PLUGIN_COPY_RED_CHANNEL_ALL_FRAMES_NAME)(const wchar_t* path, float greenIntensity, float blueIntensity);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_RED_CHANNEL_ALL_FRAMES_NAME_D)(const char* path, double greenIntensity, double blueIntensity);
+typedef double		(*PLUGIN_COPY_RED_CHANNEL_ALL_FRAMES_NAME_D)(const wchar_t* path, double greenIntensity, double blueIntensity);
 /*
 	Copy zero colors from source animation to target animation for the frame. 
 	Source and target are referenced by id.
@@ -492,11 +492,11 @@ typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES)(int sourceAnimationId, int
 	Copy zero colors from source animation to target animation for all frames. 
 	Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Copy zero colors from source animation to target animation for all frames 
 	starting at the target offset for the length of the source animation. Source 
@@ -508,16 +508,16 @@ typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET)(int sourceAnimation
 	starting at the target offset for the length of the source animation. Source 
 	and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_COPY_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Copy zero colors from source animation to target animation for the frame. 
 	Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	Copy zero colors from source animation to target animation for the frame 
 	id starting at the target offset for the length of the source animation. 
@@ -529,7 +529,7 @@ typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_OFFSET)(int sourceAnimationId, int tar
 	id starting at the target offset for the length of the source animation. 
 	Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_COPY_ZERO_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	Copy zero key color from source animation to target animation for the specified 
 	frame. Source and target are referenced by id.
@@ -539,11 +539,11 @@ typedef void		(*PLUGIN_COPY_ZERO_KEY_COLOR)(int sourceAnimationId, int targetAni
 	Copy zero key color from source animation to target animation for the specified 
 	frame. Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_KEY_COLOR_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int rzkey);
+typedef void		(*PLUGIN_COPY_ZERO_KEY_COLOR_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int rzkey);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_ZERO_KEY_COLOR_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double rzkey);
+typedef double		(*PLUGIN_COPY_ZERO_KEY_COLOR_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double rzkey);
 /*
 	Copy nonzero color from source animation to target animation where target 
 	is zero for the frame. Source and target are referenced by id.
@@ -558,16 +558,16 @@ typedef void		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_ALL_FRAMES)(int sourceAnimation
 	Copy nonzero color from source animation to target animation where target 
 	is zero for all frames. Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Copy nonzero color from source animation to target animation where target 
 	is zero for the frame. Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_COPY_ZERO_TARGET_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	Direct access to low level API.
 */
@@ -727,7 +727,7 @@ typedef RZRESULT	(*PLUGIN_CORE_UNINIT)();
 	at the given path. Returns the animation id upon success. Returns negative 
 	one upon failure.
 */
-typedef int			(*PLUGIN_CREATE_ANIMATION)(const char* path, int deviceType, int device);
+typedef int			(*PLUGIN_CREATE_ANIMATION)(const wchar_t* path, int deviceType, int device);
 /*
 	Creates a `Chroma` animation in memory without creating a file. The `deviceType` 
 	parameter uses `EChromaSDKDeviceTypeEnum` as an integer. The `device` parameter 
@@ -754,11 +754,11 @@ typedef void		(*PLUGIN_DUPLICATE_FIRST_FRAME)(int animationId, int frameCount);
 	Duplicate the first animation frame so that the animation length matches 
 	the frame count. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_DUPLICATE_FIRST_FRAME_NAME)(const char* path, int frameCount);
+typedef void		(*PLUGIN_DUPLICATE_FIRST_FRAME_NAME)(const wchar_t* path, int frameCount);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_DUPLICATE_FIRST_FRAME_NAME_D)(const char* path, double frameCount);
+typedef double		(*PLUGIN_DUPLICATE_FIRST_FRAME_NAME_D)(const wchar_t* path, double frameCount);
 /*
 	Duplicate all the frames of the animation to double the animation length. 
 	Frame 1 becomes frame 1 and 2. Frame 2 becomes frame 3 and 4. And so on. 
@@ -770,11 +770,11 @@ typedef void		(*PLUGIN_DUPLICATE_FRAMES)(int animationId);
 	Frame 1 becomes frame 1 and 2. Frame 2 becomes frame 3 and 4. And so on. 
 	The animation is referenced by name.
 */
-typedef void		(*PLUGIN_DUPLICATE_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_DUPLICATE_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_DUPLICATE_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_DUPLICATE_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Duplicate all the animation frames in reverse so that the animation plays 
 	forwards and backwards. Animation is referenced by id.
@@ -784,11 +784,11 @@ typedef void		(*PLUGIN_DUPLICATE_MIRROR_FRAMES)(int animationId);
 	Duplicate all the animation frames in reverse so that the animation plays 
 	forwards and backwards. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_DUPLICATE_MIRROR_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_DUPLICATE_MIRROR_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_DUPLICATE_MIRROR_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_DUPLICATE_MIRROR_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Fade the animation to black starting at the fade frame index to the end 
 	of the animation. Animation is referenced by id.
@@ -798,11 +798,11 @@ typedef void		(*PLUGIN_FADE_END_FRAMES)(int animationId, int fade);
 	Fade the animation to black starting at the fade frame index to the end 
 	of the animation. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FADE_END_FRAMES_NAME)(const char* path, int fade);
+typedef void		(*PLUGIN_FADE_END_FRAMES_NAME)(const wchar_t* path, int fade);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FADE_END_FRAMES_NAME_D)(const char* path, double fade);
+typedef double		(*PLUGIN_FADE_END_FRAMES_NAME_D)(const wchar_t* path, double fade);
 /*
 	Fade the animation from black to full color starting at 0 to the fade frame 
 	index. Animation is referenced by id.
@@ -812,11 +812,11 @@ typedef void		(*PLUGIN_FADE_START_FRAMES)(int animationId, int fade);
 	Fade the animation from black to full color starting at 0 to the fade frame 
 	index. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FADE_START_FRAMES_NAME)(const char* path, int fade);
+typedef void		(*PLUGIN_FADE_START_FRAMES_NAME)(const wchar_t* path, int fade);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FADE_START_FRAMES_NAME_D)(const char* path, double fade);
+typedef double		(*PLUGIN_FADE_START_FRAMES_NAME_D)(const wchar_t* path, double fade);
 /*
 	Set the RGB value for all colors in the specified frame. Animation is referenced 
 	by id.
@@ -831,11 +831,11 @@ typedef void		(*PLUGIN_FILL_COLOR_ALL_FRAMES)(int animationId, int color);
 	Set the RGB value for all colors for all frames. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_FILL_COLOR_ALL_FRAMES_NAME)(const char* path, int color);
+typedef void		(*PLUGIN_FILL_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_COLOR_ALL_FRAMES_NAME_D)(const char* path, double color);
+typedef double		(*PLUGIN_FILL_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* path, double color);
 /*
 	Set the RGB value for all colors for all frames. Use the range of 0 to 255 
 	for red, green, and blue parameters. Animation is referenced by id.
@@ -845,20 +845,20 @@ typedef void		(*PLUGIN_FILL_COLOR_ALL_FRAMES_RGB)(int animationId, int red, int 
 	Set the RGB value for all colors for all frames. Use the range of 0 to 255 
 	for red, green, and blue parameters. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_COLOR_ALL_FRAMES_RGB_NAME)(const char* path, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_COLOR_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_COLOR_ALL_FRAMES_RGB_NAME_D)(const char* path, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_COLOR_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double red, double green, double blue);
 /*
 	Set the RGB value for all colors in the specified frame. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_FILL_COLOR_NAME)(const char* path, int frameId, int color);
+typedef void		(*PLUGIN_FILL_COLOR_NAME)(const wchar_t* path, int frameId, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_COLOR_NAME_D)(const char* path, double frameId, double color);
+typedef double		(*PLUGIN_FILL_COLOR_NAME_D)(const wchar_t* path, double frameId, double color);
 /*
 	Set the RGB value for all colors in the specified frame. Animation is referenced 
 	by id.
@@ -868,11 +868,11 @@ typedef void		(*PLUGIN_FILL_COLOR_RGB)(int animationId, int frameId, int red, in
 	Set the RGB value for all colors in the specified frame. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_FILL_COLOR_RGB_NAME)(const char* path, int frameId, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_COLOR_RGB_NAME)(const wchar_t* path, int frameId, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_COLOR_RGB_NAME_D)(const char* path, double frameId, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_COLOR_RGB_NAME_D)(const wchar_t* path, double frameId, double red, double green, double blue);
 /*
 	This method will only update colors in the animation that are not already 
 	set to black. Set the RGB value for a subset of colors in the specified 
@@ -890,11 +890,11 @@ typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES)(int animationId, int colo
 	set to black. Set the RGB value for a subset of colors for all frames. 
 	Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_NAME)(const char* path, int color);
+typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_NAME_D)(const char* path, double color);
+typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* path, double color);
 /*
 	This method will only update colors in the animation that are not already 
 	set to black. Set the RGB value for a subset of colors for all frames. 
@@ -908,21 +908,21 @@ typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_RGB)(int animationId, int 
 	Use the range of 0 to 255 for red, green, and blue parameters. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_RGB_NAME)(const char* path, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_RGB_NAME_D)(const char* path, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double red, double green, double blue);
 /*
 	This method will only update colors in the animation that are not already 
 	set to black. Set the RGB value for a subset of colors in the specified 
 	frame. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_NAME)(const char* path, int frameId, int color);
+typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_NAME)(const wchar_t* path, int frameId, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_NAME_D)(const char* path, double frameId, double color);
+typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_NAME_D)(const wchar_t* path, double frameId, double color);
 /*
 	This method will only update colors in the animation that are not already 
 	set to black. Set the RGB value for a subset of colors in the specified 
@@ -936,11 +936,11 @@ typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_RGB)(int animationId, int frameId, in
 	frame. Use the range of 0 to 255 for red, green, and blue parameters. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_RGB_NAME)(const char* path, int frameId, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_NON_ZERO_COLOR_RGB_NAME)(const wchar_t* path, int frameId, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_RGB_NAME_D)(const char* path, double frameId, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_NON_ZERO_COLOR_RGB_NAME_D)(const wchar_t* path, double frameId, double red, double green, double blue);
 /*
 	Fill the frame with random RGB values for the given frame. Animation is 
 	referenced by id.
@@ -955,11 +955,11 @@ typedef void		(*PLUGIN_FILL_RANDOM_COLORS_ALL_FRAMES)(int animationId);
 	Fill the frame with random RGB values for all frames. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_FILL_RANDOM_COLORS_ALL_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_FILL_RANDOM_COLORS_ALL_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_RANDOM_COLORS_ALL_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_FILL_RANDOM_COLORS_ALL_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Fill the frame with random black and white values for the specified frame. 
 	Animation is referenced by id.
@@ -974,29 +974,29 @@ typedef void		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_ALL_FRAMES)(int animat
 	Fill the frame with random black and white values for all frames. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_ALL_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_ALL_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_ALL_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_ALL_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Fill the frame with random black and white values for the specified frame. 
 	Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_NAME)(const char* path, int frameId);
+typedef void		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_NAME)(const wchar_t* path, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_NAME_D)(const char* path, double frameId);
+typedef double		(*PLUGIN_FILL_RANDOM_COLORS_BLACK_AND_WHITE_NAME_D)(const wchar_t* path, double frameId);
 /*
 	Fill the frame with random RGB values for the given frame. Animation is 
 	referenced by name.
 */
-typedef void		(*PLUGIN_FILL_RANDOM_COLORS_NAME)(const char* path, int frameId);
+typedef void		(*PLUGIN_FILL_RANDOM_COLORS_NAME)(const wchar_t* path, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_RANDOM_COLORS_NAME_D)(const char* path, double frameId);
+typedef double		(*PLUGIN_FILL_RANDOM_COLORS_NAME_D)(const wchar_t* path, double frameId);
 /*
 	Fill the specified frame with RGB color where the animation color is less 
 	than the RGB threshold. Animation is referenced by id.
@@ -1011,11 +1011,11 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES)(int animationId, int th
 	Fill all frames with RGB color where the animation color is less than the 
 	RGB threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_NAME)(const char* path, int threshold, int color);
+typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_NAME)(const wchar_t* path, int threshold, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_NAME_D)(const char* path, double threshold, double color);
+typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_NAME_D)(const wchar_t* path, double threshold, double color);
 /*
 	Fill all frames with RGB color where the animation color is less than the 
 	threshold. Animation is referenced by id.
@@ -1025,11 +1025,11 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_RGB)(int animationId, in
 	Fill all frames with RGB color where the animation color is less than the 
 	threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_RGB_NAME)(const char* path, int threshold, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int threshold, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_RGB_NAME_D)(const char* path, double threshold, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double threshold, double red, double green, double blue);
 /*
 	Fill all frames with the min RGB color where the animation color is less 
 	than the min threshold AND with the max RGB color where the animation is 
@@ -1041,11 +1041,11 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB)(int animati
 	than the min threshold AND with the max RGB color where the animation is 
 	more than the max threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME)(const char* path, int minThreshold, int minRed, int minGreen, int minBlue, int maxThreshold, int maxRed, int maxGreen, int maxBlue);
+typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int minThreshold, int minRed, int minGreen, int minBlue, int maxThreshold, int maxRed, int maxGreen, int maxBlue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME_D)(const char* path, double minThreshold, double minRed, double minGreen, double minBlue, double maxThreshold, double maxRed, double maxGreen, double maxBlue);
+typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double minThreshold, double minRed, double minGreen, double minBlue, double maxThreshold, double maxRed, double maxGreen, double maxBlue);
 /*
 	Fill the specified frame with the min RGB color where the animation color 
 	is less than the min threshold AND with the max RGB color where the animation 
@@ -1057,20 +1057,20 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_RGB)(int animationId, int f
 	is less than the min threshold AND with the max RGB color where the animation 
 	is more than the max threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_RGB_NAME)(const char* path, int frameId, int minThreshold, int minRed, int minGreen, int minBlue, int maxThreshold, int maxRed, int maxGreen, int maxBlue);
+typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_RGB_NAME)(const wchar_t* path, int frameId, int minThreshold, int minRed, int minGreen, int minBlue, int maxThreshold, int maxRed, int maxGreen, int maxBlue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_RGB_NAME_D)(const char* path, double frameId, double minThreshold, double minRed, double minGreen, double minBlue, double maxThreshold, double maxRed, double maxGreen, double maxBlue);
+typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_MIN_MAX_RGB_NAME_D)(const wchar_t* path, double frameId, double minThreshold, double minRed, double minGreen, double minBlue, double maxThreshold, double maxRed, double maxGreen, double maxBlue);
 /*
 	Fill the specified frame with RGB color where the animation color is less 
 	than the RGB threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_NAME)(const char* path, int frameId, int threshold, int color);
+typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_NAME)(const wchar_t* path, int frameId, int threshold, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_NAME_D)(const char* path, double frameId, double threshold, double color);
+typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_NAME_D)(const wchar_t* path, double frameId, double threshold, double color);
 /*
 	Fill the specified frame with RGB color where the animation color is less 
 	than the RGB threshold. Animation is referenced by id.
@@ -1080,11 +1080,11 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_RGB)(int animationId, int frameId, 
 	Fill the specified frame with RGB color where the animation color is less 
 	than the RGB threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_RGB_NAME)(const char* path, int frameId, int threshold, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_THRESHOLD_COLORS_RGB_NAME)(const wchar_t* path, int frameId, int threshold, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_RGB_NAME_D)(const char* path, double frameId, double threshold, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_THRESHOLD_COLORS_RGB_NAME_D)(const wchar_t* path, double frameId, double threshold, double red, double green, double blue);
 /*
 	Fill all frames with RGB color where the animation color is less than the 
 	RGB threshold. Animation is referenced by id.
@@ -1094,11 +1094,11 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_ALL_FRAMES_RGB)(int animationId
 	Fill all frames with RGB color where the animation color is less than the 
 	RGB threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_ALL_FRAMES_RGB_NAME)(const char* path, int redThreshold, int greenThreshold, int blueThreshold, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int redThreshold, int greenThreshold, int blueThreshold, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_ALL_FRAMES_RGB_NAME_D)(const char* path, double redThreshold, double greenThreshold, double blueThreshold, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double redThreshold, double greenThreshold, double blueThreshold, double red, double green, double blue);
 /*
 	Fill the specified frame with RGB color where the animation color is less 
 	than the RGB threshold. Animation is referenced by id.
@@ -1108,11 +1108,11 @@ typedef void		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_RGB)(int animationId, int frame
 	Fill the specified frame with RGB color where the animation color is less 
 	than the RGB threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_RGB_NAME)(const char* path, int frameId, int redThreshold, int greenThreshold, int blueThreshold, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_RGB_NAME)(const wchar_t* path, int frameId, int redThreshold, int greenThreshold, int blueThreshold, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_RGB_NAME_D)(const char* path, double frameId, double redThreshold, double greenThreshold, double blueThreshold, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_THRESHOLD_RGB_COLORS_RGB_NAME_D)(const wchar_t* path, double frameId, double redThreshold, double greenThreshold, double blueThreshold, double red, double green, double blue);
 /*
 	Fill the specified frame with RGB color where the animation color is zero. 
 	Animation is referenced by id.
@@ -1127,11 +1127,11 @@ typedef void		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES)(int animationId, int color);
 	Fill all frames with RGB color where the animation color is zero. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_NAME)(const char* path, int color);
+typedef void		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_NAME_D)(const char* path, double color);
+typedef double		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* path, double color);
 /*
 	Fill all frames with RGB color where the animation color is zero. Animation 
 	is referenced by id.
@@ -1141,20 +1141,20 @@ typedef void		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_RGB)(int animationId, int red,
 	Fill all frames with RGB color where the animation color is zero. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_RGB_NAME)(const char* path, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_RGB_NAME_D)(const char* path, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_ZERO_COLOR_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double red, double green, double blue);
 /*
 	Fill the specified frame with RGB color where the animation color is zero. 
 	Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_ZERO_COLOR_NAME)(const char* path, int frameId, int color);
+typedef void		(*PLUGIN_FILL_ZERO_COLOR_NAME)(const wchar_t* path, int frameId, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_ZERO_COLOR_NAME_D)(const char* path, double frameId, double color);
+typedef double		(*PLUGIN_FILL_ZERO_COLOR_NAME_D)(const wchar_t* path, double frameId, double color);
 /*
 	Fill the specified frame with RGB color where the animation color is zero. 
 	Animation is referenced by id.
@@ -1164,11 +1164,11 @@ typedef void		(*PLUGIN_FILL_ZERO_COLOR_RGB)(int animationId, int frameId, int re
 	Fill the specified frame with RGB color where the animation color is zero. 
 	Animation is referenced by name.
 */
-typedef void		(*PLUGIN_FILL_ZERO_COLOR_RGB_NAME)(const char* path, int frameId, int red, int green, int blue);
+typedef void		(*PLUGIN_FILL_ZERO_COLOR_RGB_NAME)(const wchar_t* path, int frameId, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_FILL_ZERO_COLOR_RGB_NAME_D)(const char* path, double frameId, double red, double green, double blue);
+typedef double		(*PLUGIN_FILL_ZERO_COLOR_RGB_NAME_D)(const wchar_t* path, double frameId, double red, double green, double blue);
 /*
 	Get the animation color for a frame given the `1D` `led`. The `led` should 
 	be greater than or equal to 0 and less than the `MaxLeds`. Animation is 
@@ -1180,11 +1180,11 @@ typedef int			(*PLUGIN_GET_1D_COLOR)(int animationId, int frameId, int led);
 	be greater than or equal to 0 and less than the `MaxLeds`. Animation is 
 	referenced by name.
 */
-typedef int			(*PLUGIN_GET_1D_COLOR_NAME)(const char* path, int frameId, int led);
+typedef int			(*PLUGIN_GET_1D_COLOR_NAME)(const wchar_t* path, int frameId, int led);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_1D_COLOR_NAME_D)(const char* path, double frameId, double led);
+typedef double		(*PLUGIN_GET_1D_COLOR_NAME_D)(const wchar_t* path, double frameId, double led);
 /*
 	Get the animation color for a frame given the `2D` `row` and `column`. The 
 	`row` should be greater than or equal to 0 and less than the `MaxRow`. 
@@ -1198,15 +1198,15 @@ typedef int			(*PLUGIN_GET_2D_COLOR)(int animationId, int frameId, int row, int 
 	The `column` should be greater than or equal to 0 and less than the `MaxColumn`. 
 	Animation is referenced by name.
 */
-typedef int			(*PLUGIN_GET_2D_COLOR_NAME)(const char* path, int frameId, int row, int column);
+typedef int			(*PLUGIN_GET_2D_COLOR_NAME)(const wchar_t* path, int frameId, int row, int column);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_2D_COLOR_NAME_D)(const char* path, double frameId, double row, double column);
+typedef double		(*PLUGIN_GET_2D_COLOR_NAME_D)(const wchar_t* path, double frameId, double row, double column);
 /*
 	Get the animation id for the named animation.
 */
-typedef int			(*PLUGIN_GET_ANIMATION)(const char* name);
+typedef int			(*PLUGIN_GET_ANIMATION)(const wchar_t* name);
 /*
 	`PluginGetAnimationCount` will return the number of loaded animations.
 */
@@ -1214,7 +1214,7 @@ typedef int			(*PLUGIN_GET_ANIMATION_COUNT)();
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_ANIMATION_D)(const char* name);
+typedef double		(*PLUGIN_GET_ANIMATION_D)(const wchar_t* name);
 /*
 	`PluginGetAnimationId` will return the `animationId` given the `index` of 
 	the loaded animation. The `index` is zero-based and less than the number 
@@ -1227,7 +1227,7 @@ typedef int			(*PLUGIN_GET_ANIMATION_ID)(int index);
 	the animation of the `.chroma` animation file. If a name is not available 
 	then an empty string will be returned.
 */
-typedef const char*	(*PLUGIN_GET_ANIMATION_NAME)(int animationId);
+typedef const wchar_t*	(*PLUGIN_GET_ANIMATION_NAME)(int animationId);
 /*
 	Get the current frame of the animation referenced by id.
 */
@@ -1235,11 +1235,11 @@ typedef int			(*PLUGIN_GET_CURRENT_FRAME)(int animationId);
 /*
 	Get the current frame of the animation referenced by name.
 */
-typedef int			(*PLUGIN_GET_CURRENT_FRAME_NAME)(const char* path);
+typedef int			(*PLUGIN_GET_CURRENT_FRAME_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_CURRENT_FRAME_NAME_D)(const char* path);
+typedef double		(*PLUGIN_GET_CURRENT_FRAME_NAME_D)(const wchar_t* path);
 /*
 	Returns the `EChromaSDKDevice1DEnum` or `EChromaSDKDevice2DEnum` of a `Chroma` 
 	animation respective to the `deviceType`, as an integer upon success. Returns 
@@ -1251,11 +1251,11 @@ typedef int			(*PLUGIN_GET_DEVICE)(int animationId);
 	animation respective to the `deviceType`, as an integer upon success. Returns 
 	negative one upon failure.
 */
-typedef int			(*PLUGIN_GET_DEVICE_NAME)(const char* path);
+typedef int			(*PLUGIN_GET_DEVICE_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_DEVICE_NAME_D)(const char* path);
+typedef double		(*PLUGIN_GET_DEVICE_NAME_D)(const wchar_t* path);
 /*
 	Returns the `EChromaSDKDeviceTypeEnum` of a `Chroma` animation as an integer 
 	upon success. Returns negative one upon failure.
@@ -1265,11 +1265,11 @@ typedef int			(*PLUGIN_GET_DEVICE_TYPE)(int animationId);
 	Returns the `EChromaSDKDeviceTypeEnum` of a `Chroma` animation as an integer 
 	upon success. Returns negative one upon failure.
 */
-typedef int			(*PLUGIN_GET_DEVICE_TYPE_NAME)(const char* path);
+typedef int			(*PLUGIN_GET_DEVICE_TYPE_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_DEVICE_TYPE_NAME_D)(const char* path);
+typedef double		(*PLUGIN_GET_DEVICE_TYPE_NAME_D)(const wchar_t* path);
 /*
 	Get the frame colors and duration (in seconds) for a `Chroma` animation 
 	referenced by id. The `color` is expected to be an array of the expected 
@@ -1291,11 +1291,11 @@ typedef int			(*PLUGIN_GET_FRAME_COUNT)(int animationId);
 	Returns the frame count of a `Chroma` animation upon success. Returns negative 
 	one upon failure.
 */
-typedef int			(*PLUGIN_GET_FRAME_COUNT_NAME)(const char* path);
+typedef int			(*PLUGIN_GET_FRAME_COUNT_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_FRAME_COUNT_NAME_D)(const char* path);
+typedef double		(*PLUGIN_GET_FRAME_COUNT_NAME_D)(const wchar_t* path);
 /*
 	Get the frame colors and duration (in seconds) for a `Chroma` animation 
 	referenced by name. The `color` is expected to be an array of the expected 
@@ -1307,7 +1307,7 @@ typedef double		(*PLUGIN_GET_FRAME_COUNT_NAME_D)(const char* path);
 	EChromaSDKDevice2DEnum::DE_Keyboard `MAX_ROW` times `MAX_COLUMN` keysLength. 
 	Returns the animation id upon success. Returns negative one upon failure.
 */
-typedef int			(*PLUGIN_GET_FRAME_NAME)(const char* path, int frameIndex, float* duration, int* colors, int length, int* keys, int keysLength);
+typedef int			(*PLUGIN_GET_FRAME_NAME)(const wchar_t* path, int frameIndex, float* duration, int* colors, int length, int* keys, int keysLength);
 /*
 	Get the color of an animation key for the given frame referenced by id.
 */
@@ -1315,11 +1315,11 @@ typedef int			(*PLUGIN_GET_KEY_COLOR)(int animationId, int frameId, int rzkey);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_GET_KEY_COLOR_D)(const char* path, double frameId, double rzkey);
+typedef double		(*PLUGIN_GET_KEY_COLOR_D)(const wchar_t* path, double frameId, double rzkey);
 /*
 	Get the color of an animation key for the given frame referenced by name.
 */
-typedef int			(*PLUGIN_GET_KEY_COLOR_NAME)(const char* path, int frameId, int rzkey);
+typedef int			(*PLUGIN_GET_KEY_COLOR_NAME)(const wchar_t* path, int frameId, int rzkey);
 /*
 	Returns `RZRESULT_SUCCESS` if the plugin has been initialized successfully. 
 	Returns `RZRESULT_DLL_NOT_FOUND` if core Chroma library is not found. Returns 
@@ -1384,11 +1384,11 @@ typedef bool		(*PLUGIN_HAS_ANIMATION_LOOP)(int animationId);
 /*
 	Check if the animation has loop enabled referenced by name.
 */
-typedef bool		(*PLUGIN_HAS_ANIMATION_LOOP_NAME)(const char* path);
+typedef bool		(*PLUGIN_HAS_ANIMATION_LOOP_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_HAS_ANIMATION_LOOP_NAME_D)(const char* path);
+typedef double		(*PLUGIN_HAS_ANIMATION_LOOP_NAME_D)(const wchar_t* path);
 /*
 	Initialize the ChromaSDK. Zero indicates success, otherwise failure. Many 
 	API methods auto initialize the ChromaSDK if not already initialized.
@@ -1413,11 +1413,11 @@ typedef void		(*PLUGIN_INSERT_DELAY)(int animationId, int frameId, int delay);
 	Insert an animation delay by duplicating the frame by the delay number of 
 	times. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_INSERT_DELAY_NAME)(const char* path, int frameId, int delay);
+typedef void		(*PLUGIN_INSERT_DELAY_NAME)(const wchar_t* path, int frameId, int delay);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_INSERT_DELAY_NAME_D)(const char* path, double frameId, double delay);
+typedef double		(*PLUGIN_INSERT_DELAY_NAME_D)(const wchar_t* path, double frameId, double delay);
 /*
 	Duplicate the source frame index at the target frame index. Animation is 
 	referenced by id.
@@ -1427,11 +1427,11 @@ typedef void		(*PLUGIN_INSERT_FRAME)(int animationId, int sourceFrame, int targe
 	Duplicate the source frame index at the target frame index. Animation is 
 	referenced by name.
 */
-typedef void		(*PLUGIN_INSERT_FRAME_NAME)(const char* path, int sourceFrame, int targetFrame);
+typedef void		(*PLUGIN_INSERT_FRAME_NAME)(const wchar_t* path, int sourceFrame, int targetFrame);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_INSERT_FRAME_NAME_D)(const char* path, double sourceFrame, double targetFrame);
+typedef double		(*PLUGIN_INSERT_FRAME_NAME_D)(const wchar_t* path, double sourceFrame, double targetFrame);
 /*
 	Invert all the colors at the specified frame. Animation is referenced by 
 	id.
@@ -1444,20 +1444,20 @@ typedef void		(*PLUGIN_INVERT_COLORS_ALL_FRAMES)(int animationId);
 /*
 	Invert all the colors for all frames. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_INVERT_COLORS_ALL_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_INVERT_COLORS_ALL_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_INVERT_COLORS_ALL_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_INVERT_COLORS_ALL_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Invert all the colors at the specified frame. Animation is referenced by 
 	name.
 */
-typedef void		(*PLUGIN_INVERT_COLORS_NAME)(const char* path, int frameId);
+typedef void		(*PLUGIN_INVERT_COLORS_NAME)(const wchar_t* path, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_INVERT_COLORS_NAME_D)(const char* path, double frameId);
+typedef double		(*PLUGIN_INVERT_COLORS_NAME_D)(const wchar_t* path, double frameId);
 /*
 	Check if the animation is paused referenced by id.
 */
@@ -1465,11 +1465,11 @@ typedef bool		(*PLUGIN_IS_ANIMATION_PAUSED)(int animationId);
 /*
 	Check if the animation is paused referenced by name.
 */
-typedef bool		(*PLUGIN_IS_ANIMATION_PAUSED_NAME)(const char* path);
+typedef bool		(*PLUGIN_IS_ANIMATION_PAUSED_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_IS_ANIMATION_PAUSED_NAME_D)(const char* path);
+typedef double		(*PLUGIN_IS_ANIMATION_PAUSED_NAME_D)(const wchar_t* path);
 /*
 	The editor dialog is a non-blocking modal window, this method returns true 
 	if the modal window is open, otherwise false.
@@ -1513,11 +1513,11 @@ typedef double		(*PLUGIN_IS_PLAYING_D)(double animationId);
 	will return whether the animation is playing or not. Animation is referenced 
 	by name.
 */
-typedef bool		(*PLUGIN_IS_PLAYING_NAME)(const char* path);
+typedef bool		(*PLUGIN_IS_PLAYING_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_IS_PLAYING_NAME_D)(const char* path);
+typedef double		(*PLUGIN_IS_PLAYING_NAME_D)(const wchar_t* path);
 /*
 	`PluginIsPlayingType` automatically handles initializing the `ChromaSDK`. 
 	If any animation is playing for the `deviceType` and `device` combination, 
@@ -1548,11 +1548,11 @@ typedef double		(*PLUGIN_LOAD_ANIMATION_D)(double animationId);
 /*
 	Load the named animation.
 */
-typedef void		(*PLUGIN_LOAD_ANIMATION_NAME)(const char* path);
+typedef void		(*PLUGIN_LOAD_ANIMATION_NAME)(const wchar_t* path);
 /*
 	Load a composite set of animations.
 */
-typedef void		(*PLUGIN_LOAD_COMPOSITE)(const char* name);
+typedef void		(*PLUGIN_LOAD_COMPOSITE)(const wchar_t* name);
 /*
 	Make a blank animation for the length of the frame count. Frame duration 
 	defaults to the duration. The frame color defaults to color. Animation 
@@ -1564,11 +1564,11 @@ typedef void		(*PLUGIN_MAKE_BLANK_FRAMES)(int animationId, int frameCount, float
 	defaults to the duration. The frame color defaults to color. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_NAME)(const char* path, int frameCount, float duration, int color);
+typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_NAME)(const wchar_t* path, int frameCount, float duration, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_NAME_D)(const char* path, double frameCount, double duration, double color);
+typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_NAME_D)(const wchar_t* path, double frameCount, double duration, double color);
 /*
 	Make a blank animation for the length of the frame count. Frame duration 
 	defaults to the duration. The frame color is random. Animation is referenced 
@@ -1586,21 +1586,21 @@ typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_BLACK_AND_WHITE)(int animationId
 	defaults to the duration. The frame color is random black and white. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_BLACK_AND_WHITE_NAME)(const char* path, int frameCount, float duration);
+typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_BLACK_AND_WHITE_NAME)(const wchar_t* path, int frameCount, float duration);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_BLACK_AND_WHITE_NAME_D)(const char* path, double frameCount, double duration);
+typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_BLACK_AND_WHITE_NAME_D)(const wchar_t* path, double frameCount, double duration);
 /*
 	Make a blank animation for the length of the frame count. Frame duration 
 	defaults to the duration. The frame color is random. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_NAME)(const char* path, int frameCount, float duration);
+typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_NAME)(const wchar_t* path, int frameCount, float duration);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_NAME_D)(const char* path, double frameCount, double duration);
+typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_RANDOM_NAME_D)(const wchar_t* path, double frameCount, double duration);
 /*
 	Make a blank animation for the length of the frame count. Frame duration 
 	defaults to the duration. The frame color defaults to color. Animation 
@@ -1612,11 +1612,11 @@ typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RGB)(int animationId, int frameCount, f
 	defaults to the duration. The frame color defaults to color. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RGB_NAME)(const char* path, int frameCount, float duration, int red, int green, int blue);
+typedef void		(*PLUGIN_MAKE_BLANK_FRAMES_RGB_NAME)(const wchar_t* path, int frameCount, float duration, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_RGB_NAME_D)(const char* path, double frameCount, double duration, double red, double green, double blue);
+typedef double		(*PLUGIN_MAKE_BLANK_FRAMES_RGB_NAME_D)(const wchar_t* path, double frameCount, double duration, double red, double green, double blue);
 /*
 	Flips the color grid horizontally for all `Chroma` animation frames. Returns 
 	the animation id upon success. Returns negative one upon failure.
@@ -1639,11 +1639,11 @@ typedef void		(*PLUGIN_MULTIPLY_COLOR_LERP_ALL_FRAMES)(int animationId, int colo
 	2 using the frame index divided by the frame count for the `t` parameter. 
 	Animation is referenced in name.
 */
-typedef void		(*PLUGIN_MULTIPLY_COLOR_LERP_ALL_FRAMES_NAME)(const char* path, int color1, int color2);
+typedef void		(*PLUGIN_MULTIPLY_COLOR_LERP_ALL_FRAMES_NAME)(const wchar_t* path, int color1, int color2);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_COLOR_LERP_ALL_FRAMES_NAME_D)(const char* path, double color1, double color2);
+typedef double		(*PLUGIN_MULTIPLY_COLOR_LERP_ALL_FRAMES_NAME_D)(const wchar_t* path, double color1, double color2);
 /*
 	Multiply all the colors in the frame by the intensity value. The valid the 
 	intensity range is from 0.0 to 255.0. RGB components are multiplied equally. 
@@ -1664,11 +1664,11 @@ typedef void		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES)(int animationId, float int
 	equally. An intensity of 0.5 would half the color value. Black colors in 
 	the frame will not be affected by this method.
 */
-typedef void		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_NAME)(const char* path, float intensity);
+typedef void		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_NAME)(const wchar_t* path, float intensity);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_NAME_D)(const char* path, double intensity);
+typedef double		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_NAME_D)(const wchar_t* path, double intensity);
 /*
 	Multiply all frames by the RBG color intensity. Animation is referenced 
 	by id.
@@ -1678,11 +1678,11 @@ typedef void		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_RGB)(int animationId, int r
 	Multiply all frames by the RBG color intensity. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_RGB_NAME)(const char* path, int red, int green, int blue);
+typedef void		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_RGB_NAME_D)(const char* path, double red, double green, double blue);
+typedef double		(*PLUGIN_MULTIPLY_INTENSITY_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double red, double green, double blue);
 /*
 	Multiply the specific frame by the RBG color intensity. Animation is referenced 
 	by id.
@@ -1697,31 +1697,31 @@ typedef void		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_ALL_FRAMES)(int animationId, int
 	Multiply all frames by the RBG color intensity. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_ALL_FRAMES_NAME)(const char* path, int color);
+typedef void		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_ALL_FRAMES_NAME_D)(const char* path, double color);
+typedef double		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* path, double color);
 /*
 	Multiply the specific frame by the RBG color intensity. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_NAME)(const char* path, int frameId, int color);
+typedef void		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_NAME)(const wchar_t* path, int frameId, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_NAME_D)(const char* path, double frameId, double color);
+typedef double		(*PLUGIN_MULTIPLY_INTENSITY_COLOR_NAME_D)(const wchar_t* path, double frameId, double color);
 /*
 	Multiply all the colors in the frame by the intensity value. The valid the 
 	intensity range is from 0.0 to 255.0. RGB components are multiplied equally. 
 	An intensity of 0.5 would half the color value. Black colors in the frame 
 	will not be affected by this method.
 */
-typedef void		(*PLUGIN_MULTIPLY_INTENSITY_NAME)(const char* path, int frameId, float intensity);
+typedef void		(*PLUGIN_MULTIPLY_INTENSITY_NAME)(const wchar_t* path, int frameId, float intensity);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_INTENSITY_NAME_D)(const char* path, double frameId, double intensity);
+typedef double		(*PLUGIN_MULTIPLY_INTENSITY_NAME_D)(const wchar_t* path, double frameId, double intensity);
 /*
 	Multiply the specific frame by the RBG color intensity. Animation is referenced 
 	by id.
@@ -1731,11 +1731,11 @@ typedef void		(*PLUGIN_MULTIPLY_INTENSITY_RGB)(int animationId, int frameId, int
 	Multiply the specific frame by the RBG color intensity. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_INTENSITY_RGB_NAME)(const char* path, int frameId, int red, int green, int blue);
+typedef void		(*PLUGIN_MULTIPLY_INTENSITY_RGB_NAME)(const wchar_t* path, int frameId, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_INTENSITY_RGB_NAME_D)(const char* path, double frameId, double red, double green, double blue);
+typedef double		(*PLUGIN_MULTIPLY_INTENSITY_RGB_NAME_D)(const wchar_t* path, double frameId, double red, double green, double blue);
 /*
 	Multiply the specific frame by the color lerp result between color 1 and 
 	2 using the frame color value as the `t` value. Animation is referenced 
@@ -1751,11 +1751,11 @@ typedef void		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES)(int anima
 	Multiply all frames by the color lerp result between color 1 and 2 using 
 	the frame color value as the `t` value. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_NAME)(const char* path, int color1, int color2);
+typedef void		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_NAME)(const wchar_t* path, int color1, int color2);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_NAME_D)(const char* path, double color1, double color2);
+typedef double		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_NAME_D)(const wchar_t* path, double color1, double color2);
 /*
 	Multiply the specific frame by the color lerp result between RGB 1 and 2 
 	using the frame color value as the `t` value. Animation is referenced by 
@@ -1767,11 +1767,11 @@ typedef void		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_RGB)(int a
 	using the frame color value as the `t` value. Animation is referenced by 
 	name.
 */
-typedef void		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME)(const char* path, int red1, int green1, int blue1, int red2, int green2, int blue2);
+typedef void		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int red1, int green1, int blue1, int red2, int green2, int blue2);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME_D)(const char* path, double red1, double green1, double blue1, double red2, double green2, double blue2);
+typedef double		(*PLUGIN_MULTIPLY_NON_ZERO_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double red1, double green1, double blue1, double red2, double green2, double blue2);
 /*
 	Multiply the specific frame by the color lerp result between color 1 and 
 	2 using the frame color value as the `t` value. Animation is referenced 
@@ -1787,11 +1787,11 @@ typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES)(int animationId, i
 	Multiply all frames by the color lerp result between color 1 and 2 using 
 	the frame color value as the `t` value. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_NAME)(const char* path, int color1, int color2);
+typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_NAME)(const wchar_t* path, int color1, int color2);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_NAME_D)(const char* path, double color1, double color2);
+typedef double		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_NAME_D)(const wchar_t* path, double color1, double color2);
 /*
 	Multiply all frames by the color lerp result between RGB 1 and 2 using the 
 	frame color value as the `t` value. Animation is referenced by id.
@@ -1801,17 +1801,17 @@ typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_RGB)(int animationI
 	Multiply all frames by the color lerp result between RGB 1 and 2 using the 
 	frame color value as the `t` value. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME)(const char* path, int red1, int green1, int blue1, int red2, int green2, int blue2);
+typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int red1, int green1, int blue1, int red2, int green2, int blue2);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME_D)(const char* path, double red1, double green1, double blue1, double red2, double green2, double blue2);
+typedef double		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double red1, double green1, double blue1, double red2, double green2, double blue2);
 /*
 	Multiply the specific frame by the color lerp result between color 1 and 
 	2 using the frame color value as the `t` value. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_NAME)(const char* path, int frameId, int color1, int color2);
+typedef void		(*PLUGIN_MULTIPLY_TARGET_COLOR_LERP_NAME)(const wchar_t* path, int frameId, int color1, int color2);
 /*
 	Offset all colors in the frame using the RGB offset. Use the range of -255 
 	to 255 for red, green, and blue parameters. Negative values remove color. 
@@ -1829,21 +1829,21 @@ typedef void		(*PLUGIN_OFFSET_COLORS_ALL_FRAMES)(int animationId, int red, int g
 	-255 to 255 for red, green, and blue parameters. Negative values remove 
 	color. Positive values add color.
 */
-typedef void		(*PLUGIN_OFFSET_COLORS_ALL_FRAMES_NAME)(const char* path, int red, int green, int blue);
+typedef void		(*PLUGIN_OFFSET_COLORS_ALL_FRAMES_NAME)(const wchar_t* path, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OFFSET_COLORS_ALL_FRAMES_NAME_D)(const char* path, double red, double green, double blue);
+typedef double		(*PLUGIN_OFFSET_COLORS_ALL_FRAMES_NAME_D)(const wchar_t* path, double red, double green, double blue);
 /*
 	Offset all colors in the frame using the RGB offset. Use the range of -255 
 	to 255 for red, green, and blue parameters. Negative values remove color. 
 	Positive values add color.
 */
-typedef void		(*PLUGIN_OFFSET_COLORS_NAME)(const char* path, int frameId, int red, int green, int blue);
+typedef void		(*PLUGIN_OFFSET_COLORS_NAME)(const wchar_t* path, int frameId, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OFFSET_COLORS_NAME_D)(const char* path, double frameId, double red, double green, double blue);
+typedef double		(*PLUGIN_OFFSET_COLORS_NAME_D)(const wchar_t* path, double frameId, double red, double green, double blue);
 /*
 	This method will only update colors in the animation that are not already 
 	set to black. Offset a subset of colors in the frame using the RGB offset. 
@@ -1864,32 +1864,32 @@ typedef void		(*PLUGIN_OFFSET_NON_ZERO_COLORS_ALL_FRAMES)(int animationId, int r
 	Use the range of -255 to 255 for red, green, and blue parameters. Negative 
 	values remove color. Positive values add color.
 */
-typedef void		(*PLUGIN_OFFSET_NON_ZERO_COLORS_ALL_FRAMES_NAME)(const char* path, int red, int green, int blue);
+typedef void		(*PLUGIN_OFFSET_NON_ZERO_COLORS_ALL_FRAMES_NAME)(const wchar_t* path, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OFFSET_NON_ZERO_COLORS_ALL_FRAMES_NAME_D)(const char* path, double red, double green, double blue);
+typedef double		(*PLUGIN_OFFSET_NON_ZERO_COLORS_ALL_FRAMES_NAME_D)(const wchar_t* path, double red, double green, double blue);
 /*
 	This method will only update colors in the animation that are not already 
 	set to black. Offset a subset of colors in the frame using the RGB offset. 
 	Use the range of -255 to 255 for red, green, and blue parameters. Negative 
 	values remove color. Positive values add color.
 */
-typedef void		(*PLUGIN_OFFSET_NON_ZERO_COLORS_NAME)(const char* path, int frameId, int red, int green, int blue);
+typedef void		(*PLUGIN_OFFSET_NON_ZERO_COLORS_NAME)(const wchar_t* path, int frameId, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OFFSET_NON_ZERO_COLORS_NAME_D)(const char* path, double frameId, double red, double green, double blue);
+typedef double		(*PLUGIN_OFFSET_NON_ZERO_COLORS_NAME_D)(const wchar_t* path, double frameId, double red, double green, double blue);
 /*
 	Opens a `Chroma` animation file so that it can be played. Returns an animation 
 	id >= 0 upon success. Returns negative one if there was a failure. The 
 	animation id is used in most of the API methods.
 */
-typedef int			(*PLUGIN_OPEN_ANIMATION)(const char* path);
+typedef int			(*PLUGIN_OPEN_ANIMATION)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OPEN_ANIMATION_D)(const char* path);
+typedef double		(*PLUGIN_OPEN_ANIMATION_D)(const wchar_t* path);
 /*
 	Opens a `Chroma` animation data from memory so that it can be played. `Data` 
 	is a pointer to BYTE array of the loaded animation in memory. `Name` will 
@@ -1897,25 +1897,25 @@ typedef double		(*PLUGIN_OPEN_ANIMATION_D)(const char* path);
 	upon success. Returns negative one if there was a failure. The animation 
 	id is used in most of the API methods.
 */
-typedef int			(*PLUGIN_OPEN_ANIMATION_FROM_MEMORY)(const BYTE* data, const char* name);
+typedef int			(*PLUGIN_OPEN_ANIMATION_FROM_MEMORY)(const BYTE* data, const wchar_t* name);
 /*
 	Opens a `Chroma` animation file with the `.chroma` extension. Returns zero 
 	upon success. Returns negative one if there was a failure.
 */
-typedef int			(*PLUGIN_OPEN_EDITOR_DIALOG)(const char* path);
+typedef int			(*PLUGIN_OPEN_EDITOR_DIALOG)(const wchar_t* path);
 /*
 	Open the named animation in the editor dialog and play the animation at 
 	start.
 */
-typedef int			(*PLUGIN_OPEN_EDITOR_DIALOG_AND_PLAY)(const char* path);
+typedef int			(*PLUGIN_OPEN_EDITOR_DIALOG_AND_PLAY)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OPEN_EDITOR_DIALOG_AND_PLAY_D)(const char* path);
+typedef double		(*PLUGIN_OPEN_EDITOR_DIALOG_AND_PLAY_D)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_OPEN_EDITOR_DIALOG_D)(const char* path);
+typedef double		(*PLUGIN_OPEN_EDITOR_DIALOG_D)(const wchar_t* path);
 /*
 	Sets the `duration` for all grames in the `Chroma` animation to the `duration` 
 	parameter. Returns the animation id upon success. Returns negative one 
@@ -1930,7 +1930,7 @@ typedef double		(*PLUGIN_OVERRIDE_FRAME_DURATION_D)(double animationId, double d
 	Override the duration of all frames with the `duration` value. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_OVERRIDE_FRAME_DURATION_NAME)(const char* path, float duration);
+typedef void		(*PLUGIN_OVERRIDE_FRAME_DURATION_NAME)(const wchar_t* path, float duration);
 /*
 	Pause the current animation referenced by id.
 */
@@ -1938,11 +1938,11 @@ typedef void		(*PLUGIN_PAUSE_ANIMATION)(int animationId);
 /*
 	Pause the current animation referenced by name.
 */
-typedef void		(*PLUGIN_PAUSE_ANIMATION_NAME)(const char* path);
+typedef void		(*PLUGIN_PAUSE_ANIMATION_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_PAUSE_ANIMATION_NAME_D)(const char* path);
+typedef double		(*PLUGIN_PAUSE_ANIMATION_NAME_D)(const wchar_t* path);
 /*
 	Plays the `Chroma` animation. This will load the animation, if not loaded 
 	previously. Returns the animation id upon success. Returns negative one 
@@ -1964,11 +1964,11 @@ typedef void		(*PLUGIN_PLAY_ANIMATION_FRAME)(int animationId, int frameId, bool 
 	The named `.chroma` animation file will be automatically opened. The animation 
 	will play with looping `on` or `off` starting at the `frameId`.
 */
-typedef void		(*PLUGIN_PLAY_ANIMATION_FRAME_NAME)(const char* path, int frameId, bool loop);
+typedef void		(*PLUGIN_PLAY_ANIMATION_FRAME_NAME)(const wchar_t* path, int frameId, bool loop);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_PLAY_ANIMATION_FRAME_NAME_D)(const char* path, double frameId, double loop);
+typedef double		(*PLUGIN_PLAY_ANIMATION_FRAME_NAME_D)(const wchar_t* path, double frameId, double loop);
 /*
 	`PluginPlayAnimationLoop` automatically handles initializing the `ChromaSDK`. 
 	The method will play the animation given the `animationId` with looping 
@@ -1980,21 +1980,21 @@ typedef void		(*PLUGIN_PLAY_ANIMATION_LOOP)(int animationId, bool loop);
 	The named `.chroma` animation file will be automatically opened. The animation 
 	will play with looping `on` or `off`.
 */
-typedef void		(*PLUGIN_PLAY_ANIMATION_NAME)(const char* path, bool loop);
+typedef void		(*PLUGIN_PLAY_ANIMATION_NAME)(const wchar_t* path, bool loop);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_PLAY_ANIMATION_NAME_D)(const char* path, double loop);
+typedef double		(*PLUGIN_PLAY_ANIMATION_NAME_D)(const wchar_t* path, double loop);
 /*
 	`PluginPlayComposite` automatically handles initializing the `ChromaSDK`. 
 	The named animation files for the `.chroma` set will be automatically opened. 
 	The set of animations will play with looping `on` or `off`.
 */
-typedef void		(*PLUGIN_PLAY_COMPOSITE)(const char* name, bool loop);
+typedef void		(*PLUGIN_PLAY_COMPOSITE)(const wchar_t* name, bool loop);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_PLAY_COMPOSITE_D)(const char* name, double loop);
+typedef double		(*PLUGIN_PLAY_COMPOSITE_D)(const wchar_t* name, double loop);
 /*
 	Displays the `Chroma` animation frame on `Chroma` hardware given the `frameIndex`. 
 	Returns the animation id upon success. Returns negative one upon failure.
@@ -2008,7 +2008,7 @@ typedef double		(*PLUGIN_PREVIEW_FRAME_D)(double animationId, double frameIndex)
 	Displays the `Chroma` animation frame on `Chroma` hardware given the `frameIndex`. 
 	Animaton is referenced by name.
 */
-typedef void		(*PLUGIN_PREVIEW_FRAME_NAME)(const char* path, int frameIndex);
+typedef void		(*PLUGIN_PREVIEW_FRAME_NAME)(const wchar_t* path, int frameIndex);
 /*
 	Reduce the frames of the animation by removing every nth element. Animation 
 	is referenced by id.
@@ -2018,11 +2018,11 @@ typedef void		(*PLUGIN_REDUCE_FRAMES)(int animationId, int n);
 	Reduce the frames of the animation by removing every nth element. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_REDUCE_FRAMES_NAME)(const char* path, int n);
+typedef void		(*PLUGIN_REDUCE_FRAMES_NAME)(const wchar_t* path, int n);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_REDUCE_FRAMES_NAME_D)(const char* path, double n);
+typedef double		(*PLUGIN_REDUCE_FRAMES_NAME_D)(const wchar_t* path, double n);
 /*
 	Resets the `Chroma` animation to 1 blank frame. Returns the animation id 
 	upon success. Returns negative one upon failure.
@@ -2035,11 +2035,11 @@ typedef void		(*PLUGIN_RESUME_ANIMATION)(int animationId, bool loop);
 /*
 	Resume the animation with loop `ON` or `OFF` referenced by name.
 */
-typedef void		(*PLUGIN_RESUME_ANIMATION_NAME)(const char* path, bool loop);
+typedef void		(*PLUGIN_RESUME_ANIMATION_NAME)(const wchar_t* path, bool loop);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_RESUME_ANIMATION_NAME_D)(const char* path, double loop);
+typedef double		(*PLUGIN_RESUME_ANIMATION_NAME_D)(const wchar_t* path, double loop);
 /*
 	Reverse the animation frame order of the `Chroma` animation. Returns the 
 	animation id upon success. Returns negative one upon failure. Animation 
@@ -2055,19 +2055,19 @@ typedef void		(*PLUGIN_REVERSE_ALL_FRAMES)(int animationId);
 	Reverse the animation frame order of the `Chroma` animation. Animation is 
 	referenced by name.
 */
-typedef void		(*PLUGIN_REVERSE_ALL_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_REVERSE_ALL_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_REVERSE_ALL_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_REVERSE_ALL_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Save the animation referenced by id to the path specified.
 */
-typedef int			(*PLUGIN_SAVE_ANIMATION)(int animationId, const char* path);
+typedef int			(*PLUGIN_SAVE_ANIMATION)(int animationId, const wchar_t* path);
 /*
 	Save the named animation to the target path specified.
 */
-typedef int			(*PLUGIN_SAVE_ANIMATION_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef int			(*PLUGIN_SAVE_ANIMATION_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Set the animation color for a frame given the `1D` `led`. The `led` should 
 	be greater than or equal to 0 and less than the `MaxLeds`. The animation 
@@ -2079,11 +2079,11 @@ typedef void		(*PLUGIN_SET_1D_COLOR)(int animationId, int frameId, int led, int 
 	be greater than or equal to 0 and less than the `MaxLeds`. The animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_1D_COLOR_NAME)(const char* path, int frameId, int led, int color);
+typedef void		(*PLUGIN_SET_1D_COLOR_NAME)(const wchar_t* path, int frameId, int led, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_1D_COLOR_NAME_D)(const char* path, double frameId, double led, double color);
+typedef double		(*PLUGIN_SET_1D_COLOR_NAME_D)(const wchar_t* path, double frameId, double led, double color);
 /*
 	Set the animation color for a frame given the `2D` `row` and `column`. The 
 	`row` should be greater than or equal to 0 and less than the `MaxRow`. 
@@ -2097,11 +2097,11 @@ typedef void		(*PLUGIN_SET_2D_COLOR)(int animationId, int frameId, int row, int 
 	The `column` should be greater than or equal to 0 and less than the `MaxColumn`. 
 	The animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_2D_COLOR_NAME)(const char* path, int frameId, int row, int column, int color);
+typedef void		(*PLUGIN_SET_2D_COLOR_NAME)(const wchar_t* path, int frameId, int row, int column, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_2D_COLOR_NAME_D)(const char* path, double frameId, double rowColumnIndex, double color);
+typedef double		(*PLUGIN_SET_2D_COLOR_NAME_D)(const wchar_t* path, double frameId, double rowColumnIndex, double color);
 /*
 	When custom color is set, the custom key mode will be used. The animation 
 	is referenced by id.
@@ -2111,11 +2111,11 @@ typedef void		(*PLUGIN_SET_CHROMA_CUSTOM_COLOR_ALL_FRAMES)(int animationId);
 	When custom color is set, the custom key mode will be used. The animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_CHROMA_CUSTOM_COLOR_ALL_FRAMES_NAME)(const char* path);
+typedef void		(*PLUGIN_SET_CHROMA_CUSTOM_COLOR_ALL_FRAMES_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_CHROMA_CUSTOM_COLOR_ALL_FRAMES_NAME_D)(const char* path);
+typedef double		(*PLUGIN_SET_CHROMA_CUSTOM_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* path);
 /*
 	Set the Chroma custom key color flag on all frames. `True` changes the layout 
 	from grid to key. `True` changes the layout from key to grid. Animation 
@@ -2127,11 +2127,11 @@ typedef void		(*PLUGIN_SET_CHROMA_CUSTOM_FLAG)(int animationId, bool flag);
 	from grid to key. `True` changes the layout from key to grid. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_CHROMA_CUSTOM_FLAG_NAME)(const char* path, bool flag);
+typedef void		(*PLUGIN_SET_CHROMA_CUSTOM_FLAG_NAME)(const wchar_t* path, bool flag);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_CHROMA_CUSTOM_FLAG_NAME_D)(const char* path, double flag);
+typedef double		(*PLUGIN_SET_CHROMA_CUSTOM_FLAG_NAME_D)(const wchar_t* path, double flag);
 /*
 	Set the current frame of the animation referenced by id.
 */
@@ -2139,11 +2139,11 @@ typedef void		(*PLUGIN_SET_CURRENT_FRAME)(int animationId, int frameId);
 /*
 	Set the current frame of the animation referenced by name.
 */
-typedef void		(*PLUGIN_SET_CURRENT_FRAME_NAME)(const char* path, int frameId);
+typedef void		(*PLUGIN_SET_CURRENT_FRAME_NAME)(const wchar_t* path, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_CURRENT_FRAME_NAME_D)(const char* path, double frameId);
+typedef double		(*PLUGIN_SET_CURRENT_FRAME_NAME_D)(const wchar_t* path, double frameId);
 /*
 	Set the custom alpha flag on the color array
 */
@@ -2181,7 +2181,7 @@ typedef void		(*PLUGIN_SET_IDLE_ANIMATION)(int animationId);
 	When the idle animation is used, the named animation will play when no other 
 	animations are playing. Reference the animation by name.
 */
-typedef void		(*PLUGIN_SET_IDLE_ANIMATION_NAME)(const char* path);
+typedef void		(*PLUGIN_SET_IDLE_ANIMATION_NAME)(const wchar_t* path);
 /*
 	Set animation key to a static color for the given frame.
 */
@@ -2195,11 +2195,11 @@ typedef void		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES)(int animationId, int rzkey, int
 	Set the key to the specified key color for all frames. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_NAME)(const char* path, int rzkey, int color);
+typedef void		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, int rzkey, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_NAME_D)(const char* path, double rzkey, double color);
+typedef double		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_NAME_D)(const wchar_t* path, double rzkey, double color);
 /*
 	Set the key to the specified key color for all frames. Animation is referenced 
 	by id.
@@ -2209,19 +2209,19 @@ typedef void		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_RGB)(int animationId, int rzkey,
 	Set the key to the specified key color for all frames. Animation is referenced 
 	by name.
 */
-typedef void		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_RGB_NAME)(const char* path, int rzkey, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_RGB_NAME)(const wchar_t* path, int rzkey, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_RGB_NAME_D)(const char* path, double rzkey, double red, double green, double blue);
+typedef double		(*PLUGIN_SET_KEY_COLOR_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double rzkey, double red, double green, double blue);
 /*
 	Set animation key to a static color for the given frame.
 */
-typedef void		(*PLUGIN_SET_KEY_COLOR_NAME)(const char* path, int frameId, int rzkey, int color);
+typedef void		(*PLUGIN_SET_KEY_COLOR_NAME)(const wchar_t* path, int frameId, int rzkey, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_COLOR_NAME_D)(const char* path, double frameId, double rzkey, double color);
+typedef double		(*PLUGIN_SET_KEY_COLOR_NAME_D)(const wchar_t* path, double frameId, double rzkey, double color);
 /*
 	Set the key to the specified key color for the specified frame. Animation 
 	is referenced by id.
@@ -2231,11 +2231,11 @@ typedef void		(*PLUGIN_SET_KEY_COLOR_RGB)(int animationId, int frameId, int rzke
 	Set the key to the specified key color for the specified frame. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEY_COLOR_RGB_NAME)(const char* path, int frameId, int rzkey, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEY_COLOR_RGB_NAME)(const wchar_t* path, int frameId, int rzkey, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_COLOR_RGB_NAME_D)(const char* path, double frameId, double rzkey, double red, double green, double blue);
+typedef double		(*PLUGIN_SET_KEY_COLOR_RGB_NAME_D)(const wchar_t* path, double frameId, double rzkey, double red, double green, double blue);
 /*
 	Set animation key to a static color for the given frame if the existing 
 	color is not already black.
@@ -2245,11 +2245,11 @@ typedef void		(*PLUGIN_SET_KEY_NON_ZERO_COLOR)(int animationId, int frameId, int
 	Set animation key to a static color for the given frame if the existing 
 	color is not already black.
 */
-typedef void		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_NAME)(const char* path, int frameId, int rzkey, int color);
+typedef void		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_NAME)(const wchar_t* path, int frameId, int rzkey, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_NAME_D)(const char* path, double frameId, double rzkey, double color);
+typedef double		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_NAME_D)(const wchar_t* path, double frameId, double rzkey, double color);
 /*
 	Set the key to the specified key color for the specified frame where color 
 	is not black. Animation is referenced by id.
@@ -2259,15 +2259,15 @@ typedef void		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_RGB)(int animationId, int frameId,
 	Set the key to the specified key color for the specified frame where color 
 	is not black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_RGB_NAME)(const char* path, int frameId, int rzkey, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_RGB_NAME)(const wchar_t* path, int frameId, int rzkey, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_RGB_NAME_D)(const char* path, double frameId, double rzkey, double red, double green, double blue);
+typedef double		(*PLUGIN_SET_KEY_NON_ZERO_COLOR_RGB_NAME_D)(const wchar_t* path, double frameId, double rzkey, double red, double green, double blue);
 /*
 	Set animation key by row and column to a static color for the given frame.
 */
-typedef void		(*PLUGIN_SET_KEY_ROW_COLUMN_COLOR_NAME)(const char* path, int frameId, int row, int column, int color);
+typedef void		(*PLUGIN_SET_KEY_ROW_COLUMN_COLOR_NAME)(const wchar_t* path, int frameId, int row, int column, int color);
 /*
 	Set an array of animation keys to a static color for the given frame. Animation 
 	is referenced by id.
@@ -2282,7 +2282,7 @@ typedef void		(*PLUGIN_SET_KEYS_COLOR_ALL_FRAMES)(int animationId, const int* rz
 	Set an array of animation keys to a static color for all frames. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_COLOR_ALL_FRAMES_NAME)(const char* path, const int* rzkeys, int keyCount, int color);
+typedef void		(*PLUGIN_SET_KEYS_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, const int* rzkeys, int keyCount, int color);
 /*
 	Set an array of animation keys to a static color for all frames. Animation 
 	is referenced by id.
@@ -2292,11 +2292,11 @@ typedef void		(*PLUGIN_SET_KEYS_COLOR_ALL_FRAMES_RGB)(int animationId, const int
 	Set an array of animation keys to a static color for all frames. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_COLOR_ALL_FRAMES_RGB_NAME)(const char* path, const int* rzkeys, int keyCount, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEYS_COLOR_ALL_FRAMES_RGB_NAME)(const wchar_t* path, const int* rzkeys, int keyCount, int red, int green, int blue);
 /*
 	Set an array of animation keys to a static color for the given frame.
 */
-typedef void		(*PLUGIN_SET_KEYS_COLOR_NAME)(const char* path, int frameId, const int* rzkeys, int keyCount, int color);
+typedef void		(*PLUGIN_SET_KEYS_COLOR_NAME)(const wchar_t* path, int frameId, const int* rzkeys, int keyCount, int color);
 /*
 	Set an array of animation keys to a static color for the given frame. Animation 
 	is referenced by id.
@@ -2306,7 +2306,7 @@ typedef void		(*PLUGIN_SET_KEYS_COLOR_RGB)(int animationId, int frameId, const i
 	Set an array of animation keys to a static color for the given frame. Animation 
 	is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_COLOR_RGB_NAME)(const char* path, int frameId, const int* rzkeys, int keyCount, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEYS_COLOR_RGB_NAME)(const wchar_t* path, int frameId, const int* rzkeys, int keyCount, int red, int green, int blue);
 /*
 	Set an array of animation keys to a static color for the given frame if 
 	the existing color is not already black.
@@ -2321,12 +2321,12 @@ typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_ALL_FRAMES)(int animationId, cons
 	Set an array of animation keys to a static color for all frames if the existing 
 	color is not already black. Reference animation by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_ALL_FRAMES_NAME)(const char* path, const int* rzkeys, int keyCount, int color);
+typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, const int* rzkeys, int keyCount, int color);
 /*
 	Set an array of animation keys to a static color for the given frame if 
 	the existing color is not already black. Reference animation by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_NAME)(const char* path, int frameId, const int* rzkeys, int keyCount, int color);
+typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_NAME)(const wchar_t* path, int frameId, const int* rzkeys, int keyCount, int color);
 /*
 	Set an array of animation keys to a static color for the given frame where 
 	the color is not black. Animation is referenced by id.
@@ -2336,7 +2336,7 @@ typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_RGB)(int animationId, int frameId
 	Set an array of animation keys to a static color for the given frame where 
 	the color is not black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_RGB_NAME)(const char* path, int frameId, const int* rzkeys, int keyCount, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEYS_NON_ZERO_COLOR_RGB_NAME)(const wchar_t* path, int frameId, const int* rzkeys, int keyCount, int red, int green, int blue);
 /*
 	Set an array of animation keys to a static color for the given frame where 
 	the color is black. Animation is referenced by id.
@@ -2351,7 +2351,7 @@ typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_ALL_FRAMES)(int animationId, const in
 	Set an array of animation keys to a static color for all frames where the 
 	color is black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_ALL_FRAMES_NAME)(const char* path, const int* rzkeys, int keyCount, int color);
+typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_ALL_FRAMES_NAME)(const wchar_t* path, const int* rzkeys, int keyCount, int color);
 /*
 	Set an array of animation keys to a static color for all frames where the 
 	color is black. Animation is referenced by id.
@@ -2361,12 +2361,12 @@ typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_ALL_FRAMES_RGB)(int animationId, cons
 	Set an array of animation keys to a static color for all frames where the 
 	color is black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_ALL_FRAMES_RGB_NAME)(const char* path, const int* rzkeys, int keyCount, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_ALL_FRAMES_RGB_NAME)(const wchar_t* path, const int* rzkeys, int keyCount, int red, int green, int blue);
 /*
 	Set an array of animation keys to a static color for the given frame where 
 	the color is black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_NAME)(const char* path, int frameId, const int* rzkeys, int keyCount, int color);
+typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_NAME)(const wchar_t* path, int frameId, const int* rzkeys, int keyCount, int color);
 /*
 	Set an array of animation keys to a static color for the given frame where 
 	the color is black. Animation is referenced by id.
@@ -2376,7 +2376,7 @@ typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_RGB)(int animationId, int frameId, co
 	Set an array of animation keys to a static color for the given frame where 
 	the color is black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_RGB_NAME)(const char* path, int frameId, const int* rzkeys, int keyCount, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEYS_ZERO_COLOR_RGB_NAME)(const wchar_t* path, int frameId, const int* rzkeys, int keyCount, int red, int green, int blue);
 /*
 	Set animation key to a static color for the given frame where the color 
 	is black. Animation is referenced by id.
@@ -2386,11 +2386,11 @@ typedef void		(*PLUGIN_SET_KEY_ZERO_COLOR)(int animationId, int frameId, int rzk
 	Set animation key to a static color for the given frame where the color 
 	is black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEY_ZERO_COLOR_NAME)(const char* path, int frameId, int rzkey, int color);
+typedef void		(*PLUGIN_SET_KEY_ZERO_COLOR_NAME)(const wchar_t* path, int frameId, int rzkey, int color);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_ZERO_COLOR_NAME_D)(const char* path, double frameId, double rzkey, double color);
+typedef double		(*PLUGIN_SET_KEY_ZERO_COLOR_NAME_D)(const wchar_t* path, double frameId, double rzkey, double color);
 /*
 	Set animation key to a static color for the given frame where the color 
 	is black. Animation is referenced by id.
@@ -2400,11 +2400,11 @@ typedef void		(*PLUGIN_SET_KEY_ZERO_COLOR_RGB)(int animationId, int frameId, int
 	Set animation key to a static color for the given frame where the color 
 	is black. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SET_KEY_ZERO_COLOR_RGB_NAME)(const char* path, int frameId, int rzkey, int red, int green, int blue);
+typedef void		(*PLUGIN_SET_KEY_ZERO_COLOR_RGB_NAME)(const wchar_t* path, int frameId, int rzkey, int red, int green, int blue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SET_KEY_ZERO_COLOR_RGB_NAME_D)(const char* path, double frameId, double rzkey, double red, double green, double blue);
+typedef double		(*PLUGIN_SET_KEY_ZERO_COLOR_RGB_NAME_D)(const wchar_t* path, double frameId, double rzkey, double red, double green, double blue);
 /*
 	Invokes the setup for a debug logging callback so that `stdout` is redirected 
 	to the callback. This is used by `Unity` so that debug messages can appear 
@@ -2449,11 +2449,11 @@ typedef double		(*PLUGIN_STOP_ANIMATION_D)(double animationId);
 	The named `.chroma` animation file will be automatically opened. The animation 
 	will stop if playing.
 */
-typedef void		(*PLUGIN_STOP_ANIMATION_NAME)(const char* path);
+typedef void		(*PLUGIN_STOP_ANIMATION_NAME)(const wchar_t* path);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_STOP_ANIMATION_NAME_D)(const char* path);
+typedef double		(*PLUGIN_STOP_ANIMATION_NAME_D)(const wchar_t* path);
 /*
 	`PluginStopAnimationType` automatically handles initializing the `ChromaSDK`. 
 	If any animation is playing for the `deviceType` and `device` combination, 
@@ -2469,11 +2469,11 @@ typedef double		(*PLUGIN_STOP_ANIMATION_TYPE_D)(double deviceType, double device
 	The named animation files for the `.chroma` set will be automatically opened. 
 	The set of animations will be stopped if playing.
 */
-typedef void		(*PLUGIN_STOP_COMPOSITE)(const char* name);
+typedef void		(*PLUGIN_STOP_COMPOSITE)(const wchar_t* name);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_STOP_COMPOSITE_D)(const char* name);
+typedef double		(*PLUGIN_STOP_COMPOSITE_D)(const wchar_t* name);
 /*
 	Return color1 - color2
 */
@@ -2492,11 +2492,11 @@ typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES)(int sourceAnimatio
 	Subtract the source color from the target color for all frames where the 
 	target color is not black. Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Subtract the source color from the target color for all frames where the 
 	target color is not black starting at offset for the length of the source. 
@@ -2508,16 +2508,16 @@ typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET)(int sourceA
 	target color is not black starting at offset for the length of the source. 
 	Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Subtract the source color from the target color for the frame where the 
 	target color is not black. Source and target are referenced by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId);
 /*
 	Subtract the source color from the target where color is not black for the 
 	source frame and target offset frame, reference source and target by id.
@@ -2527,11 +2527,11 @@ typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_OFFSET)(int sourceAnimationId,
 	Subtract the source color from the target where color is not black for the 
 	source frame and target offset frame, reference source and target by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double offset);
+typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_ALL_KEYS_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double offset);
 /*
 	Subtract the source color from the target color where the target color is 
 	not black for all frames. Reference source and target by id.
@@ -2541,11 +2541,11 @@ typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES)(int sourceA
 	Subtract the source color from the target color where the target color is 
 	not black for all frames. Reference source and target by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const char* sourceAnimation, const char* targetAnimation);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const char* sourceAnimation, const char* targetAnimation);
+typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation);
 /*
 	Subtract the source color from the target color where the target color is 
 	not black for all frames starting at the target offset for the length of 
@@ -2557,11 +2557,11 @@ typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET)(int 
 	not black for all frames starting at the target offset for the length of 
 	the source. Reference source and target by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int offset);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double offset);
+typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_ALL_FRAMES_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double offset);
 /*
 	Subtract the source color from the target color where the target color is 
 	not black from the source frame to the target offset frame. Reference source 
@@ -2573,11 +2573,11 @@ typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_OFFSET)(int sourceAnima
 	not black from the source frame to the target offset frame. Reference source 
 	and target by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME)(const char* sourceAnimation, const char* targetAnimation, int frameId, int offset);
+typedef void		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, int frameId, int offset);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME_D)(const char* sourceAnimation, const char* targetAnimation, double frameId, double offset);
+typedef double		(*PLUGIN_SUBTRACT_NON_ZERO_TARGET_ALL_KEYS_OFFSET_NAME_D)(const wchar_t* sourceAnimation, const wchar_t* targetAnimation, double frameId, double offset);
 /*
 	Subtract all frames with the min RGB color where the animation color is 
 	less than the min threshold AND with the max RGB color where the animation 
@@ -2589,11 +2589,11 @@ typedef void		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB)(const i
 	less than the min threshold AND with the max RGB color where the animation 
 	is more than the max threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME)(const char* path, const int minThreshold, const int minRed, const int minGreen, const int minBlue, const int maxThreshold, const int maxRed, const int maxGreen, const int maxBlue);
+typedef void		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME)(const wchar_t* path, const int minThreshold, const int minRed, const int minGreen, const int minBlue, const int maxThreshold, const int maxRed, const int maxGreen, const int maxBlue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME_D)(const char* path, double minThreshold, double minRed, double minGreen, double minBlue, double maxThreshold, double maxRed, double maxGreen, double maxBlue);
+typedef double		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_ALL_FRAMES_RGB_NAME_D)(const wchar_t* path, double minThreshold, double minRed, double minGreen, double minBlue, double maxThreshold, double maxRed, double maxGreen, double maxBlue);
 /*
 	Subtract the specified frame with the min RGB color where the animation 
 	color is less than the min threshold AND with the max RGB color where the 
@@ -2605,11 +2605,11 @@ typedef void		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_RGB)(const int animatio
 	color is less than the min threshold AND with the max RGB color where the 
 	animation is more than the max threshold. Animation is referenced by name.
 */
-typedef void		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_RGB_NAME)(const char* path, const int frameId, const int minThreshold, const int minRed, const int minGreen, const int minBlue, const int maxThreshold, const int maxRed, const int maxGreen, const int maxBlue);
+typedef void		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_RGB_NAME)(const wchar_t* path, const int frameId, const int minThreshold, const int minRed, const int minGreen, const int minBlue, const int maxThreshold, const int maxRed, const int maxGreen, const int maxBlue);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_RGB_NAME_D)(const char* path, const int frameId, const int minThreshold, const int minRed, const int minGreen, const int minBlue, const int maxThreshold, const int maxRed, const int maxGreen, const int maxBlue);
+typedef double		(*PLUGIN_SUBTRACT_THRESHOLD_COLORS_MIN_MAX_RGB_NAME_D)(const wchar_t* path, const int frameId, const int minThreshold, const int minRed, const int minGreen, const int minBlue, const int maxThreshold, const int maxRed, const int maxGreen, const int maxBlue);
 /*
 	Trim the end of the animation. The length of the animation will be the lastFrameId 
 	plus one. Reference the animation by id.
@@ -2619,11 +2619,11 @@ typedef void		(*PLUGIN_TRIM_END_FRAMES)(int animationId, int lastFrameId);
 	Trim the end of the animation. The length of the animation will be the lastFrameId 
 	plus one. Reference the animation by name.
 */
-typedef void		(*PLUGIN_TRIM_END_FRAMES_NAME)(const char* path, int lastFrameId);
+typedef void		(*PLUGIN_TRIM_END_FRAMES_NAME)(const wchar_t* path, int lastFrameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_TRIM_END_FRAMES_NAME_D)(const char* path, double lastFrameId);
+typedef double		(*PLUGIN_TRIM_END_FRAMES_NAME_D)(const wchar_t* path, double lastFrameId);
 /*
 	Remove the frame from the animation. Reference animation by id.
 */
@@ -2631,11 +2631,11 @@ typedef void		(*PLUGIN_TRIM_FRAME)(int animationId, int frameId);
 /*
 	Remove the frame from the animation. Reference animation by name.
 */
-typedef void		(*PLUGIN_TRIM_FRAME_NAME)(const char* path, int frameId);
+typedef void		(*PLUGIN_TRIM_FRAME_NAME)(const wchar_t* path, int frameId);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_TRIM_FRAME_NAME_D)(const char* path, double frameId);
+typedef double		(*PLUGIN_TRIM_FRAME_NAME_D)(const wchar_t* path, double frameId);
 /*
 	Trim the start of the animation starting at frame 0 for the number of frames. 
 	Reference the animation by id.
@@ -2645,11 +2645,11 @@ typedef void		(*PLUGIN_TRIM_START_FRAMES)(int animationId, int numberOfFrames);
 	Trim the start of the animation starting at frame 0 for the number of frames. 
 	Reference the animation by name.
 */
-typedef void		(*PLUGIN_TRIM_START_FRAMES_NAME)(const char* path, int numberOfFrames);
+typedef void		(*PLUGIN_TRIM_START_FRAMES_NAME)(const wchar_t* path, int numberOfFrames);
 /*
 	D suffix for limited data types.
 */
-typedef double		(*PLUGIN_TRIM_START_FRAMES_NAME_D)(const char* path, double numberOfFrames);
+typedef double		(*PLUGIN_TRIM_START_FRAMES_NAME_D)(const wchar_t* path, double numberOfFrames);
 /*
 	Uninitializes the `ChromaSDK`. Returns 0 upon success. Returns negative 
 	one upon failure.
@@ -2672,12 +2672,12 @@ typedef double		(*PLUGIN_UNLOAD_ANIMATION_D)(double animationId);
 /*
 	Unload the animation effects. Reference the animation by name.
 */
-typedef void		(*PLUGIN_UNLOAD_ANIMATION_NAME)(const char* path);
+typedef void		(*PLUGIN_UNLOAD_ANIMATION_NAME)(const wchar_t* path);
 /*
 	Unload the the composite set of animation effects. Reference the animation 
 	by name.
 */
-typedef void		(*PLUGIN_UNLOAD_COMPOSITE)(const char* name);
+typedef void		(*PLUGIN_UNLOAD_COMPOSITE)(const wchar_t* name);
 /*
 	Unload the Razer Chroma SDK Library before exiting the application.
 */
@@ -2708,7 +2708,7 @@ typedef int			(*PLUGIN_UPDATE_FRAME)(int animationId, int frameIndex, float dura
 	EChromaSDKDevice2DEnum::DE_Keyboard `MAX_ROW` times `MAX_COLUMN` keysLength. 
 	Returns the animation id upon success. Returns negative one upon failure.
 */
-typedef int			(*PLUGIN_UPDATE_FRAME_NAME)(const char* path, int frameIndex, float duration, int* colors, int length, int* keys, int keysLength);
+typedef int			(*PLUGIN_UPDATE_FRAME_NAME)(const wchar_t* path, int frameIndex, float duration, int* colors, int length, int* keys, int keysLength);
 /*
 	When the idle animation flag is true, when no other animations are playing, 
 	the idle animation will be used. The idle animation will not be affected 
@@ -2730,7 +2730,7 @@ typedef void		(*PLUGIN_USE_PRELOADING)(int animationId, bool flag);
 	Set preloading animation flag, which is set to true by default. Reference 
 	animation by name.
 */
-typedef void		(*PLUGIN_USE_PRELOADING_NAME)(const char* path, bool flag);
+typedef void		(*PLUGIN_USE_PRELOADING_NAME)(const wchar_t* path, bool flag);
 #pragma endregion
 
 #define CHROMASDK_DECLARE_METHOD(Signature, FieldName) static Signature FieldName;

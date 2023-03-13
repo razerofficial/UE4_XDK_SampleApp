@@ -4,6 +4,8 @@
 
 * Note: This is the current Chroma SDK supported plugin for UE4.
 
+* Note: This version includes Unicode support for paths with special characters.
+
 ## Table of contents
 
 * [See Also](#see-also)
