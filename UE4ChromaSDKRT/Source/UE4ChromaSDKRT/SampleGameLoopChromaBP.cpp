@@ -14,6 +14,7 @@ DEFINE_LOG_CATEGORY(LogChromaSampleGameLoop);
 int32 USampleGameLoopChromaBP::_sSizeChromaLink = 0;
 int32 USampleGameLoopChromaBP::_sSizeHeadset = 0;
 int32 USampleGameLoopChromaBP::_sSizeKeyboard = 0;
+int32 USampleGameLoopChromaBP::_sSizeKeyboardExtended = 0;
 int32 USampleGameLoopChromaBP::_sSizeKeypad = 0;
 int32 USampleGameLoopChromaBP::_sSizeMouse = 0;
 int32 USampleGameLoopChromaBP::_sSizeMousepad = 0;
@@ -23,6 +24,8 @@ int32 USampleGameLoopChromaBP::_sAmbientColor = 0;
 int32* USampleGameLoopChromaBP::_sColorsChromaLink = NULL;
 int32* USampleGameLoopChromaBP::_sColorsHeadset = NULL;
 int32* USampleGameLoopChromaBP::_sColorsKeyboard = NULL;
+int32* USampleGameLoopChromaBP::_sColorsKeyboardExtended = NULL;
+int32* USampleGameLoopChromaBP::_sColorsKeyboardKeys = NULL;
 int32* USampleGameLoopChromaBP::_sColorsKeypad = NULL;
 int32* USampleGameLoopChromaBP::_sColorsMouse = NULL;
 int32* USampleGameLoopChromaBP::_sColorsMousepad = NULL;
@@ -30,6 +33,7 @@ int32* USampleGameLoopChromaBP::_sColorsMousepad = NULL;
 int32* USampleGameLoopChromaBP::_sTempColorsChromaLink = NULL;
 int32* USampleGameLoopChromaBP::_sTempColorsHeadset = NULL;
 int32* USampleGameLoopChromaBP::_sTempColorsKeyboard = NULL;
+int32* USampleGameLoopChromaBP::_sTempColorsKeyboardExtended = NULL;
 int32* USampleGameLoopChromaBP::_sTempColorsKeypad = NULL;
 int32* USampleGameLoopChromaBP::_sTempColorsMouse = NULL;
 int32* USampleGameLoopChromaBP::_sTempColorsMousepad = NULL;
@@ -49,6 +53,7 @@ USampleGameLoopChromaBP::USampleGameLoopChromaBP(const FObjectInitializer& Objec
 	_sSizeChromaLink = GetColorArraySize1D(EChromaSDKDevice1DEnum::DE_ChromaLink);
 	_sSizeHeadset = GetColorArraySize1D(EChromaSDKDevice1DEnum::DE_Headset);
 	_sSizeKeyboard = GetColorArraySize2D(EChromaSDKDevice2DEnum::DE_Keyboard);
+	_sSizeKeyboardExtended = GetColorArraySize2D(EChromaSDKDevice2DEnum::DE_KeyboardExtended);
 	_sSizeKeypad = GetColorArraySize2D(EChromaSDKDevice2DEnum::DE_Keypad);
 	_sSizeMouse = GetColorArraySize2D(EChromaSDKDevice2DEnum::DE_Mouse);
 	_sSizeMousepad = GetColorArraySize1D(EChromaSDKDevice1DEnum::DE_Mousepad);
@@ -87,10 +92,11 @@ int USampleGameLoopChromaBP::GetKeyColorIndex(int row, int column)
 
 void USampleGameLoopChromaBP::SetKeyColor(int* colors, EChromaSDKKeyboardKey::Type key, int color)
 {
+	const int customFlag = 1 << 24;
 	int rzkey = UChromaSDKPluginBPLibrary::GetKeyboardRzKey(key);
 	int row = HIBYTE(rzkey);
 	int column = LOBYTE(rzkey);
-	colors[GetKeyColorIndex(row, column)] = color;
+	colors[GetKeyColorIndex(row, column)] = customFlag | color;
 }
 
 void USampleGameLoopChromaBP::SetKeyColorRGB(int* colors, EChromaSDKKeyboardKey::Type key, int red, int green, int blue)
@@ -109,65 +115,6 @@ const int USampleGameLoopChromaBP::GetColorArraySize2D(EChromaSDKDevice2DEnum::T
 	const int maxRow = UChromaSDKPluginBPLibrary::GetMaxRow(device);
 	const int maxColumn = UChromaSDKPluginBPLibrary::GetMaxColumn(device);
 	return maxRow * maxColumn;
-}
-
-void USampleGameLoopChromaBP::SetAmbientColor1D(EChromaSDKDevice1DEnum::Type device, int* colors, int ambientColor)
-{
-	const int size = GetColorArraySize1D(device);
-	for (int i = 0; i < size; ++i)
-	{
-		if (colors[i] == 0)
-		{
-			colors[i] = ambientColor;
-		}
-	}
-}
-
-void USampleGameLoopChromaBP::SetAmbientColor2D(EChromaSDKDevice2DEnum::Type device, int* colors, int ambientColor)
-{
-	const int size = GetColorArraySize2D(device);
-	for (int i = 0; i < size; ++i)
-	{
-		if (colors[i] == 0)
-		{
-			colors[i] = ambientColor;
-		}
-	}
-}
-
-void USampleGameLoopChromaBP::SetAmbientColor(int ambientColor,
-	int* colorsChromaLink,
-	int* colorsHeadset,
-	int* colorsKeyboard,
-	int* colorsKeypad,
-	int* colorsMouse,
-	int* colorsMousepad)
-{
-	// Set ambient color
-	for (int d = (int)EChromaSDKDeviceEnum::DE_ChromaLink; d < (int)EChromaSDKDeviceEnum::DE_MAX; ++d)
-	{
-		switch ((EChromaSDKDeviceEnum::Type)d)
-		{
-		case EChromaSDKDeviceEnum::DE_ChromaLink:
-			SetAmbientColor1D(EChromaSDKDevice1DEnum::DE_ChromaLink, colorsChromaLink, ambientColor);
-			break;
-		case EChromaSDKDeviceEnum::DE_Headset:
-			SetAmbientColor1D(EChromaSDKDevice1DEnum::DE_Headset, colorsHeadset, ambientColor);
-			break;
-		case EChromaSDKDeviceEnum::DE_Keyboard:
-			SetAmbientColor2D(EChromaSDKDevice2DEnum::DE_Keyboard, colorsKeyboard, ambientColor);
-			break;
-		case EChromaSDKDeviceEnum::DE_Keypad:
-			SetAmbientColor2D(EChromaSDKDevice2DEnum::DE_Keypad, colorsKeypad, ambientColor);
-			break;
-		case EChromaSDKDeviceEnum::DE_Mouse:
-			SetAmbientColor2D(EChromaSDKDevice2DEnum::DE_Mouse, colorsMouse, ambientColor);
-			break;
-		case EChromaSDKDeviceEnum::DE_Mousepad:
-			SetAmbientColor1D(EChromaSDKDevice1DEnum::DE_Mousepad, colorsMousepad, ambientColor);
-			break;
-		}
-	}
 }
 
 int USampleGameLoopChromaBP::MultiplyColor(int color1, int color2) {
@@ -305,7 +252,7 @@ void USampleGameLoopChromaBP::BlendAnimation1D(const FChromaSDKSceneEffect& effe
 		//cout << animationName << ": " << (1 + frameId) << " of " << frameCount << endl;
 		float duration;
 		int animationId = UChromaSDKPluginBPLibrary::GetAnimation(animationName);
-		UChromaSDKPluginBPLibrary::GetFrameBGR(animationId, frameId, &duration, tempColors, size);
+		UChromaSDKPluginBPLibrary::GetFrameBGR(animationId, frameId, &duration, tempColors, size, nullptr, 0);
 		for (int i = 0; i < size; ++i)
 		{
 			int color1 = colors[i]; //target
@@ -381,7 +328,7 @@ void USampleGameLoopChromaBP::BlendAnimation2D(const FChromaSDKSceneEffect& effe
 		//cout << animationName << ": " << (1 + frameId) << " of " << frameCount << endl;
 		float duration;
 		int animationId = UChromaSDKPluginBPLibrary::GetAnimation(animationName);
-		UChromaSDKPluginBPLibrary::GetFrameBGR(animationId, frameId, &duration, tempColors, size);
+		UChromaSDKPluginBPLibrary::GetFrameBGR(animationId, frameId, &duration, tempColors, size, nullptr, 0);
 		for (int i = 0; i < size; ++i)
 		{
 			int color1 = colors[i]; //target
@@ -450,6 +397,7 @@ void USampleGameLoopChromaBP::BlendAnimations(FChromaSDKScene& scene,
 	int* colorsChromaLink, int* tempColorsChromaLink,
 	int* colorsHeadset, int* tempColorsHeadset,
 	int* colorsKeyboard, int* tempColorsKeyboard,
+	int* colorsKeyboardExtended, int* tempColorsKeyboardExtended,
 	int* colorsKeypad, int* tempColorsKeypad,
 	int* colorsMouse, int* tempColorsMouse,
 	int* colorsMousepad, int* tempColorsMousepad)
@@ -481,6 +429,10 @@ void USampleGameLoopChromaBP::BlendAnimations(FChromaSDKScene& scene,
 				case EChromaSDKDeviceEnum::DE_Keyboard:
 					animationName += "_Keyboard.chroma";
 					BlendAnimation2D(effect, deviceFrameIndex, d, EChromaSDKDevice2DEnum::DE_Keyboard, animationName, colorsKeyboard, tempColorsKeyboard);
+					break;
+				case EChromaSDKDeviceEnum::DE_KeyboardExtended:
+					animationName += "_KeyboardExtended.chroma";
+					BlendAnimation2D(effect, deviceFrameIndex, d, EChromaSDKDevice2DEnum::DE_KeyboardExtended, animationName, colorsKeyboardExtended, tempColorsKeyboardExtended);
 					break;
 				case EChromaSDKDeviceEnum::DE_Keypad:
 					animationName += "_Keypad.chroma";
@@ -590,6 +542,8 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleStart()
 		InitArrayBGRInt(&_sColorsChromaLink, _sSizeChromaLink);
 		InitArrayBGRInt(&_sColorsHeadset, _sSizeHeadset);
 		InitArrayBGRInt(&_sColorsKeyboard, _sSizeKeyboard);
+		InitArrayBGRInt(&_sColorsKeyboardExtended, _sSizeKeyboardExtended);
+		InitArrayBGRInt(&_sColorsKeyboardKeys, _sSizeKeyboard);
 		InitArrayBGRInt(&_sColorsKeypad, _sSizeKeypad);
 		InitArrayBGRInt(&_sColorsMouse, _sSizeMouse);
 		InitArrayBGRInt(&_sColorsMousepad, _sSizeMousepad);
@@ -597,6 +551,7 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleStart()
 		InitArrayBGRInt(&_sTempColorsChromaLink, _sSizeChromaLink);
 		InitArrayBGRInt(&_sTempColorsHeadset, _sSizeHeadset);
 		InitArrayBGRInt(&_sTempColorsKeyboard, _sSizeKeyboard);
+		InitArrayBGRInt(&_sTempColorsKeyboardExtended, _sSizeKeyboardExtended);
 		InitArrayBGRInt(&_sTempColorsKeypad, _sSizeKeypad);
 		InitArrayBGRInt(&_sTempColorsMouse, _sSizeMouse);
 		InitArrayBGRInt(&_sTempColorsMousepad, _sSizeMousepad);
@@ -612,6 +567,8 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleEnd()
 		UninitArrayBGRInt(&_sColorsChromaLink);
 		UninitArrayBGRInt(&_sColorsHeadset);
 		UninitArrayBGRInt(&_sColorsKeyboard);
+		UninitArrayBGRInt(&_sColorsKeyboardExtended);
+		UninitArrayBGRInt(&_sColorsKeyboardKeys);
 		UninitArrayBGRInt(&_sColorsKeypad);
 		UninitArrayBGRInt(&_sColorsMouse);
 		UninitArrayBGRInt(&_sColorsMousepad);
@@ -628,7 +585,7 @@ void USampleGameLoopChromaBP::SampleGameLoopSampleEnd()
 #endif
 }
 
-void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSDKScene& scene, bool toggleHotkeys, bool toggleAmmo)
+void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSDKScene& scene, bool toggleHotkeys, bool toggleExtended, bool toggleAmmo)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 
@@ -649,12 +606,15 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 		if (_sColorsChromaLink == NULL ||
 			_sColorsHeadset == NULL ||
 			_sColorsKeyboard == NULL ||
+			_sColorsKeyboardExtended == NULL ||
+			_sColorsKeyboardKeys == NULL ||
 			_sColorsKeypad == NULL ||
 			_sColorsMouse == NULL ||
 			_sColorsMousepad == NULL ||
 			_sTempColorsChromaLink == NULL ||
 			_sTempColorsHeadset == NULL ||
 			_sTempColorsKeyboard == NULL ||
+			_sTempColorsKeyboardExtended == NULL ||
 			_sTempColorsKeypad == NULL ||
 			_sTempColorsMouse == NULL ||
 			_sTempColorsMousepad == NULL)
@@ -665,7 +625,14 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 		// start with a blank frame
 		SetStaticColor(_sColorsChromaLink, _sAmbientColor, _sSizeChromaLink);
 		SetStaticColor(_sColorsHeadset, _sAmbientColor, _sSizeHeadset);
-		SetStaticColor(_sColorsKeyboard, _sAmbientColor, _sSizeKeyboard);
+		if (toggleExtended)
+		{
+			SetStaticColor(_sColorsKeyboardExtended, _sAmbientColor, _sSizeKeyboardExtended);
+		}
+		else
+		{
+			SetStaticColor(_sColorsKeyboard, _sAmbientColor, _sSizeKeyboard);
+		}
 		SetStaticColor(_sColorsKeypad, _sAmbientColor, _sSizeKeypad);
 		SetStaticColor(_sColorsMouse, _sAmbientColor, _sSizeMouse);
 		SetStaticColor(_sColorsMousepad, _sAmbientColor, _sSizeMousepad);
@@ -674,6 +641,7 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 			_sColorsChromaLink, _sTempColorsChromaLink,
 			_sColorsHeadset, _sTempColorsHeadset,
 			_sColorsKeyboard, _sTempColorsKeyboard,
+			_sColorsKeyboardExtended, _sTempColorsKeyboardExtended,
 			_sColorsKeypad, _sTempColorsKeypad,
 			_sColorsMouse, _sTempColorsMouse,
 			_sColorsMousepad, _sTempColorsMousepad);
@@ -701,7 +669,7 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 					else {
 						color = UChromaSDKPluginBPLibrary::GetBGRInt(0, 100, 0);
 					}
-					SetKeyColor(_sColorsKeyboard, keys[i], color);
+					SetKeyColor(_sColorsKeyboardKeys, keys[i], color);
 				}
 			}
 
@@ -726,66 +694,78 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 					else {
 						color = UChromaSDKPluginBPLibrary::GetBGRInt(100, 100, 0);
 					}
-					SetKeyColor(_sColorsKeyboard, keys[i], color);
+					SetKeyColor(_sColorsKeyboardKeys, keys[i], color);
 				}
 			}
 		}
 
 		if (toggleHotkeys)
 		{
-			const int indexFire = 0;
-			const int indexLandscape = 1;
-			const int indexRainbow = 2;
-			const int indexSpiral = 3;
+			const int indexGradient1 = 0;
+			const int indexGradient2 = 1;
+			const int indexGradient3 = 2;
+			const int indexGradient4 = 3;
 
 			// Show hotkeys
-			SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_ESC, 255, 255, 0);
-			SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_W, 255, 0, 0);
-			SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_A, 255, 0, 0);
-			SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_S, 255, 0, 0);
-			SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_D, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_ESC, 255, 255, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_H, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_E, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_A, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_1, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_1, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_2, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_3, 255, 0, 0);
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_4, 255, 0, 0);
+
+			if (toggleExtended)
+			{
+				SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_E, 0, 255, 0);
+			}
 
 			if (toggleAmmo)
 			{
-				SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_A, 0, 255, 0);
+				SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_A, 0, 255, 0);
 			}
 
-			// Highlight R if rainbow is active
-			if (scene.Effects[indexRainbow].State)
+			// Highlight if active
+			if (scene.Effects[indexGradient1].State)
 			{
-				SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_R, 0, 255, 0);
+				SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_1, 0, 255, 0);
 			}
 
-			// Highlight S if spiral is active
-			if (scene.Effects[indexSpiral].State)
+			// Highlight if active
+			if (scene.Effects[indexGradient2].State)
 			{
-				SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_S, 0, 255, 0);
+				SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_2, 0, 255, 0);
 			}
 
-			// Highlight L if landscape is active
-			if (scene.Effects[indexLandscape].State)
+			// Highlight if active
+			if (scene.Effects[indexGradient3].State)
 			{
-				SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_L, 0, 255, 0);
+				SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_3, 0, 255, 0);
 			}
 
-			// Highlight L if landscape is active
-			if (scene.Effects[indexFire].State)
+			// Highlight if active
+			if (scene.Effects[indexGradient4].State)
 			{
-				SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_F, 0, 255, 0);
+				SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_4, 0, 255, 0);
 			}
 
-			if (toggleHotkeys)
-			{
-				SetKeyColorRGB(_sColorsKeyboard, EChromaSDKKeyboardKey::KK_H, 0, 255, 0);
-			}
+			SetKeyColorRGB(_sColorsKeyboardKeys, EChromaSDKKeyboardKey::KK_H, 0, 255, 0);
 		}
 
 		UChromaSDKPluginBPLibrary::SetEffectCustom1D_BGR(EChromaSDKDevice1DEnum::DE_ChromaLink, _sColorsChromaLink);
 		UChromaSDKPluginBPLibrary::SetEffectCustom1D_BGR(EChromaSDKDevice1DEnum::DE_Headset, _sColorsHeadset);
 		UChromaSDKPluginBPLibrary::SetEffectCustom1D_BGR(EChromaSDKDevice1DEnum::DE_Mousepad, _sColorsMousepad);
 
-		UChromaSDKPluginBPLibrary::SetCustomColorFlag2D_BGR(EChromaSDKDevice2DEnum::DE_Keyboard, _sColorsKeyboard);
-		UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::DE_Keyboard, _sColorsKeyboard);
+		if (toggleExtended)
+		{
+			UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::DE_KeyboardExtended, _sColorsKeyboardExtended, _sColorsKeyboardKeys);
+		}
+		else
+		{
+			UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::DE_Keyboard, _sColorsKeyboard, _sColorsKeyboardKeys);
+		}
 
 		UChromaSDKPluginBPLibrary::SetEffectCustom2D_BGR(EChromaSDKDevice2DEnum::DE_Keypad, _sColorsKeypad);
 		UChromaSDKPluginBPLibrary::SetEffectCustom2D_BGR(EChromaSDKDevice2DEnum::DE_Mouse, _sColorsMouse);

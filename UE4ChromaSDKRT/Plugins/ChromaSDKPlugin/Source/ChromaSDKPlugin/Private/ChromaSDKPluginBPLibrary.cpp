@@ -338,6 +338,8 @@ int UChromaSDKPluginBPLibrary::GetMaxRow(EChromaSDKDevice2DEnum::Type device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
 		return ChromaSDK::Keyboard::MAX_ROW;
+	case EChromaSDKDevice2DEnum::DE_KeyboardExtended:
+		return ChromaSDK::Keyboard::v2::MAX_ROW;
 	case EChromaSDKDevice2DEnum::DE_Keypad:
 		return ChromaSDK::Keypad::MAX_ROW;
 	case EChromaSDKDevice2DEnum::DE_Mouse:
@@ -354,6 +356,8 @@ int UChromaSDKPluginBPLibrary::GetMaxColumn(EChromaSDKDevice2DEnum::Type device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
 		return ChromaSDK::Keyboard::MAX_COLUMN;
+	case EChromaSDKDevice2DEnum::DE_KeyboardExtended:
+		return ChromaSDK::Keyboard::v2::MAX_COLUMN;
 	case EChromaSDKDevice2DEnum::DE_Keypad:
 		return ChromaSDK::Keypad::MAX_COLUMN;
 	case EChromaSDKDevice2DEnum::DE_Mouse:
@@ -6005,7 +6009,7 @@ void UChromaSDKPluginBPLibrary::OpenAnimationFromMemory(const TArray<uint8>& dat
 }
 
 
-int UChromaSDKPluginBPLibrary::GetFrameBGR(int animationId, int frameIndex, float* duration, int* colors, int length)
+int UChromaSDKPluginBPLibrary::GetFrameBGR(int animationId, int frameIndex, float* duration, int* colors, int length, int* keys, int keysLength)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!IsInitialized())
@@ -6013,7 +6017,7 @@ int UChromaSDKPluginBPLibrary::GetFrameBGR(int animationId, int frameIndex, floa
 		return -1;
 	}
 
-	return ChromaAnimationAPI::GetFrame(animationId, frameIndex, duration, colors, length);
+	return ChromaAnimationAPI::GetFrame(animationId, frameIndex, duration, colors, length, keys, keysLength);
 #else
 	return -1;
 #endif
@@ -6181,7 +6185,7 @@ RZRESULT UChromaSDKPluginBPLibrary::SetCustomColorFlag2D_BGR(EChromaSDKDevice2DE
 #endif
 }
 
-RZRESULT UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors)
+RZRESULT UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors, int32* keys)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!IsInitialized())
@@ -6189,26 +6193,75 @@ RZRESULT UChromaSDKPluginBPLibrary::SetEffectKeyboardCustom2D_BGR(EChromaSDKDevi
 		return 0;
 	}
 
-	int maxRow = GetMaxRow(device);
-	int maxColumn = GetMaxColumn(device);
-
 	RZRESULT result = 0;
 	switch (device)
 	{
 	case EChromaSDKDevice2DEnum::DE_Keyboard:
 	{
 		Keyboard::CUSTOM_KEY_EFFECT_TYPE pParam = {};
-		int index = 0;
-		for (int i = 0; i < maxRow; i++)
+		int maxRow = GetMaxRow(device);
+		int maxColumn = GetMaxColumn(device);
+		if (colors)
 		{
-			for (int j = 0; j < maxColumn; j++)
+			int index = 0;
+			for (int i = 0; i < maxRow; i++)
 			{
-				pParam.Key[i][j] = colors[index];
-				++index;
+				for (int j = 0; j < maxColumn; j++)
+				{
+					pParam.Color[i][j] = colors[index];
+					++index;
+				}
+			}
+		}
+		if (keys)
+		{
+			int index = 0;
+			for (int i = 0; i < maxRow; i++)
+			{
+				for (int j = 0; j < maxColumn; j++)
+				{
+					pParam.Key[i][j] = keys[index];
+					++index;
+				}
 			}
 		}
 		result = ChromaAnimationAPI::CoreCreateKeyboardEffect(Keyboard::CHROMA_CUSTOM_KEY, &pParam, nullptr);
 	}
+	break;
+	case EChromaSDKDevice2DEnum::DE_KeyboardExtended:
+	{
+		Keyboard::v2::CUSTOM_EFFECT_TYPE pParam = {};
+		if (colors)
+		{
+			int maxRow = GetMaxRow(device);
+			int maxColumn = GetMaxColumn(device);
+			int index = 0;
+			for (int i = 0; i < maxRow; i++)
+			{
+				for (int j = 0; j < maxColumn; j++)
+				{
+					pParam.Color[i][j] = colors[index];
+					++index;
+				}
+			}
+		}
+		if (keys)
+		{
+			int maxRow = GetMaxRow(EChromaSDKDevice2DEnum::DE_Keyboard);
+			int maxColumn = GetMaxColumn(EChromaSDKDevice2DEnum::DE_Keyboard);
+			int index = 0;
+			for (int i = 0; i < maxRow; i++)
+			{
+				for (int j = 0; j < maxColumn; j++)
+				{
+					pParam.Key[i][j] = keys[index];
+					++index;
+				}
+			}
+		}
+		result = ChromaAnimationAPI::CoreCreateKeyboardEffect(Keyboard::CHROMA_CUSTOM2, &pParam, nullptr);
+	}
+	break;
 	default:
 		return RZRESULT_FAILED;
 	}

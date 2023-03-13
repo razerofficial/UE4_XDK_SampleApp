@@ -1771,7 +1771,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 		For `EChromaSDKDevice2DEnum` the array size should be `MAX ROW` * `MAX
 		COLUMN`. Returns the animation id upon success. Returns -1 upon failure.
 	*/
-	static int32 GetFrameBGR(int32 animationId, int32 frameIndex, float* duration, int32* colors, int32 length);
+	static int32 GetFrameBGR(int32 animationId, int32 frameIndex, float* duration, int32* colors, int32 length, int32* keys, int32 keysLength);
 
 	/*
 		Directly set 1D effect from an int32 color array
@@ -1791,7 +1791,7 @@ class CHROMASDKPLUGIN_API UChromaSDKPluginBPLibrary : public UBlueprintFunctionL
 	/*
 		Directly set the custom color keyboard effect from an int32 color array
 	*/
-	static RZRESULT SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors);
+	static RZRESULT SetEffectKeyboardCustom2D_BGR(EChromaSDKDevice2DEnum::Type device, int32* colors, int32* keys);
 
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 private:

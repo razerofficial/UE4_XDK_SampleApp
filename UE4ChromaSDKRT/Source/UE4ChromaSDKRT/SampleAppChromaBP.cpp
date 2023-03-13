@@ -4232,6 +4232,8 @@ void USampleAppChromaBP::SampleAppShowEffect41()
 		}
 		radius += speed;
 	}
+	// turn on custom key flag
+	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
 	// play at top speed
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	// play the animation on the dynamic canvas
@@ -4352,6 +4354,8 @@ void USampleAppChromaBP::SampleAppShowEffect42()
 			UChromaSDKPluginBPLibrary::SetKeyRowColumnColorName(baseLayer, frameIndex, r, c, color);
 		}
 	}
+	// turn on custom key flag
+	UChromaSDKPluginBPLibrary::SetChromaCustomFlagName(baseLayer, true);
 	// play at top speed
 	UChromaSDKPluginBPLibrary::OverrideFrameDurationName(baseLayer, 0.033f);
 	// play the animation on the dynamic canvas

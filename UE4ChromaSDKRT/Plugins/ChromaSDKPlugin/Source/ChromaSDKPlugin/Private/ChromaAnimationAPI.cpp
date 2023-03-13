@@ -20,6 +20,7 @@ DEFINE_LOG_CATEGORY(LogChromaAnimationAPI);
 #define CHROMA_EDITOR_DLL	L"CChromaEditorLibrary.dll"
 #endif
 
+
 #endif
 
 
@@ -285,6 +286,7 @@ CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_FRAME, GetFrame);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_FRAME_COUNT, GetFrameCount);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_FRAME_COUNT_NAME, GetFrameCountName);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_FRAME_COUNT_NAME_D, GetFrameCountNameD);
+CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_FRAME_NAME, GetFrameName);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_KEY_COLOR, GetKeyColor);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_KEY_COLOR_D, GetKeyColorD);
 CHROMASDK_DECLARE_METHOD_IMPL(PLUGIN_GET_KEY_COLOR_NAME, GetKeyColorName);
@@ -597,7 +599,7 @@ int ChromaAnimationAPI::InitAPI()
 		return 0;
 	}
 
-	std::wstring path;
+		std::wstring path;
 
 #if PLATFORM_XBOXONE
 	path = CHROMA_EDITOR_DLL;
@@ -618,13 +620,14 @@ int ChromaAnimationAPI::InitAPI()
 	{
 		path = std::wstring(filename).substr(0, last_slash_idx);
 	}
-#endif
+
+	#endif
 
 	path += L"\\";
 	path += CHROMA_EDITOR_DLL;
 
 	// check the library file version
-	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(path.c_str(), 1, 0, 0, 6))
+	if (!VerifyLibrarySignature::IsFileVersionSameOrNewer(path.c_str(), 1, 0, 0, 7))
 	{
 		ChromaLogger::fprintf(stderr, "Detected old version of Chroma Editor Library!\r\n");
 		return RZRESULT_DLL_NOT_FOUND;
@@ -633,13 +636,14 @@ int ChromaAnimationAPI::InitAPI()
 #ifdef CHECK_CHROMA_LIBRARY_SIGNATURE
 	_sInvalidSignature = !VerifyLibrarySignature::VerifyModule(path);
 #endif
+
 	if (_sInvalidSignature)
 	{
 		ChromaLogger::fprintf(stderr, "Chroma Editor Library has an invalid signature!\r\n");
 		return RZRESULT_DLL_INVALID_SIGNATURE;
 	}
 
-#endif
+	#endif
 
 #if PLATFORM_XBOXONE
 	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Load CChromaEditorLibrary64 at: %s"), *FString(path.c_str()));
@@ -654,7 +658,7 @@ int ChromaAnimationAPI::InitAPI()
 	}
 
 	_sLibrary = library;
-
+	
 	//ChromaLogger::fprintf(stderr, "Loaded Chroma Editor DLL!\r\n");
 	//UE_LOG(LogChromaAnimationAPI, Log, TEXT("Loaded Chroma Editor DLL!"));	
 
@@ -911,6 +915,7 @@ CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_FRAME, GetFrame);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_FRAME_COUNT, GetFrameCount);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_FRAME_COUNT_NAME, GetFrameCountName);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_FRAME_COUNT_NAME_D, GetFrameCountNameD);
+CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_FRAME_NAME, GetFrameName);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_KEY_COLOR, GetKeyColor);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_KEY_COLOR_D, GetKeyColorD);
 CHROMASDK_VALIDATE_METHOD(PLUGIN_GET_KEY_COLOR_NAME, GetKeyColorName);
@@ -1489,6 +1494,7 @@ int ChromaAnimationAPI::UninitAPI()
 	CHROMASDK_DECLARE_METHOD_CLEAR(GetFrameCount);
 	CHROMASDK_DECLARE_METHOD_CLEAR(GetFrameCountName);
 	CHROMASDK_DECLARE_METHOD_CLEAR(GetFrameCountNameD);
+	CHROMASDK_DECLARE_METHOD_CLEAR(GetFrameName);
 	CHROMASDK_DECLARE_METHOD_CLEAR(GetKeyColor);
 	CHROMASDK_DECLARE_METHOD_CLEAR(GetKeyColorD);
 	CHROMASDK_DECLARE_METHOD_CLEAR(GetKeyColorName);

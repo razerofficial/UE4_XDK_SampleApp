@@ -24,15 +24,6 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 	static void SetKeyColorRGB(int32* colors, EChromaSDKKeyboardKey::Type key, int32 red, int32 green, int32 blue);
 	static const int32 GetColorArraySize1D(EChromaSDKDevice1DEnum::Type device);
 	static const int32 GetColorArraySize2D(EChromaSDKDevice2DEnum::Type device);
-	static void SetAmbientColor1D(EChromaSDKDevice1DEnum::Type device, int32* colors, int32 ambientColor);
-	static void SetAmbientColor2D(EChromaSDKDevice2DEnum::Type device, int32* colors, int32 ambientColor);
-	static void SetAmbientColor(int32 ambientColor,
-		int32* colorsChromaLink,
-		int32* colorsHeadset,
-		int32* colorsKeyboard,
-		int32* colorsKeypad,
-		int32* colorsMouse,
-		int32* colorsMousepad);
 	static int32 MultiplyColor(int32 color1, int32 color2);
 	static int32 AverageColor(int32 color1, int32 color2);
 	static int32 AddColor(int32 color1, int32 color2);
@@ -50,6 +41,7 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 		int32* colorsChromaLink, int32* tempColorsChromaLink,
 		int32* colorsHeadset, int32* tempColorsHeadset,
 		int32* colorsKeyboard, int32* tempColorsKeyboard,
+		int32* colorsKeyboardExtended, int32* tempColorsKeyboardExtended,
 		int32* colorsKeypad, int32* tempColorsKeypad,
 		int32* colorsMouse, int32* tempColorsMouse,
 		int32* colorsMousepad, int32* tempColorsMousepad);
@@ -66,7 +58,7 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 	static void SampleGameLoopSampleEnd();
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopUpdate", Keywords = "Example"), Category = "Sample")
-	static void SampleGameLoopUpdate(float deltaSeconds, UPARAM(ref) FChromaSDKScene& scene, bool toggleHotkeys, bool toggleAmmo);
+	static void SampleGameLoopUpdate(float deltaSeconds, UPARAM(ref) FChromaSDKScene& scene, bool toggleHotkeys, bool toggleExtended, bool toggleAmmo);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopGenerateRandomColor", Keywords = "Example"), Category = "Sample")
 	static FLinearColor SampleGameLoopGenerateRandomColor();
@@ -81,6 +73,7 @@ private:
 	static int32 _sSizeChromaLink;
 	static int32 _sSizeHeadset;
 	static int32 _sSizeKeyboard;
+	static int32 _sSizeKeyboardExtended;
 	static int32 _sSizeKeypad;
 	static int32 _sSizeMouse;
 	static int32 _sSizeMousepad;
@@ -90,6 +83,8 @@ private:
 	static int32* _sColorsChromaLink;
 	static int32* _sColorsHeadset;
 	static int32* _sColorsKeyboard;
+	static int32* _sColorsKeyboardExtended;
+	static int32* _sColorsKeyboardKeys;
 	static int32* _sColorsKeypad;
 	static int32* _sColorsMouse;
 	static int32* _sColorsMousepad;
@@ -97,6 +92,7 @@ private:
 	static int32* _sTempColorsChromaLink;
 	static int32* _sTempColorsHeadset;
 	static int32* _sTempColorsKeyboard;
+	static int32* _sTempColorsKeyboardExtended;
 	static int32* _sTempColorsKeypad;
 	static int32* _sTempColorsMouse;
 	static int32* _sTempColorsMousepad;

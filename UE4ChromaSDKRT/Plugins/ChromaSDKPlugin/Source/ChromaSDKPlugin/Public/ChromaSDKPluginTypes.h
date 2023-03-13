@@ -34,9 +34,10 @@ namespace EChromaSDKDevice2DEnum
 {
 	enum Type
 	{
-		DE_Keyboard			UMETA(DisplayName = "Keyboard"),
-		DE_Keypad			UMETA(DisplayName = "Keypad"),
-		DE_Mouse			UMETA(DisplayName = "Mouse"),
+		DE_Keyboard				UMETA(DisplayName = "Keyboard"),
+		DE_Keypad				UMETA(DisplayName = "Keypad"),
+		DE_Mouse				UMETA(DisplayName = "Mouse"),
+		DE_KeyboardExtended		UMETA(DisplayName = "KeyboardExtended"),
 	};
 }
 
@@ -45,13 +46,14 @@ namespace EChromaSDKDeviceEnum
 {
 	enum Type
 	{
-		DE_ChromaLink	UMETA(DisplayName = "ChromaLink"),
-		DE_Headset		UMETA(DisplayName = "Headset"),
-		DE_Keyboard		UMETA(DisplayName = "Keyboard"),
-		DE_Keypad		UMETA(DisplayName = "Keypad"),
-		DE_Mouse		UMETA(DisplayName = "Mouse"),
-		DE_Mousepad		UMETA(DisplayName = "Mousepad"),
-		DE_MAX			UMETA(DisplayName = "Max"),
+		DE_ChromaLink			UMETA(DisplayName = "ChromaLink"),
+		DE_Headset				UMETA(DisplayName = "Headset"),
+		DE_Keyboard				UMETA(DisplayName = "Keyboard"),
+		DE_Keypad				UMETA(DisplayName = "Keypad"),
+		DE_Mouse				UMETA(DisplayName = "Mouse"),
+		DE_Mousepad				UMETA(DisplayName = "Mousepad"),
+		DE_KeyboardExtended		UMETA(DisplayName = "KeyboardExtended"),
+		DE_MAX					UMETA(DisplayName = "Max"),
 	};
 }
 
@@ -333,6 +335,7 @@ struct CHROMASDKPLUGIN_API FChromaSDKDeviceFrameIndex
 		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Keypad] = 0;
 		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Mouse] = 0;
 		FrameIndex[(int)EChromaSDKDeviceEnum::DE_Mousepad] = 0;
+		FrameIndex[(int)EChromaSDKDeviceEnum::DE_KeyboardExtended] = 0;
 	}
 };
 
