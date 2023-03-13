@@ -633,6 +633,7 @@ void USampleGameLoopChromaBP::SampleGameLoopUpdate(float deltaSeconds, FChromaSD
 		{
 			SetStaticColor(_sColorsKeyboard, _sAmbientColor, _sSizeKeyboard);
 		}
+		SetStaticColor(_sColorsKeyboardKeys, _sAmbientColor, _sSizeKeyboard);
 		SetStaticColor(_sColorsKeypad, _sAmbientColor, _sSizeKeypad);
 		SetStaticColor(_sColorsMouse, _sAmbientColor, _sSizeMouse);
 		SetStaticColor(_sColorsMousepad, _sAmbientColor, _sSizeMousepad);
