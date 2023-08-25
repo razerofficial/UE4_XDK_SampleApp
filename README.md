@@ -4,6 +4,8 @@
 
 * Note: This is the current Chroma SDK supported plugin for UE4.
 
+* Note: Check the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) for UE5 support.
+
 ## Table of contents
 
 * [See Also](#see-also)
