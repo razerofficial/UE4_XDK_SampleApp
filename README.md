@@ -4,6 +4,8 @@
 
 * Note: This is the current Chroma SDK supported plugin for UE4.
 
+* Note: Check the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) for UE5 support.
+
 * Note: This version includes Unicode support for paths with special characters.
 
 ## Table of contents
