@@ -52,7 +52,7 @@ class USampleGameLoopChromaBP : public UBlueprintFunctionLibrary
 
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopSampleStart", Keywords = "Init at the start of the application"), Category = "Sample")
-	static void SampleGameLoopSampleStart();
+	static void SampleGameLoopSampleStart(FChromaSDKAppInfoType appInfo);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleGameLoopSampleEnd", Keywords = "Uninit at the end of the application"), Category = "Sample")
 	static void SampleGameLoopSampleEnd();

@@ -4,6 +4,7 @@
 
 #include "Engine.h"
 #include "UMG.h"
+#include "ChromaSDKPluginTypes.h"
 #include "SampleAppButton.h"
 #include "SampleAppChromaBP.generated.h"
 
@@ -23,7 +24,7 @@ class USampleAppChromaBP : public UBlueprintFunctionLibrary
 	static void SampleAppSetupButtonsEffects(const TArray<UButton*>& buttons);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppSampleStart", Keywords = "Init at the start of the application"), Category = "Sample")
-	static void SampleAppSampleStart();
+	static void SampleAppSampleStart(FChromaSDKAppInfoType appInfo);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "SampleAppSampleEnd", Keywords = "Uninit at the end of the application"), Category = "Sample")
 	static void SampleAppSampleEnd();
