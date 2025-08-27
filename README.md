@@ -1,10 +1,6 @@
-# Latest
+# This Repository Has Moved
 
-* Note: Visit the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) to find the latest supported plugin for Chroma RGB.
-
-* Note: This is the current Chroma SDK supported plugin for UE4.
-
-* Note: Check the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) for UE5 support.
+* Note: This plugin is deprecated. For the latest plugins go to the `WYVRN` documentation at [doc.wyvrn.com](https://doc.wyvrn.com/).
 
 ## Table of contents
 
@@ -3309,3 +3305,4 @@ void UChromaSDKPluginBPLibrary::UsePreloadingName(const FString& animationName,
 ```
 
 ---
+
