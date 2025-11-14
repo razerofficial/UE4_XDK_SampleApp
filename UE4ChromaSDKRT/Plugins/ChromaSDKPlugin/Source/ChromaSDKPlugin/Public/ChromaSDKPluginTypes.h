@@ -293,16 +293,16 @@ struct CHROMASDKPLUGIN_API FChromaSDKAppInfoType
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FString Title;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FString Description;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FString Author_Name;
 
-	UPROPERTY(EditAnywhere, Category = "ChromaSDK")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ChromaSDK")
 	FString Author_Contact;
 
 	UPROPERTY(EditAnywhere, Category = "ChromaSDK")

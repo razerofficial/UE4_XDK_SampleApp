@@ -494,16 +494,15 @@ void USampleGameLoopChromaBP::SetStaticColor(int* colors, int color, int size)
 
 #endif
 
-void USampleGameLoopChromaBP::SampleGameLoopSampleStart()
+void USampleGameLoopChromaBP::SampleGameLoopSampleStart(FChromaSDKAppInfoType appInfo)
 {
 #if PLATFORM_WINDOWS || PLATFORM_XBOXONE
 	if (!UChromaSDKPluginBPLibrary::IsInitialized())
 	{
-		FChromaSDKAppInfoType appInfo;
-		appInfo.Title = "UE4 Chroma Sample Game Loop Application";
+		/*appInfo.Title = "UE4 Chroma Sample Game Loop Application";
 		appInfo.Description = "A sample application using Razer Chroma SDK";
 		appInfo.Author_Name = "Razer";
-		appInfo.Author_Contact = "https://github.com/razerofficial/UE4_XDK_SampleApp";
+		appInfo.Author_Contact = "https://github.com/razerofficial/UE4_XDK_SampleApp";*/
 
 		//appInfo.SupportedDevice = 
 		//    0x01 | // Keyboards
